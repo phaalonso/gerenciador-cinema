@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +19,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sala")
+@NamedQueries({
+    @NamedQuery(name = "Sala.findAll",
+            query = "SELECT s FROM Sala s"),
+    @NamedQuery(name = "Sala.findByCodigo",
+            query = "SELECT s FROM Sala s WHERE s.codigo = :codigo")
+})
 public class Sala implements Serializable{
     @Id
     private Integer codigo;
