@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +35,9 @@ public class Sala implements Serializable{
 
     @Column(name = "qtdAssento")
     private Integer qtdAssendo;
+    
+    @OneToOne
+    private Assento assento;
 
     public Sala() {
     }
