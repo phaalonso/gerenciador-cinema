@@ -38,7 +38,7 @@ public class TipoIngresso implements Serializable{
     public TipoIngresso() {
     }
 
-    public TipoIngresso(Integer codigo, double valor, String descricao) {
+    public TipoIngresso(Integer codigo, String descricao, double valor) {
         this.codigo = codigo;
         this.valor = valor;
         this.descricao = descricao;

@@ -1,6 +1,7 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -60,6 +61,18 @@ public class Filme implements Serializable {
     private List<Genero> generos; 
 
     public Filme() {
+    }
+
+    public Filme(Integer codigo, String descricao, String titulo, Date dataEstreia,
+            Integer duracao, String direcao, Integer idadeMinima) {
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.dataEstreia = dataEstreia;
+        this.duracao = duracao;
+        this.direcao = direcao;
+        this.idadeMinima = idadeMinima;
+        this.generos = new ArrayList<>();
     }
 
     public void setCodigo(Integer codigo) {

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,12 +37,21 @@ public class Ingresso implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
 
+    
+    @OneToOne
+    private Sessao sessao;
+    
+    @OneToOne
+    private Assento assento;    
+    
     public Ingresso() {
     }
 
-    public Ingresso(Integer codigo, Date dataVenda) {
+    public Ingresso(Integer codigo, Date dataVenda, Sessao sessao, Assento assento) {
         this.codigo = codigo;
         this.dataVenda = dataVenda;
+        this.sessao = sessao;
+        this.assento = assento;
     }
 
     public Integer getCodigo() {
@@ -60,6 +70,22 @@ public class Ingresso implements Serializable{
         this.dataVenda = dataVenda;
     }
 
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
+    }
+
+    public Assento getAssento() {
+        return assento;
+    }
+
+    public void setAssento(Assento assento) {
+        this.assento = assento;
+    }
+    
     @Override
     public String toString() {
         return "Ingresso{" + "codigo=" + codigo + ", dataVenda=" + dataVenda + '}';

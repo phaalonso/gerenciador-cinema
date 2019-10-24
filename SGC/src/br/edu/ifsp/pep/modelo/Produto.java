@@ -25,27 +25,28 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findByCOdigo",
             query = "SELECT p FROM Produto p WHERE p.codigo = :codigo")
 })
-public class Produto implements Serializable{
-    @Id
-    private Integer codigo;
-    
+public class Produto extends Item{    
     @Column(name = "preco", nullable = false)
     private double preco;
+    
+    @Column(name = "estoque", nullable = false)
+    private Integer estoque;
 
     public Produto() {
     }
 
-    public Produto(Integer codigo, double preco) {
-        this.codigo = codigo;
+    public Produto(Integer codigo, String descricao, double preco, Integer estoque) {
+        super(codigo, descricao);
         this.preco = preco;
+        this.estoque = estoque;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getEstoque() {
+        return estoque;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
     }
 
     public double getPreco() {
@@ -55,12 +56,5 @@ public class Produto implements Serializable{
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
-    @Override
-    public String toString() {
-        return "Produto{" + "codigo=" + codigo + ", preco=" + preco + '}';
-    }
-    
-    
     
 }

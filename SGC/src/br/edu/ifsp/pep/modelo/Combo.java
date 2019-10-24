@@ -6,11 +6,14 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,43 +28,35 @@ import javax.persistence.Table;
     @NamedQuery(name = "Combo.findByCOdigo",
             query = "SELECT c FROM Combo c WHERE c.codigo = :codigo")
 })
-public class Combo implements Serializable{
-    @Id
-    private Integer codigo;
-    
+public class Combo extends Item{    
     @Column(name = "preco", nullable = false)
     private double preco;
+    
+    @OneToMany
+    private List<Produto> produtos;
 
     public Combo() {
     }
 
-    public Combo(Integer codigo, double preco) {
-        this.codigo = codigo;
+    public Combo(Integer codigo, double preco, String descricao) {
+        super(codigo, descricao);
+        this.produtos = new ArrayList<>();
         this.preco = preco;
-    }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
     }
 
     public double getPreco() {
         return preco;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+    
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
-    @Override
-    public String toString() {
-        return "Combo{" + "codigo=" + codigo + ", preco=" + preco + '}';
-    }
-    
-    
-    
-    
 }

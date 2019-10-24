@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -33,9 +34,9 @@ public class Assento implements Serializable{
     @Column(name = "disponivel")
     private boolean disponivel;
     
-    @OneToOne(mappedBy = "assento")
+    @ManyToOne
     private Sala sala;
-
+ 
     public Assento() {
     }
 

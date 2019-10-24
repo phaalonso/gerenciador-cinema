@@ -6,11 +6,14 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,12 +35,13 @@ public class Sala implements Serializable{
     
     @Column(name = "disponivel")
     private boolean disponivel;
-
+    
     @Column(name = "qtdAssento")
     private Integer qtdAssendo;
     
-    @OneToOne
-    private Assento assento;
+    
+    @OneToMany(mappedBy = "sala", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Assento> assentos;
 
     public Sala() {
     }
