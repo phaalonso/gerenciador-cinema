@@ -54,5 +54,13 @@ public abstract class Item  implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }   
+
+    public ItemVenda getItemVenda() {
+        return itemVenda;
+    }
+
+    public void setItemVenda(ItemVenda itemVenda) {
+        this.itemVenda = itemVenda;
+    }
     
 }

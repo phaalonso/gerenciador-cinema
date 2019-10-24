@@ -137,9 +137,6 @@ public class Filme implements Serializable {
 
     public void setGeneros(List<Genero> generos) {
         this.generos = generos;
-    }
-    
-    
-    
+    }   
 
 }

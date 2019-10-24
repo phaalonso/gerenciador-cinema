@@ -29,18 +29,14 @@ public class ItemVenda implements Serializable{
     @Column(name = "valor_unitario", nullable = false)
     private double valorUnitario;
     
-    @OneToOne
+    @ManyToOne
     private Item item;
     
-    @ManyToOne
-    private Venda venda;
-
     public ItemVenda() {
     }
 
-    public ItemVenda(Integer codigo, Item item, int quantidade, double valorUnitario, Venda venda) {
+    public ItemVenda(Integer codigo, Item item, int quantidade, double valorUnitario) {
         this.codigo = codigo;
-        this.venda = venda;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
         this.item = item;

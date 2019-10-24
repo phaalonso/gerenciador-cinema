@@ -35,7 +35,7 @@ public class Venda implements Serializable{
     @Column(name = "valorTotal")
     private double valorTotal;
     
-    @OneToMany(mappedBy = "venda")
+    @OneToMany
     private List<ItemVenda> itens;
     
     @OneToMany(mappedBy = "venda")

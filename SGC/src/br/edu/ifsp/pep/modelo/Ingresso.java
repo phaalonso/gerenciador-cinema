@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -37,21 +38,25 @@ public class Ingresso implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
 
-    
+    //??
     @OneToOne
     private Sessao sessao;
     
     @OneToOne
     private Assento assento;    
     
+    @ManyToOne
+    private IngressoVenda ingressoVenda;
+    
     public Ingresso() {
     }
 
-    public Ingresso(Integer codigo, Date dataVenda, Sessao sessao, Assento assento) {
+    public Ingresso(Integer codigo, Date dataVenda, Sessao sessao, Assento assento, IngressoVenda ingressoVenda) {
         this.codigo = codigo;
         this.dataVenda = dataVenda;
         this.sessao = sessao;
         this.assento = assento;
+        this.ingressoVenda = ingressoVenda;
     }
 
     public Integer getCodigo() {
@@ -84,6 +89,14 @@ public class Ingresso implements Serializable{
 
     public void setAssento(Assento assento) {
         this.assento = assento;
+    }
+
+    public IngressoVenda getIngressoVenda() {
+        return ingressoVenda;
+    }
+
+    public void setIngressoVenda(IngressoVenda ingressoVenda) {
+        this.ingressoVenda = ingressoVenda;
     }
     
     @Override

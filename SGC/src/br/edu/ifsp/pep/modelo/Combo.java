@@ -5,12 +5,11 @@
  */
 package br.edu.ifsp.pep.modelo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -32,16 +31,16 @@ public class Combo extends Item{
     @Column(name = "preco", nullable = false)
     private double preco;
     
-    @OneToMany
+    @OneToMany()
     private List<Produto> produtos;
 
     public Combo() {
     }
 
-    public Combo(Integer codigo, double preco, String descricao) {
+    public Combo(Integer codigo, String descricao, double preco) {
         super(codigo, descricao);
-        this.produtos = new ArrayList<>();
         this.preco = preco;
+        this.produtos = new ArrayList<>();
     }
 
     public double getPreco() {

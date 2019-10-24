@@ -12,6 +12,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -46,12 +48,15 @@ public class Sessao implements Serializable {
     @OneToOne
     private Filme filme;
     
-    @OneToOne
-    private Sala sala;
-    
     @OneToMany(mappedBy = "sessao")
     private List<Ingresso> ingressos;
 
+    @ManyToMany(mappedBy = "sessao")
+    private List<Assento> assentos;
+
+    @ManyToOne
+    private Sala sala;
+    
     public Sessao() {
     }
 
@@ -60,8 +65,9 @@ public class Sessao implements Serializable {
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.filme = filme;
-        this.sala = sala;
         this.ingressos = new ArrayList<>();
+        this.assentos = new ArrayList<>();
+        this.sala = sala;
     }
     
     public Integer getCodigo() {
@@ -96,6 +102,30 @@ public class Sessao implements Serializable {
         this.filme = filme;
     }
 
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
+
+    public List<Assento> getAssentos() {
+        return assentos;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+    
     @Override
     public String toString() {
         return "Sessao{" + "codigo=" + codigo + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", filme: " + this.filme.getTitulo() + '}';

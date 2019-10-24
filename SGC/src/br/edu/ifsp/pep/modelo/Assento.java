@@ -6,13 +6,15 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,13 +38,18 @@ public class Assento implements Serializable{
     
     @ManyToOne
     private Sala sala;
+    
+    @ManyToMany
+    private List<Sessao> sessaos;
  
     public Assento() {
     }
 
-    public Assento(Integer codigo, boolean disponivel) {
+    public Assento(Integer codigo, Sala sala, boolean disponivel) {
         this.codigo = codigo;
+        this.sala = sala;
         this.disponivel = disponivel;
+        this.sessaos = new ArrayList<>();
     }
 
     public Integer getCodigo() {
@@ -61,6 +68,22 @@ public class Assento implements Serializable{
         this.disponivel = disponivel;
     }
 
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public List<Sessao> getSessaos() {
+        return sessaos;
+    }
+
+    public void setSessaos(List<Sessao> sessaos) {
+        this.sessaos = sessaos;
+    }
+    
     @Override
     public String toString() {
         return "Assento{" + "codigo=" + codigo + ", disponivel=" + disponivel + '}';

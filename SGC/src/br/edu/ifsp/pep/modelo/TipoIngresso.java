@@ -67,7 +67,7 @@ public class TipoIngresso implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
     @Override
     public String toString() {
         return "TipoIngresso{" + "codigo=" + codigo + ", valor=" + valor + ", descricao=" + descricao + '}';

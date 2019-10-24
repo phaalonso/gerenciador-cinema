@@ -6,10 +6,13 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,15 +25,12 @@ import javax.persistence.Table;
 public class IngressoVenda implements Serializable{
     @Id
     private Integer codigo;
-    
-    @Column(name = "quantidade", nullable = false)
-    private Integer quantidade;
-    
+        
     @Column(name = "valor_unitario", nullable = false)
     private double valorUnitario;
     
-    @OneToOne
-    private Ingresso ingresso;
+    @OneToMany(mappedBy = "ingressoVenda")
+    private List<Ingresso> ingresso;
 
     @OneToOne
     private TipoIngresso tipo;
@@ -41,13 +41,12 @@ public class IngressoVenda implements Serializable{
     public IngressoVenda() {
     }
 
-    public IngressoVenda(Integer codigo, Ingresso ingresso, TipoIngresso tipo, Integer quantidade, Venda venda) {
+    public IngressoVenda(Integer codigo, TipoIngresso tipo, Venda venda) {
         this.codigo = codigo;
         this.venda = venda;
-        this.quantidade = quantidade;
-        this.ingresso = ingresso;
         this.tipo = tipo;
         this.valorUnitario = tipo.getValor();
+        this.ingresso = new ArrayList<>();
     }
     
     public Integer getCodigo() {
@@ -58,27 +57,35 @@ public class IngressoVenda implements Serializable{
         this.codigo = codigo;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public double getValorUnitario() {
         return valorUnitario;
     }
 
-    public Ingresso getIngresso() {
+    public List<Ingresso> getIngresso() {
         return ingresso;
     }
 
-    public void setIngresso(Ingresso ingresso) {
+    public void setIngresso(List<Ingresso> ingresso) {
         this.ingresso = ingresso;
+    }
+
+    public TipoIngresso getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoIngresso tipo) {
+        this.tipo = tipo;
+    }
+
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
     
     public double calcularSubTotal(){
-        return this.quantidade * this.valorUnitario;
+        return this.ingresso.size() * this.valorUnitario;
     }
 }

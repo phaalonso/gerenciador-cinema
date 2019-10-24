@@ -6,11 +6,13 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,10 +40,12 @@ public class Sala implements Serializable{
     
     @Column(name = "qtdAssento")
     private Integer qtdAssendo;
-    
-    
+        
     @OneToMany(mappedBy = "sala", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Assento> assentos;
+    
+    @OneToMany(mappedBy = "sala")
+    private List<Sessao> sessaos;
 
     public Sala() {
     }
@@ -50,6 +54,8 @@ public class Sala implements Serializable{
         this.codigo = codigo;
         this.disponivel = disponivel;
         this.qtdAssendo = qtdAssendo;
+        this.assentos = new ArrayList<>();
+        this.sessaos = new ArrayList<>();
     }
 
     public Integer getCodigo() {
@@ -76,6 +82,22 @@ public class Sala implements Serializable{
         this.qtdAssendo = qtdAssendo;
     }
 
+    public List<Assento> getAssentos() {
+        return assentos;
+    }
+
+    public void setAssentos(List<Assento> assentos) {
+        this.assentos = assentos;
+    }
+
+    public List<Sessao> getSessaos() {
+        return sessaos;
+    }
+
+    public void setSessaos(List<Sessao> sessaos) {
+        this.sessaos = sessaos;
+    }
+    
     @Override
     public String toString() {
         return "Sala{" + "codigo=" + codigo + ", disponivel=" + disponivel + ", qtdAssendo=" + qtdAssendo + '}';
