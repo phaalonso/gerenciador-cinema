@@ -4,11 +4,23 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifsp.pep.modelo.Filme</class>
     <class>br.edu.ifsp.pep.modelo.Genero</class>
+    <class>br.edu.ifsp.pep.modelo.Assento</class>
+    <class>br.edu.ifsp.pep.modelo.Combo</class>
+    <class>br.edu.ifsp.pep.modelo.Ingresso</class>
+    <class>br.edu.ifsp.pep.modelo.IngressoVenda</class>
+    <class>br.edu.ifsp.pep.modelo.Item</class>
+    <class>br.edu.ifsp.pep.modelo.ItemVenda</class>
+    <class>br.edu.ifsp.pep.modelo.Produto</class>
+    <class>br.edu.ifsp.pep.modelo.Sala</class>
+    <class>br.edu.ifsp.pep.modelo.Sessao</class>
+    <class>br.edu.ifsp.pep.modelo.TipoIngresso</class>
+    <class>br.edu.ifsp.pep.modelo.UsuarioComum</class>
+    <class>br.edu.ifsp.pep.modelo.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_sgc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="ifsp"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

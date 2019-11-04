@@ -23,7 +23,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "TipoIngresso.findAll",
             query = "SELECT t FROM TipoIngresso t"),
     @NamedQuery(name = "TipoIngresso.findByCOdigo",
-            query = "SELECT t FROM TipoIngreso t WHERE t.codigo = :codigo")
+            query = "SELECT t FROM TipoIngresso t WHERE t.codigo = :codigo")
 })
 public class TipoIngresso implements Serializable{
     @Id

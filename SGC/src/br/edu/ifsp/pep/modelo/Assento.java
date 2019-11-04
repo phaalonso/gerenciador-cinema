@@ -31,7 +31,7 @@ import javax.persistence.Table;
 })
 public class Assento implements Serializable{
     @Id
-    private Integer codigo;
+    private String codigo;
     
     @Column(name = "disponivel")
     private boolean disponivel;
@@ -45,18 +45,18 @@ public class Assento implements Serializable{
     public Assento() {
     }
 
-    public Assento(Integer codigo, Sala sala, boolean disponivel) {
+    public Assento(String codigo, Sala sala, boolean disponivel) {
         this.codigo = codigo;
         this.sala = sala;
         this.disponivel = disponivel;
         this.sessaos = new ArrayList<>();
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

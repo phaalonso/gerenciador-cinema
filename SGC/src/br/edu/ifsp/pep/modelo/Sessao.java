@@ -50,10 +50,7 @@ public class Sessao implements Serializable {
     
     @OneToMany(mappedBy = "sessao")
     private List<Ingresso> ingressos;
-
-    @ManyToMany(mappedBy = "sessao")
-    private List<Assento> assentos;
-
+    
     @ManyToOne
     private Sala sala;
     
@@ -66,7 +63,6 @@ public class Sessao implements Serializable {
         this.dataInicio = dataInicio;
         this.filme = filme;
         this.ingressos = new ArrayList<>();
-        this.assentos = new ArrayList<>();
         this.sala = sala;
     }
     
@@ -109,15 +105,6 @@ public class Sessao implements Serializable {
     public void setIngressos(List<Ingresso> ingressos) {
         this.ingressos = ingressos;
     }
-
-    public List<Assento> getAssentos() {
-        return assentos;
-    }
-
-    public void setAssentos(List<Assento> assentos) {
-        this.assentos = assentos;
-    }
-
     public Sala getSala() {
         return sala;
     }

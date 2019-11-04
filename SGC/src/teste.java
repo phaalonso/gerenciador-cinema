@@ -1,6 +1,9 @@
 
+import br.edu.ifsp.pep.modelo.Assento;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Genero;
+import br.edu.ifsp.pep.modelo.Sala;
+import br.edu.ifsp.pep.modelo.Sessao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +32,15 @@ public class teste {
         lista.add(g);
         f.setGeneros(lista);
         
+        Sala sala = new Sala(1, true, 1);
+        
+        Assento a = new Assento("A3", sala, true);
+        
+        Sessao sessao = new Sessao(1, "sim", new Date(), f, sala);
+        
         em.getTransaction().begin();
         em.persist(f);
+        //em.persist(sessao);
         em.getTransaction().commit();
     }
 }
