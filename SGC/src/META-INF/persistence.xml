@@ -3,9 +3,9 @@
   <persistence-unit name="SGCPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifsp.pep.modelo.Filme</class>
-    <class>br.edu.ifsp.pep.modelo.Genero</class>
     <class>br.edu.ifsp.pep.modelo.Assento</class>
     <class>br.edu.ifsp.pep.modelo.Combo</class>
+    <class>br.edu.ifsp.pep.modelo.Genero</class>
     <class>br.edu.ifsp.pep.modelo.Ingresso</class>
     <class>br.edu.ifsp.pep.modelo.IngressoVenda</class>
     <class>br.edu.ifsp.pep.modelo.Item</class>
@@ -20,8 +20,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_sgc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.jdbc.password" value="ifsp"/>
     </properties>
   </persistence-unit>
 </persistence>
