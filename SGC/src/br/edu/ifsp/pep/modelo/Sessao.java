@@ -6,20 +6,16 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -52,10 +48,10 @@ public class Sessao implements Serializable {
     @Column(name = "arquivda", nullable = false)
     private boolean arquivada;
     
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Filme filme;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Sala sala;
     
     public Sessao() {
@@ -67,6 +63,7 @@ public class Sessao implements Serializable {
         this.dataInicio = dataInicio;
         this.filme = filme;
         this.sala = sala;
+        this.arquivada = false;
     }
     
     public Integer getCodigo() {

@@ -9,10 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,8 +43,11 @@ public class Venda implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date data;
     
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<ItemVenda> itens;
+        
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Ingresso> ingressos;
 
     public Venda() {
     }
@@ -52,6 +56,7 @@ public class Venda implements Serializable{
         this.codigo = codigo;
         this.data = data;
         this.itens = new ArrayList<>();
+        this.ingressos = new ArrayList<>();
     }
 
     public Integer getCodigo() {
@@ -62,12 +67,28 @@ public class Venda implements Serializable{
         this.codigo = codigo;
     }
 
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
     public List<ItemVenda> getItens() {
         return itens;
     }
 
     public void setItens(List<ItemVenda> itens) {
         this.itens = itens;
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
     }
     
     //TODO CalcularTotal

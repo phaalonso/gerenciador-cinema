@@ -5,10 +5,8 @@
  */
 package br.edu.ifsp.pep.modelo;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,10 +23,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findByCOdigo",
             query = "SELECT p FROM Produto p WHERE p.codigo = :codigo")
 })
-public class Produto extends Item{    
-    @Column(name = "preco", nullable = false)
-    private double preco;
-    
+public class Produto extends Item{        
     @Column(name = "estoque", nullable = false)
     private Integer estoque;
 
@@ -36,8 +31,7 @@ public class Produto extends Item{
     }
 
     public Produto(Integer codigo, String descricao, double preco, Integer estoque) {
-        super(codigo, descricao);
-        this.preco = preco;
+        super(codigo, descricao, preco);
         this.estoque = estoque;
     }
 
@@ -49,12 +43,9 @@ public class Produto extends Item{
         this.estoque = estoque;
     }
 
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
+    @Override
+    public String toString() {
+        return "Produto{" + "estoque=" + estoque + '}';
     }
     
 }

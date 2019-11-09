@@ -42,7 +42,7 @@ public class Sala implements Serializable{
     @Column(name = "qtdAssento")
     private Integer qtdAssendo;
         
-    @OneToMany(mappedBy = "sala", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Assento> assentos;
 
     public Sala() {

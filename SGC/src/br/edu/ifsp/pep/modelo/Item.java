@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
@@ -23,20 +25,22 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Item  implements Serializable{
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;
     
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
     
-    @OneToOne(mappedBy = "item")
-    private ItemVenda itemVenda;
-
+    @Column(name = "preco", nullable = false)
+    private double preco;
+    
     public Item() {
     }
 
-    public Item(Integer codigo, String descricao) {
+    public Item(Integer codigo, String descricao, double preco) {
         this.codigo = codigo;
         this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Integer getCodigo() {
@@ -55,12 +59,16 @@ public abstract class Item  implements Serializable{
         this.descricao = descricao;
     }   
 
-    public ItemVenda getItemVenda() {
-        return itemVenda;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setItemVenda(ItemVenda itemVenda) {
-        this.itemVenda = itemVenda;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Item{" + "codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + '}';
+    }    
 }

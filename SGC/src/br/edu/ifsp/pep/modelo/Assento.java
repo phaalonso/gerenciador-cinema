@@ -36,18 +36,14 @@ public class Assento implements Serializable{
     @Column(name = "disponivel")
     private boolean disponivel;
     
-    @ManyToOne
-    private Sala sala;
-    
     @ManyToMany
     private List<Sessao> sessaos;
  
     public Assento() {
     }
 
-    public Assento(String codigo, Sala sala, boolean disponivel) {
+    public Assento(String codigo, boolean disponivel) {
         this.codigo = codigo;
-        this.sala = sala;
         this.disponivel = disponivel;
         this.sessaos = new ArrayList<>();
     }
@@ -66,14 +62,6 @@ public class Assento implements Serializable{
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public Sala getSala() {
-        return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
     }
 
     public List<Sessao> getSessaos() {

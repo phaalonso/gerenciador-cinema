@@ -7,6 +7,7 @@ package br.edu.ifsp.pep.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -26,24 +27,16 @@ import javax.persistence.Table;
     @NamedQuery(name = "Combo.findByCOdigo",
             query = "SELECT c FROM Combo c WHERE c.codigo = :codigo")
 })
-public class Combo extends Item{    
-    @Column(name = "preco", nullable = false)
-    private double preco;
-    
-    @OneToMany()
+public class Combo extends Item{        
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Produto> produtos;
 
     public Combo() {
     }
 
     public Combo(Integer codigo, String descricao, double preco) {
-        super(codigo, descricao);
-        this.preco = preco;
+        super(codigo, descricao, preco);
         this.produtos = new ArrayList<>();
-    }
-
-    public double getPreco() {
-        return preco;
     }
 
     public List<Produto> getProdutos() {
@@ -53,8 +46,9 @@ public class Combo extends Item{
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-    
-    public void setPreco(double preco) {
-        this.preco = preco;
+
+    @Override
+    public String toString() {
+        return "Combo{" + "produtos=" + produtos + '}';
     }
 }

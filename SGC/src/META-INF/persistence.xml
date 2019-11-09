@@ -15,6 +15,7 @@
     <class>br.edu.ifsp.pep.modelo.TipoIngresso</class>
     <class>br.edu.ifsp.pep.modelo.UsuarioComum</class>
     <class>br.edu.ifsp.pep.modelo.Venda</class>
+    <class>br.edu.ifsp.pep.modelo.SuperUsuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_sgc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

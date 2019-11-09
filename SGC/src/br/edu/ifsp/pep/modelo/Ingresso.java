@@ -7,11 +7,13 @@ package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,13 +21,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author pedro
  */
 @Entity
-@Table(name = "ingresso")
+@Table(name = "ingresso", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"sessao_codigo" , "assento_codigo"})
+})
 @NamedQueries({
     @NamedQuery(name = "Ingresso.findAll",
             query = "SELECT i FROM Ingresso i"),
@@ -35,6 +40,7 @@ import javax.persistence.TemporalType;
 public class Ingresso implements Serializable{
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "codigo")
     private Integer codigo;
     
     @Column(name = "dataVenda")
@@ -42,13 +48,16 @@ public class Ingresso implements Serializable{
     private Date dataVenda;
 
     //??
-    @OneToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "sessao_codigo", referencedColumnName = "codigo")
     private Sessao sessao;
     
-    @OneToOne
-    private Assento assento;    
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "assento_codigo", referencedColumnName = "codigo")
+    private Assento assento;
     
-    
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private TipoIngresso tipo;
     
     public Ingresso() {
     }
