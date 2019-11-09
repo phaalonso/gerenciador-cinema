@@ -9,8 +9,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -36,6 +39,7 @@ import javax.persistence.TemporalType;
 })
 public class Sessao implements Serializable {
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;
     
     @Column(name = "descricao", length = 100, nullable = false)
@@ -45,11 +49,11 @@ public class Sessao implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
     
+    @Column(name = "arquivda", nullable = false)
+    private boolean arquivada;
+    
     @OneToOne
     private Filme filme;
-    
-    @OneToMany(mappedBy = "sessao")
-    private List<Ingresso> ingressos;
     
     @ManyToOne
     private Sala sala;
@@ -62,7 +66,6 @@ public class Sessao implements Serializable {
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.filme = filme;
-        this.ingressos = new ArrayList<>();
         this.sala = sala;
     }
     
@@ -97,14 +100,7 @@ public class Sessao implements Serializable {
     public void setFilme(Filme filme) {
         this.filme = filme;
     }
-
-    public List<Ingresso> getIngressos() {
-        return ingressos;
-    }
-
-    public void setIngressos(List<Ingresso> ingressos) {
-        this.ingressos = ingressos;
-    }
+    
     public Sala getSala() {
         return sala;
     }

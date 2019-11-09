@@ -8,6 +8,8 @@ package br.edu.ifsp.pep.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,6 +29,7 @@ import javax.persistence.Table;
 })
 public class Genero implements Serializable {
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "codigo")
     private Integer codigo;
     

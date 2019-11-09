@@ -7,7 +7,6 @@
     <class>br.edu.ifsp.pep.modelo.Combo</class>
     <class>br.edu.ifsp.pep.modelo.Genero</class>
     <class>br.edu.ifsp.pep.modelo.Ingresso</class>
-    <class>br.edu.ifsp.pep.modelo.IngressoVenda</class>
     <class>br.edu.ifsp.pep.modelo.Item</class>
     <class>br.edu.ifsp.pep.modelo.ItemVenda</class>
     <class>br.edu.ifsp.pep.modelo.Produto</class>

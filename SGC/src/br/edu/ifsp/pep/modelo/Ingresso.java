@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -32,6 +34,7 @@ import javax.persistence.TemporalType;
 })
 public class Ingresso implements Serializable{
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;
     
     @Column(name = "dataVenda")
@@ -45,18 +48,16 @@ public class Ingresso implements Serializable{
     @OneToOne
     private Assento assento;    
     
-    @ManyToOne
-    private IngressoVenda ingressoVenda;
+    
     
     public Ingresso() {
     }
 
-    public Ingresso(Integer codigo, Date dataVenda, Sessao sessao, Assento assento, IngressoVenda ingressoVenda) {
+    public Ingresso(Integer codigo, Date dataVenda, Sessao sessao, Assento assento) {
         this.codigo = codigo;
         this.dataVenda = dataVenda;
         this.sessao = sessao;
         this.assento = assento;
-        this.ingressoVenda = ingressoVenda;
     }
 
     public Integer getCodigo() {
@@ -89,14 +90,6 @@ public class Ingresso implements Serializable{
 
     public void setAssento(Assento assento) {
         this.assento = assento;
-    }
-
-    public IngressoVenda getIngressoVenda() {
-        return ingressoVenda;
-    }
-
-    public void setIngressoVenda(IngressoVenda ingressoVenda) {
-        this.ingressoVenda = ingressoVenda;
     }
     
     @Override

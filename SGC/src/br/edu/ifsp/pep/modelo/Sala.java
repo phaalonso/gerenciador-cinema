@@ -11,12 +11,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +33,7 @@ import javax.persistence.Table;
 })
 public class Sala implements Serializable{
     @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;
     
     @Column(name = "disponivel")
@@ -43,9 +44,6 @@ public class Sala implements Serializable{
         
     @OneToMany(mappedBy = "sala", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Assento> assentos;
-    
-    @OneToMany(mappedBy = "sala")
-    private List<Sessao> sessaos;
 
     public Sala() {
     }
@@ -55,7 +53,6 @@ public class Sala implements Serializable{
         this.disponivel = disponivel;
         this.qtdAssendo = qtdAssendo;
         this.assentos = new ArrayList<>();
-        this.sessaos = new ArrayList<>();
     }
 
     public Integer getCodigo() {
@@ -88,14 +85,6 @@ public class Sala implements Serializable{
 
     public void setAssentos(List<Assento> assentos) {
         this.assentos = assentos;
-    }
-
-    public List<Sessao> getSessaos() {
-        return sessaos;
-    }
-
-    public void setSessaos(List<Sessao> sessaos) {
-        this.sessaos = sessaos;
     }
     
     @Override
