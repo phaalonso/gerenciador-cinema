@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -53,7 +54,10 @@ public class Ingresso implements Serializable{
     private Sessao sessao;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "assento_codigo", referencedColumnName = "codigo")
+    @JoinColumns(value = {
+        @JoinColumn(name = "assento_codigo", referencedColumnName = "codigo"),
+        @JoinColumn(name = "assento_sala_codigo", referencedColumnName = "sala_codigo")
+    })
     private Assento assento;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

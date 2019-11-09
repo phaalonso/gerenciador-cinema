@@ -6,13 +6,9 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,30 +26,18 @@ import javax.persistence.Table;
             query = "SELECT a FROM Assento a WHERE a.codigo = :codigo")
 })
 public class Assento implements Serializable{
-    @Id
-    private String codigo;
+    @EmbeddedId
+    private CodigoAssento codigo;
     
     @Column(name = "disponivel")
     private boolean disponivel;
-    
-    @ManyToMany
-    private List<Sessao> sessaos;
  
     public Assento() {
     }
 
-    public Assento(String codigo, boolean disponivel) {
+    public Assento(CodigoAssento codigo, boolean disponivel) {
         this.codigo = codigo;
         this.disponivel = disponivel;
-        this.sessaos = new ArrayList<>();
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public boolean isDisponivel() {
@@ -62,14 +46,6 @@ public class Assento implements Serializable{
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public List<Sessao> getSessaos() {
-        return sessaos;
-    }
-
-    public void setSessaos(List<Sessao> sessaos) {
-        this.sessaos = sessaos;
     }
     
     @Override

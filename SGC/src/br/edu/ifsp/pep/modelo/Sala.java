@@ -11,9 +11,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,6 +46,10 @@ public class Sala implements Serializable{
     private Integer qtdAssendo;
         
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumns(value = {
+        @JoinColumn(name = "codigo", referencedColumnName = "sala_codigo"),
+        @JoinColumn(name = "sala_codigo", referencedColumnName = "codigo")
+    })
     private List<Assento> assentos;
 
     public Sala() {
