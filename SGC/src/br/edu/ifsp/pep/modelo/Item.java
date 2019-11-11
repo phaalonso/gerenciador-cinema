@@ -1,31 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
 @Entity
 @Table(name = "item")
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Item  implements Serializable{
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "codigo")
     private Integer codigo;
     
     @Column(name = "descricao", length = 100, nullable = false)

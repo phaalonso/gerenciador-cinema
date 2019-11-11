@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
@@ -12,9 +7,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,20 +17,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author pedro
- */
 @Entity
 @Table(name = "venda")
 @NamedQueries({
     @NamedQuery(name = "Venda.findAll",
             query = "SELECT v FROM Venda v"),
-    @NamedQuery(name = "Venda.findByCOdigo",
+    @NamedQuery(name = "Venda.findByCodigo",
             query = "SELECT v FROM Venda v WHERE v.codigo = :codigo")
 })
 public class Venda implements Serializable{
     @Id
+    @Column(name = "codigo")
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;
 
@@ -44,9 +36,21 @@ public class Venda implements Serializable{
     private Date data;
     
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinTable(name = "venda_item_venda",
+            joinColumns = @JoinColumn(name = "venda_codigo"),
+            inverseJoinColumns = @JoinColumn(name = "item_venda_codigo")
+    )
     private List<ItemVenda> itens;
         
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinTable(name = "venda_ingresso",
+            joinColumns = @JoinColumn(name = "venda_codigo"),
+            inverseJoinColumns = {
+                @JoinColumn(name = "ingresso_sessao_codigo", referencedColumnName = "sessao_codigo"),
+                @JoinColumn(name = "ingresso_assento_codigo", referencedColumnName = "assento_codigo"),
+                @JoinColumn(name = "ingresso_sala_codigo", referencedColumnName = "assento_sala_codigo")
+            }
+    )
     private List<Ingresso> ingressos;
 
     public Venda() {

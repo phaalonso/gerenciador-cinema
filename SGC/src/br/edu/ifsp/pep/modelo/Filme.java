@@ -55,8 +55,8 @@ public class Filme implements Serializable {
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "filme_genero",
-            joinColumns = @JoinColumn(name = "filme_id"),
-            inverseJoinColumns = @JoinColumn(name = "genero_id")
+            joinColumns = @JoinColumn(name = "filme_codigo"),
+            inverseJoinColumns = @JoinColumn(name = "genero_codigo")
     )
     private List<Genero> generos; 
 

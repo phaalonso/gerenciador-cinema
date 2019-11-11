@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsp.pep.modelo;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
 @Entity
 @Table(name = "produto")
+@DiscriminatorValue(value = "produto")
 @NamedQueries({
     @NamedQuery(name = "Produto.findAll",
             query = "SELECT p FROM Produto p"),
-    @NamedQuery(name = "Produto.findByCOdigo",
+    @NamedQuery(name = "Produto.findByCodigo",
             query = "SELECT p FROM Produto p WHERE p.codigo = :codigo")
 })
 public class Produto extends Item{        

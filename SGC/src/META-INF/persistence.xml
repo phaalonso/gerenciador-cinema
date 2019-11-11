@@ -16,11 +16,12 @@
     <class>br.edu.ifsp.pep.modelo.UsuarioComum</class>
     <class>br.edu.ifsp.pep.modelo.Venda</class>
     <class>br.edu.ifsp.pep.modelo.SuperUsuario</class>
+    <class>br.edu.ifsp.pep.modelo.AssentoPK</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_sgc?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.password" value="ifsp"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

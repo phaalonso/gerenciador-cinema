@@ -4,6 +4,7 @@ import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Ingresso;
 import br.edu.ifsp.pep.modelo.Sala;
 import br.edu.ifsp.pep.modelo.Sessao;
+import br.edu.ifsp.pep.modelo.TipoIngresso;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.EntityManager;
@@ -29,15 +30,19 @@ public class teste {
         Assento assento2 = new Assento("a02", sala, true);
         Assento assento3 = new Assento("a01", sala2, true);
         Assento assento4 = new Assento("a02", sala2, true);
+        
         em.persist(assento);
         em.persist(assento2);
         em.persist(assento3);
         em.persist(assento4);
+        
+        
         ArrayList<Assento> lA = new ArrayList<>();
         lA.add(assento);
         lA.add(assento2);
         lA.add(assento3);
         lA.add(assento4);
+        
         sala.setAssentos(lA);
         em.persist(sala);
         em.persist(sala2);
@@ -47,11 +52,13 @@ public class teste {
 
         Thread.sleep(3);
         Sessao s2 = new Sessao(2, "SessaoTeste2", new Date(), f, sala);
+        
+        TipoIngresso ti = new TipoIngresso(1, "Inteira", 30);
 
-        Ingresso ing = new Ingresso(1, new Date(), s, assento);
+        Ingresso ing = new Ingresso(s, assento, new Date(), ti);
         em.persist(ing);
 
-        Ingresso ing2 = new Ingresso(2, new Date(), s2, assento);
+        Ingresso ing2 = new Ingresso(s2, assento, new Date(), ti);
         em.persist(ing2);
 
         em.getTransaction().commit();

@@ -1,34 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsp.pep.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
 @Entity
 @Table(name = "combo")
+@DiscriminatorValue(value = "combo")
 @NamedQueries({
     @NamedQuery(name = "Combo.findAll",
             query = "SELECT c FROM Combo c"),
-    @NamedQuery(name = "Combo.findByCOdigo",
+    @NamedQuery(name = "Combo.findByCodigo",
             query = "SELECT c FROM Combo c WHERE c.codigo = :codigo")
 })
 public class Combo extends Item{        
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "combo_produto",
+            joinColumns = @JoinColumn(name = "combo_codigo"),
+            inverseJoinColumns = @JoinColumn(name = "produto_codigo")
+    )
     private List<Produto> produtos;
 
     public Combo() {

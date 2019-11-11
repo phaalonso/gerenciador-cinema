@@ -1,26 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
 @Entity
-@Table(name = "tipoingresso")
+@Table(name = "tipo_ingresso")
 @NamedQueries({
     @NamedQuery(name = "TipoIngresso.findAll",
             query = "SELECT t FROM TipoIngresso t"),
@@ -29,13 +18,13 @@ import javax.persistence.Table;
 })
 public class TipoIngresso implements Serializable{
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "codigo")
     private Integer codigo;
     
     @Column(name = "valor", nullable = false)
     private double valor;
     
-    @Column(name = "descricao", length = 100)
+    @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
     public TipoIngresso() {
