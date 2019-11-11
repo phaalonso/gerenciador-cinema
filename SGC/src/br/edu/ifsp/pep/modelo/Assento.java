@@ -9,6 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,8 +29,13 @@ import javax.persistence.Table;
             query = "SELECT a FROM Assento a WHERE a.codigo = :codigo")
 })
 public class Assento implements Serializable{
-    @EmbeddedId
-    private CodigoAssento codigo;
+    @Id
+    private String codigo;
+    
+    @Id
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "codigo")
+    private Sala sala;
     
     @Column(name = "disponivel")
     private boolean disponivel;
@@ -35,8 +43,9 @@ public class Assento implements Serializable{
     public Assento() {
     }
 
-    public Assento(CodigoAssento codigo, boolean disponivel) {
+    public Assento(String codigo, Sala sala, boolean disponivel) {
         this.codigo = codigo;
+        this.sala = sala;
         this.disponivel = disponivel;
     }
 

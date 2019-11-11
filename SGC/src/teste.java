@@ -1,6 +1,5 @@
 
 import br.edu.ifsp.pep.modelo.Assento;
-import br.edu.ifsp.pep.modelo.CodigoAssento;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Ingresso;
 import br.edu.ifsp.pep.modelo.Sala;
@@ -23,15 +22,25 @@ public class teste {
         em.persist(f);
 
         Sala sala = new Sala(1, true, 1);
-        Assento assento = new Assento(new CodigoAssento(sala.getCodigo(), "a1"), true);
-        Assento assento2 = new Assento(new CodigoAssento(sala.getCodigo(), "a2"), true);
+        Sala sala2 = new Sala(2, true, 1);
+        //Assento assento = new Assento(new CodigoAssento(sala, "a01"), true);
+        //Assento assento2 = new Assento(new CodigoAssento(sala, "a02"), true);
+        Assento assento = new Assento("a01", sala, true);
+        Assento assento2 = new Assento("a02", sala, true);
+        Assento assento3 = new Assento("a01", sala2, true);
+        Assento assento4 = new Assento("a02", sala2, true);
         em.persist(assento);
         em.persist(assento2);
+        em.persist(assento3);
+        em.persist(assento4);
         ArrayList<Assento> lA = new ArrayList<>();
         lA.add(assento);
         lA.add(assento2);
+        lA.add(assento3);
+        lA.add(assento4);
         sala.setAssentos(lA);
         em.persist(sala);
+        em.persist(sala2);
 
         Sessao s = new Sessao(1, "SessaoTeste", new Date(), f, sala);
         em.persist(s);

@@ -37,6 +37,7 @@ import javax.persistence.Table;
 public class Sala implements Serializable{
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "codigo")
     private Integer codigo;
     
     @Column(name = "disponivel")
@@ -45,11 +46,7 @@ public class Sala implements Serializable{
     @Column(name = "qtdAssento")
     private Integer qtdAssendo;
         
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumns(value = {
-        @JoinColumn(name = "codigo", referencedColumnName = "sala_codigo"),
-        @JoinColumn(name = "sala_codigo", referencedColumnName = "codigo")
-    })
+    @OneToMany(mappedBy = "sala")
     private List<Assento> assentos;
 
     public Sala() {
