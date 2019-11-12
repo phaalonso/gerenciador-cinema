@@ -10,9 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="usuario_comum")
+@Table(name="usuario_comum", uniqueConstraints = @UniqueConstraint(
+        name = "uniqueLogin", columnNames = "login"
+))
 @DiscriminatorColumn(name = "tipo")
 @DiscriminatorValue(value = "comum")
 @Inheritance(strategy = InheritanceType.JOINED)
