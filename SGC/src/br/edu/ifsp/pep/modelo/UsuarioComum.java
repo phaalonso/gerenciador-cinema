@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -19,6 +21,11 @@ import javax.persistence.UniqueConstraint;
 @DiscriminatorColumn(name = "tipo")
 @DiscriminatorValue(value = "comum")
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQueries({
+    @NamedQuery(name = "UsuarioComum.findAll", query = "SELECT U FROM UsuarioComum U"),
+    @NamedQuery(name = "UsuarioComum.login", query = "SELECT U FROM UsuarioComum U"
+            + " WHERE U.login = :login AND U.senha = :senha")
+})
 public class UsuarioComum implements Serializable{
     @Id
     @Column(name = "codigo")
