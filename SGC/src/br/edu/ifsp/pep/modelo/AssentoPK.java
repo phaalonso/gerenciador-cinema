@@ -1,10 +1,12 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 
 public class AssentoPK implements Serializable {
-    
+    @Column(name = "codigo")
     private String codigo;
+    @Column(name = "sala_codigo")
     private Integer sala; // Mesmo tipo da PK de sala
 
     public AssentoPK() {

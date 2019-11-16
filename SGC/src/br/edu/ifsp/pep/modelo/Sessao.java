@@ -21,7 +21,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Sessao.findAll",
             query = "SELECT s FROM Sessao s"),
     @NamedQuery(name = "Sessao.findByCodigo",
-            query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo")
+            query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
+    @NamedQuery(name = "Sessao.findConflito",
+            query = "SELECT S FROM Sessao S JOIN Filme F ON (F.codigo = S.filme.codigo) WHERE (S.arquivada = 0) AND (S.sala.codigo = :sala) AND ((S.dataInicio BETWEEN :inicio AND :fim) OR ((S.dataInicio + S.filme.duracao) BETWEEN :inicio AND :fim))")
 })
 public class Sessao implements Serializable {
     @Id
@@ -33,7 +35,7 @@ public class Sessao implements Serializable {
     private String descricao;
     
     @Column(name = "data_inicio", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInicio;
     
     @Column(name = "arquivada", nullable = false)

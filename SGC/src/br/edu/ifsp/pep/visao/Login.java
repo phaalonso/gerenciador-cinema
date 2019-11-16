@@ -7,6 +7,8 @@ package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleUsuario;
 import br.edu.ifsp.pep.modelo.UsuarioComum;
+import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +22,8 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
-        initComponents();
         this.controle = new ControleUsuario();
+        initComponents();
     }
 
     /**
@@ -72,19 +74,19 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(lbLogin)
                             .addComponent(lbSenha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfLogin)
-                            .addComponent(pfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addComponent(btLogar)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbLogin)
                     .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -96,14 +98,14 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSair)
                     .addComponent(btLogar))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
@@ -111,8 +113,14 @@ public class Login extends javax.swing.JFrame {
         String senha = String.valueOf(pfSenha.getPassword());
         
         if(login.trim().length() > 0 && senha.trim().length() > 0){
-            UsuarioComum user = controle.login(login, senha);
-            System.out.println(user);
+            try{
+                UsuarioComum user = controle.login(login, senha);
+                System.out.println(user);
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Login e senha invalidos");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ambos os campos login e senha devem estar preenchidos!");
         }
     }//GEN-LAST:event_btLogarActionPerformed
 

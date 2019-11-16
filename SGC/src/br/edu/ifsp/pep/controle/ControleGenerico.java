@@ -23,7 +23,7 @@ public class ControleGenerico<T> {
 
     public ControleGenerico(Class<T> classe) {
         this.classe = classe;
-        emf = Persistence.createEntityManagerFactory("projBancoPU");
+        emf = Persistence.createEntityManagerFactory("SGCPU");
     }
 
     protected EntityManager getEntityManager() {
