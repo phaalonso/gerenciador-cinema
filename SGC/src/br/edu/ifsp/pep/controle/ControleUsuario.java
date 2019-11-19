@@ -6,6 +6,7 @@
 package br.edu.ifsp.pep.controle;
 import br.edu.ifsp.pep.modelo.UsuarioComum;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.eclipse.persistence.config.HintValues;
 import org.eclipse.persistence.config.QueryHints;
@@ -20,7 +21,7 @@ public class ControleUsuario extends ControleGenerico<UsuarioComum>{
         super(UsuarioComum.class);
     }
 
-    public UsuarioComum login(String login, String senha){
+    public UsuarioComum login(String login, String senha) throws NoResultException{
         EntityManager em = getEntityManager();
         TypedQuery<UsuarioComum> query = em.createNamedQuery("UsuarioComum.login", UsuarioComum.class)
                 .setParameter("login", login)

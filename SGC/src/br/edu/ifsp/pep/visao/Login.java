@@ -12,18 +12,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author pedro
+ * @author bianca
  */
 public class Login extends javax.swing.JFrame {
 
     private ControleUsuario controle;
-    
-    /**
-     * Creates new form Login
-     */
+
     public Login() {
-        this.controle = new ControleUsuario();
         initComponents();
+        this.controle = new ControleUsuario();
     }
 
     /**
@@ -34,95 +31,131 @@ public class Login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        lbLogin = new javax.swing.JLabel();
-        lbSenha = new javax.swing.JLabel();
-        tfLogin = new javax.swing.JTextField();
-        pfSenha = new javax.swing.JPasswordField();
-        btSair = new javax.swing.JButton();
-        btLogar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        tfUsuario = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        pfSenha = new com.hq.swingmaterialdesign.materialdesign.MPasswordField();
+        mButton1 = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mButton2 = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbLogin.setText("Login");
+        jPanel1.setBackground(java.awt.Color.white);
 
-        lbSenha.setText("Senha");
+        tfUsuario.setLabel("Usuario");
 
-        btSair.setText("Sair");
-        btSair.addActionListener(new java.awt.event.ActionListener() {
+        pfSenha.setLabel("Senha");
+
+        mButton1.setBackground(new java.awt.Color(217, 75, 75));
+        mButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mButton1.setText("Logar");
+        mButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mButton1MouseClicked(evt);
+            }
+        });
+        mButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSairActionPerformed(evt);
+                mButton1ActionPerformed(evt);
             }
         });
 
-        btLogar.setText("Logar");
-        btLogar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLogarActionPerformed(evt);
+        mButton2.setBackground(new java.awt.Color(217, 75, 75));
+        mButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mButton2.setText("Sair");
+        mButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mButton2MouseClicked(evt);
             }
         });
+        mButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel1.setText("Login");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(mButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(152, 152, 152)
+                            .addComponent(jLabel1))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(88, 88, 88)
+                            .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(97, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbLogin)
-                            .addComponent(lbSenha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                        .addComponent(btLogar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbLogin)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSenha)
-                    .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSair)
-                    .addComponent(btLogar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();
-    }//GEN-LAST:event_btSairActionPerformed
+    private void mButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton2ActionPerformed
+    }//GEN-LAST:event_mButton2ActionPerformed
 
-    private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        String login = tfLogin.getText();
+    private void mButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mButton2MouseClicked
+        dispose();
+    }//GEN-LAST:event_mButton2MouseClicked
+
+    private void mButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mButton1MouseClicked
+        String login = tfUsuario.getText();
         String senha = String.valueOf(pfSenha.getPassword());
         
-        if(login.trim().length() > 0 && senha.trim().length() > 0){
-            try{
-                UsuarioComum user = controle.login(login, senha);
-                System.out.println(user);
-            }catch(NoResultException ex){
-                JOptionPane.showMessageDialog(null, "Login e senha invalidos");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Ambos os campos login e senha devem estar preenchidos!");
+        try{
+            UsuarioComum usuario = controle.login(login, senha);
+            Menu menu = new Menu(usuario);
+            menu.setVisible(true);
+            dispose();
+        }catch(NoResultException ex){
+            JOptionPane.showMessageDialog(null, "Usuario não encontrado");
         }
-    }//GEN-LAST:event_btLogarActionPerformed
+                
+    }//GEN-LAST:event_mButton1MouseClicked
+
+    private void mButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +183,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -160,11 +194,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btLogar;
-    private javax.swing.JButton btSair;
-    private javax.swing.JLabel lbLogin;
-    private javax.swing.JLabel lbSenha;
-    private javax.swing.JPasswordField pfSenha;
-    private javax.swing.JTextField tfLogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mButton1;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mButton2;
+    private com.hq.swingmaterialdesign.materialdesign.MPasswordField pfSenha;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }
