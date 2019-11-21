@@ -27,6 +27,10 @@ public class ItemVenda implements Serializable{
     @JoinColumn(name = "item_codigo", nullable = false)
     private Item item;
     
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "venda_codigo", nullable = false)
+    private Venda venda;
+    
     public ItemVenda() {
     }
 

@@ -36,11 +36,8 @@ public class Venda implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date data;
     
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name = "venda_item_venda",
-            joinColumns = @JoinColumn(name = "venda_codigo"),
-            inverseJoinColumns = @JoinColumn(name = "item_venda_codigo")
-    )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+        mappedBy = "venda")
     private List<ItemVenda> itens;
         
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
