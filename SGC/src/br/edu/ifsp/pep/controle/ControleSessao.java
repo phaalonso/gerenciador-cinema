@@ -22,12 +22,15 @@ public class ControleSessao extends ControleGenerico<Sessao>{
         super(Sessao.class);
     }
 
-    public List<Sessao> findConflito(Integer sala, Date inicio, Date fim){
+    public List<Sessao> localizarConflito(Date dataInicio, Date dataFim, 
+            Time horaInicio, Time horaFim,Integer sala){
+                dataInicio.setTime(horaInicio);
+                dataFim.setTime(horaFim);
         EntityManager em = getEntityManager();
         TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findConflito", Sessao.class)
                 .setParameter("sala", sala)
-                .setParameter("inicio", inicio)
-                .setParameter("fim", fim)
+                .setParameter("dataInicio", dataInicio)
+                .setParameter("dataFim", dataFim)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);        
         return query.getResultList();
     }
