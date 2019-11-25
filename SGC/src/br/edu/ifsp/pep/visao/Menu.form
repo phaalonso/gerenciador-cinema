@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="PMain" max="32767" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,52 +50,99 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="gPMenu" min="-2" pref="188" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="582" max="32767" attributes="0"/>
+                  <Component id="pnMenu" min="-2" pref="188" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="577" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="gPMenu" alignment="0" pref="640" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="pnMenu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.hq.swingmaterialdesign.materialdesign.MGradientPanel" name="gPMenu">
+        <Container class="javax.swing.JPanel" name="pnMenu">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder/>
-              </Border>
-            </Property>
-            <Property name="borderRadius" type="int" value="0"/>
-            <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="89" green="88" red="49" type="rgb"/>
-            </Property>
-            <Property name="startColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="88" red="49" type="rgb"/>
             </Property>
           </Properties>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <Property name="useNullLayout" type="boolean" value="false"/>
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="66" pref="66" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="btHome" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="btSair" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="btVenda" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="btFilmes" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="btProdutos" pref="192" max="32767" attributes="0"/>
+                              <Component id="btSessoes" min="-2" pref="192" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="640" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btHome" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="330" pref="330" max="-2" attributes="0"/>
+                                  <Component id="btSair" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="66" pref="66" max="-2" attributes="0"/>
+                                  <Component id="btVenda" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="198" pref="198" max="-2" attributes="0"/>
+                                  <Component id="btFilmes" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="264" pref="264" max="-2" attributes="0"/>
+                                  <Component id="btProdutos" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="132" pref="132" max="-2" attributes="0"/>
+                                  <Component id="btSessoes" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto" size="24" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SGC"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="64" y="54" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton1">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btVenda">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="88" red="49" type="rgb"/>
@@ -107,13 +154,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="VENDA"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="199" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton6">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btSair">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="88" red="49" type="rgb"/>
@@ -124,18 +166,18 @@
                   </Border>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SAIR"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
+                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mButton6MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mButton6ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btSairMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSairActionPerformed"/>
               </Events>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="463" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton7">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btHome">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="da" green="9d" red="25" type="rgb"/>
@@ -145,15 +187,10 @@
                     <EmptyBorder/>
                   </Border>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Menu"/>
+                <Property name="text" type="java.lang.String" value="Home"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="133" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton8">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btSessoes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="88" red="49" type="rgb"/>
@@ -165,13 +202,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="SESS&#xd5;ES"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="265" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton9">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btFilmes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="88" red="49" type="rgb"/>
@@ -183,13 +215,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="FILMES"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="331" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
-            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton10">
+            <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="btProdutos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="88" red="49" type="rgb"/>
@@ -201,11 +228,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="PRODUTOS"/>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="-2" y="397" width="192" height="70"/>
-                </Constraint>
-              </Constraints>
             </Component>
           </SubComponents>
         </Container>
