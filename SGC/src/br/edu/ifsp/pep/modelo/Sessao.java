@@ -23,8 +23,10 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Sessao.findByCodigo",
             query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
     @NamedQuery(name = "Sessao.findConflito",
-            query = "SELECT S FROM Sessao S JOIN Filme F ON (F.codigo = S.filme.codigo)" 
-                + "WHERE (S.arquivada = 0) AND (S.sala = :sala) AND ((S.dataInicio BETWEEN :dataInicio AND :dataFim) OR ((S.dataInicio + S.filme.duracao) BETWEEN :dataInicio AND :dataFim))")
+            query = "SELECT s FROM Sessao s " 
+                + "WHERE (s.arquivada = false) AND (s.sala = :sala)"
+                    + "AND (CAST(s.dataInicio AS DATE) BETWEEN "
+                        + "CAST(:dataInicio AS DATE) AND CAST(:dataFim AS DATE))")
 })
 public class Sessao implements Serializable {
     @Id
@@ -100,6 +102,14 @@ public class Sessao implements Serializable {
 
     public void setSala(Sala sala) {
         this.sala = sala;
+    }
+
+    public boolean isArquivada() {
+        return arquivada;
+    }
+
+    public void setArquivada(boolean arquivada) {
+        this.arquivada = arquivada;
     }
     
     @Override
