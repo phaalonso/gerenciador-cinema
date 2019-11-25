@@ -7,12 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "item")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
+@NamedQueries({
+    @NamedQuery(name = "Item.findByCodigo", query = "SELECT I FROM Item I WHERE I.codigo = :codigo")
+})
 public abstract class Item  implements Serializable{
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)

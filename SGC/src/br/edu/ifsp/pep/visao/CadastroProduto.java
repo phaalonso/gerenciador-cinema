@@ -17,13 +17,22 @@ import javax.swing.JOptionPane;
 public class CadastroProduto extends javax.swing.JFrame {
     
     private ControleProduto controleP;
-    
+    private Produto selecionado;
     
     public CadastroProduto() {
         initComponents();
         this.controleP = new ControleProduto();
     }
 
+    public void setSelecionado(Produto p){
+        this.selecionado = p;
+        tfCodigo.setText(String.valueOf(p.getCodigo()));
+        tfDescricao.setText(p.getDescricao());
+        tfEstoque.setText(String.valueOf(p.getEstoque()));
+        tfValor.setText(String.valueOf(p.getPreco()));
+        mbCadastrar.setText("Editar");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,6 +143,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
@@ -159,19 +169,27 @@ public class CadastroProduto extends javax.swing.JFrame {
                 if(valor >= 0){
                     if(codigo >= 0){
                         if(estoque > 0){
-                            try{
+                            
                                 Produto p = new Produto();
                                 p.setCodigo(codigo);
                                 p.setDescricao(nome);
                                 p.setPreco(valor);
                                 p.setEstoque(estoque);
-
-                                controleP.persist(p);
-                                JOptionPane.showMessageDialog(null, "Produto cadastrado!");
-                                dispose();
-                            }catch(EntityExistsException ex){
-                                JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
-                            }
+                                
+                                if(this.selecionado == null){
+                                    try{
+                                        controleP.persist(p);
+                                        JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+                                        dispose();
+                                    }catch(EntityExistsException ex){
+                                        JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
+                                    }
+                                }else{
+                                    controleP.merge(p);
+                                    JOptionPane.showMessageDialog(null, "Produto atualizado!");
+                                    dispose();
+                                }
+                                
                         }else{
                             JOptionPane.showMessageDialog(null, "Estoque deve ser maior que 0!");
                         }
