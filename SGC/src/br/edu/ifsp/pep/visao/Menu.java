@@ -48,8 +48,10 @@ public class Menu extends javax.swing.JFrame {
         jpFilmes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(960, 720));
 
         PMain.setBackground(java.awt.Color.white);
+        PMain.setPreferredSize(new java.awt.Dimension(960, 720));
 
         jpMenu.setBackground(new java.awt.Color(73, 136, 137));
         jpMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -61,6 +63,7 @@ public class Menu extends javax.swing.JFrame {
         mBHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mBHome.setText("Home");
         mBHome.setEndColor(new java.awt.Color(73, 136, 137));
+        mBHome.setFocusPainted(false);
         mBHome.setHoverEndColor(new java.awt.Color(37, 157, 218));
         mBHome.setHoverStartColor(new java.awt.Color(37, 157, 218));
         mBHome.setSelected(true);
@@ -99,6 +102,11 @@ public class Menu extends javax.swing.JFrame {
         mbVendas.setHoverStartColor(new java.awt.Color(37, 157, 218));
         mbVendas.setSelectedColor(new java.awt.Color(37, 157, 218));
         mbVendas.setStartColor(new java.awt.Color(73, 136, 137));
+        mbVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbVendasActionPerformed(evt);
+            }
+        });
 
         mbProdutos.setBackground(new java.awt.Color(73, 136, 137));
         mbProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -108,6 +116,11 @@ public class Menu extends javax.swing.JFrame {
         mbProdutos.setHoverStartColor(new java.awt.Color(37, 157, 218));
         mbProdutos.setSelectedColor(new java.awt.Color(37, 157, 218));
         mbProdutos.setStartColor(new java.awt.Color(73, 136, 137));
+        mbProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbProdutosActionPerformed(evt);
+            }
+        });
 
         mbFilmes.setBackground(new java.awt.Color(73, 136, 137));
         mbFilmes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -117,6 +130,11 @@ public class Menu extends javax.swing.JFrame {
         mbFilmes.setHoverStartColor(new java.awt.Color(37, 157, 218));
         mbFilmes.setSelectedColor(new java.awt.Color(37, 157, 218));
         mbFilmes.setStartColor(new java.awt.Color(73, 136, 137));
+        mbFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbFilmesActionPerformed(evt);
+            }
+        });
 
         mbSessoes.setBackground(new java.awt.Color(73, 136, 137));
         mbSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -126,15 +144,16 @@ public class Menu extends javax.swing.JFrame {
         mbSessoes.setHoverStartColor(new java.awt.Color(37, 157, 218));
         mbSessoes.setSelectedColor(new java.awt.Color(37, 157, 218));
         mbSessoes.setStartColor(new java.awt.Color(73, 136, 137));
+        mbSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbSessoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(lbMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,25 +163,29 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(lbMenu)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(0, 207, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(lbMenu)
-                .addGap(46, 46, 46)
+                .addGap(108, 108, 108)
                 .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(163, 163, 163))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
@@ -309,13 +332,13 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 989, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -331,16 +354,76 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbSairActionPerformed
 
     private void mBHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBHomeActionPerformed
-        mbFilmes.setEnabled(false);
-        jp
+        mbFilmes.setSelected(false);
+        jpFilmes.setEnabled(false);
         
-        mbProdutos.setEnabled(false);
-        mbSessoes.setEnabled(false);
-        mbVendas.setEnabled(false);
+        mbProdutos.setSelected(false);
+        jpProdutos.setEnabled(false);
         
+        mbSessoes.setSelected(false);
+        jpSessoes.setEnabled(false);
+        
+        mbVendas.setSelected(false);
+        jpVenda.setEnabled(false);
+        
+        mBHome.setSelected(true);
         jpHome.setVisible(true);
-
     }//GEN-LAST:event_mBHomeActionPerformed
+
+    private void mbVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbVendasActionPerformed
+        mbFilmes.setSelected(false);
+        jpFilmes.setEnabled(false);
+        
+        mbProdutos.setSelected(false);
+        jpProdutos.setEnabled(false);
+        
+        mbSessoes.setSelected(false);
+        jpSessoes.setEnabled(false);
+        
+        mbVendas.setSelected(true);
+        jpVenda.setEnabled(true);
+        
+        mBHome.setSelected(false);
+        jpHome.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_mbVendasActionPerformed
+
+    private void mbProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbProdutosActionPerformed
+        mbFilmes.setSelected(false);
+        jpFilmes.setEnabled(false);
+        
+        mbProdutos.setSelected(true);
+        jpProdutos.setEnabled(true);
+        
+        mbSessoes.setSelected(false);
+        jpSessoes.setEnabled(false);
+        
+        mbVendas.setSelected(false);
+        jpVenda.setEnabled(false);
+        
+        mBHome.setSelected(false);
+        jpHome.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_mbProdutosActionPerformed
+
+    private void mbFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbFilmesActionPerformed
+        mbFilmes.setSelected(true);
+        jpFilmes.setEnabled(true);
+        
+        mbProdutos.setSelected(false);
+        jpProdutos.setEnabled(false);
+        
+        mbSessoes.setSelected(true);
+        jpSessoes.setEnabled(true);
+        
+        mbVendas.setSelected(false);
+        jpVenda.setEnabled(false);
+        
+        mBHome.setSelected(false);
+        jpHome.setVisible(false);          // TODO add your handling code here:
+    }//GEN-LAST:event_mbFilmesActionPerformed
+
+    private void mbSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSessoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbSessoesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
