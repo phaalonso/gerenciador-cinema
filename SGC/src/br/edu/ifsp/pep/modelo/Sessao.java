@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
             query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
     @NamedQuery(name = "Sessao.findConflito",
             query = "SELECT S FROM Sessao S JOIN Filme F ON (F.codigo = S.filme.codigo)" 
-                + "WHERE (S.arquivada = 0) AND (S.sala.codigo = :sala) AND ((S.dataInicio BETWEEN :dataInicio AND :dataFim) OR ((S.dataInicio + S.filme.duracao) BETWEEN :dataInicio AND :dataFim))")
+                + "WHERE (S.arquivada = 0) AND (S.sala = :sala) AND ((S.dataInicio BETWEEN :dataInicio AND :dataFim) OR ((S.dataInicio + S.filme.duracao) BETWEEN :dataInicio AND :dataFim))")
 })
 public class Sessao implements Serializable {
     @Id
