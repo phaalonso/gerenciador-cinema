@@ -34,6 +34,20 @@ public class Menu extends javax.swing.JFrame {
         this.setResizable(false);
         this.controleI = new ControleItem();
         this.controleP = new ControleProduto();
+        mbFilmes.setSelected(false);
+        jpFilmes.setVisible(false);
+        
+        mbProdutos.setSelected(false);
+        jpProdutos.setVisible(false);
+        
+        mbSessoes.setSelected(false);
+        jpSessoes.setVisible(false);
+        
+        mbVendas.setSelected(false);
+        jpVenda.setVisible(false);
+        
+        mBHome.setSelected(true);
+        jpHome.setVisible(true);
     }
 
     /**
@@ -62,12 +76,17 @@ public class Menu extends javax.swing.JFrame {
         jpProdutos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbItens = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        mButton1 = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        mButton2 = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbCadastrarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbEditarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbRemoverProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mCPesquisaProduto = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mbPesquisarProdutos = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        tfUsuario = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfPesquisaProduto = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         jpFilmes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(960, 728));
 
         PMain.setBackground(java.awt.Color.white);
         PMain.setPreferredSize(new java.awt.Dimension(960, 720));
@@ -270,32 +289,62 @@ public class Menu extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane2.setViewportView(tbItens);
 
-        jLabel2.setText("Pesquisar");
-
-        mButton1.setBackground(new java.awt.Color(73, 136, 137));
-        mButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mButton1.setText("Cadastrar produto");
-        mButton1.addActionListener(new java.awt.event.ActionListener() {
+        mbCadastrarProduto.setBackground(new java.awt.Color(73, 136, 137));
+        mbCadastrarProduto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbCadastrarProduto.setText("Cadastrar produto");
+        mbCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mButton1ActionPerformed(evt);
+                mbCadastrarProdutoActionPerformed(evt);
             }
         });
 
-        mButton2.setBackground(new java.awt.Color(73, 136, 137));
-        mButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mButton2.setText("Editar produto");
-        mButton2.addActionListener(new java.awt.event.ActionListener() {
+        mbEditarProduto.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditarProduto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditarProduto.setText("Editar produto");
+        mbEditarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mButton2ActionPerformed(evt);
+                mbEditarProdutoActionPerformed(evt);
             }
         });
+
+        mbRemoverProduto.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemoverProduto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemoverProduto.setText("Remover produto");
+        mbRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRemoverProdutoActionPerformed(evt);
+            }
+        });
+
+        mCPesquisaProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
+        mCPesquisaProduto.setAccent(new java.awt.Color(73, 136, 137));
+
+        mbPesquisarProdutos.setBackground(new java.awt.Color(73, 136, 137));
+        mbPesquisarProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbPesquisarProdutos.setText("Pesquisar");
+        mbPesquisarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbPesquisarProdutosActionPerformed(evt);
+            }
+        });
+
+        tfUsuario.setLabel("Usuario");
+
+        tfPesquisaProduto.setLabel("Pesquisa");
 
         javax.swing.GroupLayout jpProdutosLayout = new javax.swing.GroupLayout(jpProdutos);
         jpProdutos.setLayout(jpProdutosLayout);
@@ -306,27 +355,53 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                     .addGroup(jpProdutosLayout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mbCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jpProdutosLayout.createSequentialGroup()
-                                .addComponent(mButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(mbEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpProdutosLayout.createSequentialGroup()
+                                .addComponent(mCPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProdutosLayout.createSequentialGroup()
+                    .addContainerGap(379, Short.MAX_VALUE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(281, Short.MAX_VALUE)))
         );
         jpProdutosLayout.setVerticalGroup(
             jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProdutosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(136, 136, 136)
-                .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+            .addGroup(jpProdutosLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpProdutosLayout.createSequentialGroup()
+                        .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpProdutosLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mCPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(113, 113, 113)
+                        .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mbCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProdutosLayout.createSequentialGroup()
+                    .addContainerGap(503, Short.MAX_VALUE)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(504, Short.MAX_VALUE)))
         );
 
         jpFilmes.setBackground(java.awt.Color.white);
@@ -466,8 +541,9 @@ public class Menu extends javax.swing.JFrame {
         
         mBHome.setSelected(false);
         jpHome.setVisible(false);     
-        
-        atualizarProdutos();// TODO add your handling code here:
+                        
+        this.listaItens = controleI.findAll();
+        atualizarProdutos();
     }//GEN-LAST:event_mbProdutosActionPerformed
 
     private void mbFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbFilmesActionPerformed
@@ -504,12 +580,12 @@ public class Menu extends javax.swing.JFrame {
         jpHome.setVisible(false); 
     }//GEN-LAST:event_mbSessoesActionPerformed
 
-    private void mButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton1ActionPerformed
+    private void mbCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarProdutoActionPerformed
         CadastroProduto cp = new CadastroProduto();
         cp.setVisible(true);
-    }//GEN-LAST:event_mButton1ActionPerformed
+    }//GEN-LAST:event_mbCadastrarProdutoActionPerformed
 
-    private void mButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton2ActionPerformed
+    private void mbEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarProdutoActionPerformed
         int row = tbItens.getSelectedRow();
         
         if(row > -1){
@@ -517,7 +593,6 @@ public class Menu extends javax.swing.JFrame {
             cod = (Integer) tbItens.getValueAt(row, 0);
             System.out.println(cod);
             if(cod != null){
-                System.out.println("teste");
                 try{
                     Produto p = controleP.findByCodigo(cod);
                     CadastroProduto cp = new CadastroProduto();
@@ -531,11 +606,74 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um produto na tabela!");
         }
         
-    }//GEN-LAST:event_mButton2ActionPerformed
+    }//GEN-LAST:event_mbEditarProdutoActionPerformed
 
-    public void atualizarProdutos(){
-        this.listaItens = controleI.findAll();
+    private void mbRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverProdutoActionPerformed
+        int row = tbItens.getSelectedRow();
         
+        if(row > -1){
+            Integer cod = null;
+            cod = (Integer) tbItens.getValueAt(row, 0);
+            System.out.println(cod);
+            if(cod != null){
+                try{
+                    Produto p = controleP.findByCodigo(cod);
+                    if(p.getEstoque() == 0){
+                        controleP.remove(p);
+                        JOptionPane.showMessageDialog(null, "Produto removido!");
+                        this.listaItens = controleI.findAll();
+                        atualizarProdutos();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Para remover o produto ele não deve ter estoque!");
+                    }
+                }catch(NoResultException ex){
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado");
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto na tabela!");
+        }
+    }//GEN-LAST:event_mbRemoverProdutoActionPerformed
+
+    private void mbPesquisarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarProdutosActionPerformed
+        System.out.println(mCPesquisaProduto.getSelectedIndex());
+        if(tfPesquisaProduto.getText().isBlank()){
+            this.listaItens = controleI.findAll();
+                atualizarProdutos();
+        }else{
+            switch(mCPesquisaProduto.getSelectedIndex()){
+                case -1:
+                    this.listaItens = controleI.findAll();
+                    atualizarProdutos();
+                    break;
+                case 0:
+                    try{
+                        Integer codigo = Integer.parseInt(tfPesquisaProduto.getText());
+                        try{
+                            Item i = controleI.findByCodigo(codigo);
+                            this.listaItens.clear();
+                            this.listaItens.add(i);   
+                            atualizarProdutos();
+                        }catch(NoResultException ex){
+                            JOptionPane.showMessageDialog(null, "Nenhum resultado com esse código!");
+                        }
+                    }catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas número para pesquisar por código");
+                    }
+                    break;
+                case 1:
+                    try{
+                        this.listaItens = controleI.findByDesc(tfPesquisaProduto.getText().trim());
+                        atualizarProdutos();
+                    }catch(NoResultException ex){
+                        JOptionPane.showMessageDialog(null, "Nenhum resultado com esse código!");
+                    }
+                    break;
+            }
+        }
+    }//GEN-LAST:event_mbPesquisarProdutosActionPerformed
+
+    public void atualizarProdutos(){        
         DefaultTableModel modelo = (DefaultTableModel) tbItens.getModel();
         modelo.setNumRows(0);
         for(Item i: this.listaItens){
@@ -551,7 +689,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpFilmes;
     private javax.swing.JPanel jpHome;
@@ -562,13 +699,18 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jpVenda;
     private javax.swing.JLabel lbMenu;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
-    private com.hq.swingmaterialdesign.materialdesign.MButton mButton1;
-    private com.hq.swingmaterialdesign.materialdesign.MButton mButton2;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbProdutos;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverProduto;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     private javax.swing.JTable tbItens;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

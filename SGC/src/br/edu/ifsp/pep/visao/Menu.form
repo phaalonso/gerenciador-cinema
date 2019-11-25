@@ -470,12 +470,21 @@
                               <Component id="jScrollPane2" pref="747" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tfPesquisaProduto" max="32767" attributes="0"/>
+                                      <Component id="mbCadastrarProduto" pref="170" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="mButton1" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="mbEditarProduto" min="-2" pref="170" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="mButton2" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="mbRemoverProduto" min="-2" pref="170" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="mCPesquisaProduto" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="mbPesquisarProdutos" min="-2" pref="88" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -483,21 +492,48 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="379" max="32767" attributes="0"/>
+                              <Component id="tfUsuario" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace pref="281" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="mButton1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="mButton2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="tfPesquisaProduto" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="mCPesquisaProduto" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="mbPesquisarProdutos" min="-2" pref="42" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="mbCadastrarProduto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="mbEditarProduto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="mbRemoverProduto" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="789" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="808" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="503" max="32767" attributes="0"/>
+                              <Component id="tfUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="504" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -514,10 +550,10 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
-                            <Column editable="true" title="Codigo" type="java.lang.Integer"/>
+                            <Column editable="false" title="Codigo" type="java.lang.Integer"/>
                             <Column editable="true" title="Descri&#xe7;&#xe3;o" type="java.lang.String"/>
-                            <Column editable="true" title="Valor" type="java.lang.Double"/>
-                            <Column editable="true" title="Estoque" type="java.lang.Integer"/>
+                            <Column editable="false" title="Valor" type="java.lang.Double"/>
+                            <Column editable="false" title="Estoque" type="java.lang.Integer"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -551,12 +587,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Pesquisar"/>
-                  </Properties>
-                </Component>
-                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton1">
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbCadastrarProduto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="88" red="49" type="rgb"/>
@@ -569,10 +600,10 @@
                     <Property name="text" type="java.lang.String" value="Cadastrar produto"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbCadastrarProdutoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton2">
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbEditarProduto">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="88" red="49" type="rgb"/>
@@ -585,8 +616,63 @@
                     <Property name="text" type="java.lang.String" value="Editar produto"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbEditarProdutoActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbRemoverProduto">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="89" green="88" red="49" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Remover produto"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbRemoverProdutoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MComboBox" name="mCPesquisaProduto">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Codigo"/>
+                        <StringItem index="1" value="Nome"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="accent" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="89" green="88" red="49" type="rgb"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbPesquisarProdutos">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="89" green="88" red="49" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Pesquisar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbPesquisarProdutosActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfUsuario">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="Usuario"/>
+                  </Properties>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfPesquisaProduto">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="Pesquisa"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

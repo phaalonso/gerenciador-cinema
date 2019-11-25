@@ -16,7 +16,8 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
 @NamedQueries({
-    @NamedQuery(name = "Item.findByCodigo", query = "SELECT I FROM Item I WHERE I.codigo = :codigo")
+    @NamedQuery(name = "Item.findByCodigo", query = "SELECT I FROM Item I WHERE I.codigo = :codigo"),
+    @NamedQuery(name = "Item.findByDesc", query = "SELECT I FROM Item I WHERE I.descricao LIKE :desc")
 })
 public abstract class Item  implements Serializable{
     @Id

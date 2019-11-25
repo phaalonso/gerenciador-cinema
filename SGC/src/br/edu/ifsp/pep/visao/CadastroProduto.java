@@ -53,12 +53,16 @@ public class CadastroProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mpPrincipal.setBackground(java.awt.Color.white);
+        mpPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tfCodigo.setLabel("Codigo");
+        mpPrincipal.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 35, 180, 50));
 
         tfDescricao.setLabel("Descrição");
+        mpPrincipal.add(tfDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 103, 180, 50));
 
         tfEstoque.setLabel("Estoque");
+        mpPrincipal.add(tfEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 239, 180, 50));
 
         mbSair.setBackground(new java.awt.Color(73, 136, 137));
         mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -73,6 +77,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 mbSairActionPerformed(evt);
             }
         });
+        mpPrincipal.add(mbSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 80, 30));
 
         mbCadastrar.setBackground(new java.awt.Color(73, 136, 137));
         mbCadastrar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -87,59 +92,22 @@ public class CadastroProduto extends javax.swing.JFrame {
                 mbCadastrarActionPerformed(evt);
             }
         });
+        mpPrincipal.add(mbCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 80, 30));
 
         tfValor.setLabel("Valor");
-
-        javax.swing.GroupLayout mpPrincipalLayout = new javax.swing.GroupLayout(mpPrincipal);
-        mpPrincipal.setLayout(mpPrincipalLayout);
-        mpPrincipalLayout.setHorizontalGroup(
-            mpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mpPrincipalLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addGroup(mpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mpPrincipalLayout.createSequentialGroup()
-                        .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(129, Short.MAX_VALUE))
-                    .addGroup(mpPrincipalLayout.createSequentialGroup()
-                        .addGroup(mpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(mpPrincipalLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
-        mpPrincipalLayout.setVerticalGroup(
-            mpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mpPrincipalLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(mpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        mpPrincipal.add(tfValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 171, 180, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,7 +136,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             if(codigo != null){
                 if(valor >= 0){
                     if(codigo >= 0){
-                        if(estoque > 0){
+                        if(estoque >= 0){
                             
                                 Produto p = new Produto();
                                 p.setCodigo(codigo);
