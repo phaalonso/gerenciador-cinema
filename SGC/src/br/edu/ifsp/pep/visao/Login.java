@@ -31,7 +31,6 @@ public class Login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         tfUsuario = new com.hq.swingmaterialdesign.materialdesign.MTextField();
@@ -48,7 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         pfSenha.setLabel("Senha");
 
-        mButton1.setBackground(new java.awt.Color(217, 75, 75));
+        mButton1.setBackground(new java.awt.Color(73, 136, 137));
         mButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mButton1.setText("Logar");
         mButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,7 +61,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        mButton2.setBackground(new java.awt.Color(217, 75, 75));
+        mButton2.setBackground(new java.awt.Color(73, 136, 137));
         mButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mButton2.setText("Sair");
         mButton2.addMouseListener(new java.awt.event.MouseAdapter() {

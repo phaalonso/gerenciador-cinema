@@ -101,7 +101,7 @@
         <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4b" green="4b" red="d9" type="rgb"/>
+              <Color blue="89" green="88" red="49" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -118,7 +118,7 @@
         <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mButton2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4b" green="4b" red="d9" type="rgb"/>
+              <Color blue="89" green="88" red="49" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
