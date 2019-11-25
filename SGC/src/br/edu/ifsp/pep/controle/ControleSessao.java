@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.edu.ifsp.pep.controle;
+import br.edu.ifsp.pep.modelo.Sala;
 import br.edu.ifsp.pep.modelo.Sessao;
 import java.util.Date;
 import java.util.List;
@@ -22,10 +23,7 @@ public class ControleSessao extends ControleGenerico<Sessao>{
         super(Sessao.class);
     }
 
-    public List<Sessao> localizarConflito(Date dataInicio, Date dataFim, 
-            Time horaInicio, Time horaFim,Integer sala){
-                dataInicio.setTime(horaInicio);
-                dataFim.setTime(horaFim);
+    public List<Sessao> localizarConflito(Sala sala, Date dataInicio, Date dataFim){ 
         EntityManager em = getEntityManager();
         TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findConflito", Sessao.class)
                 .setParameter("sala", sala)

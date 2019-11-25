@@ -6,7 +6,6 @@ import br.edu.ifsp.pep.modelo.Ingresso;
 import br.edu.ifsp.pep.modelo.Sala;
 import br.edu.ifsp.pep.modelo.Sessao;
 import br.edu.ifsp.pep.modelo.TipoIngresso;
-import br.edu.ifsp.pep.modelo.UsuarioComum;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +71,7 @@ public class teste {
     
         ControleSessao cs = new ControleSessao();
         
-        List<Sessao> ls = cs.findConflito(1, new Date(), new Date());
+        List<Sessao> ls = cs.localizarConflito(sala, new Date(), new Date());
         
         for(Sessao ss: ls){
             System.out.println(ss);
