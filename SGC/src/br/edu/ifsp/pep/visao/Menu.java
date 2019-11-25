@@ -31,107 +31,259 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         PMain = new javax.swing.JPanel();
-        pnMenu = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btVenda = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        btSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        btHome = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        btSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        btFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        btProdutos = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        jpMenu = new javax.swing.JPanel();
+        lbMenu = new javax.swing.JLabel();
+        mBHome = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbSair = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbVendas = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbProdutos = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbFilmes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbSessoes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        jpPrincipal = new javax.swing.JPanel();
+        jpHome = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jpVenda = new javax.swing.JPanel();
+        jpSessoes = new javax.swing.JPanel();
+        jpProdutos = new javax.swing.JPanel();
+        jpFilmes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PMain.setBackground(java.awt.Color.gray);
+        PMain.setBackground(java.awt.Color.white);
 
-        pnMenu.setBackground(new java.awt.Color(73, 136, 137));
+        jpMenu.setBackground(new java.awt.Color(73, 136, 137));
+        jpMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel2.setText("SGC");
+        lbMenu.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbMenu.setText("SGC");
 
-        btVenda.setBackground(new java.awt.Color(73, 136, 137));
-        btVenda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btVenda.setText("VENDA");
-
-        btSair.setBackground(new java.awt.Color(73, 136, 137));
-        btSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btSair.setText("SAIR");
-        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btSair.setInheritsPopupMenu(true);
-        btSair.setName(""); // NOI18N
-        btSair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btSairMouseClicked(evt);
-            }
-        });
-        btSair.addActionListener(new java.awt.event.ActionListener() {
+        mBHome.setBackground(new java.awt.Color(73, 136, 137));
+        mBHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mBHome.setText("Home");
+        mBHome.setEndColor(new java.awt.Color(73, 136, 137));
+        mBHome.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mBHome.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mBHome.setSelected(true);
+        mBHome.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mBHome.setStartColor(new java.awt.Color(73, 136, 137));
+        mBHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSairActionPerformed(evt);
+                mBHomeActionPerformed(evt);
             }
         });
 
-        btHome.setBackground(new java.awt.Color(37, 157, 218));
-        btHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btHome.setText("Home");
+        mbSair.setBackground(new java.awt.Color(73, 136, 137));
+        mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbSair.setText("Sair");
+        mbSair.setEndColor(new java.awt.Color(73, 136, 137));
+        mbSair.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbSair.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbSair.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbSair.setStartColor(new java.awt.Color(73, 136, 137));
+        mbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbSairActionPerformed(evt);
+            }
+        });
+        mbSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbSairKeyPressed(evt);
+            }
+        });
 
-        btSessoes.setBackground(new java.awt.Color(73, 136, 137));
-        btSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btSessoes.setText("SESSÕES");
+        mbVendas.setBackground(new java.awt.Color(73, 136, 137));
+        mbVendas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbVendas.setText("Vendas");
+        mbVendas.setEndColor(new java.awt.Color(73, 136, 137));
+        mbVendas.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbVendas.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbVendas.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbVendas.setStartColor(new java.awt.Color(73, 136, 137));
 
-        btFilmes.setBackground(new java.awt.Color(73, 136, 137));
-        btFilmes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btFilmes.setText("FILMES");
+        mbProdutos.setBackground(new java.awt.Color(73, 136, 137));
+        mbProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbProdutos.setText("Produtos");
+        mbProdutos.setEndColor(new java.awt.Color(73, 136, 137));
+        mbProdutos.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbProdutos.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbProdutos.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbProdutos.setStartColor(new java.awt.Color(73, 136, 137));
 
-        btProdutos.setBackground(new java.awt.Color(73, 136, 137));
-        btProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btProdutos.setText("PRODUTOS");
+        mbFilmes.setBackground(new java.awt.Color(73, 136, 137));
+        mbFilmes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbFilmes.setText("Filmes");
+        mbFilmes.setEndColor(new java.awt.Color(73, 136, 137));
+        mbFilmes.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbFilmes.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbFilmes.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbFilmes.setStartColor(new java.awt.Color(73, 136, 137));
 
-        javax.swing.GroupLayout pnMenuLayout = new javax.swing.GroupLayout(pnMenu);
-        pnMenu.setLayout(pnMenuLayout);
-        pnMenuLayout.setHorizontalGroup(
-            pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnMenuLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(66, 66, 66)
-                            .addComponent(jLabel2))
-                        .addComponent(btHome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                        .addComponent(btSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        mbSessoes.setBackground(new java.awt.Color(73, 136, 137));
+        mbSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbSessoes.setText("SESSÕES");
+        mbSessoes.setEndColor(new java.awt.Color(73, 136, 137));
+        mbSessoes.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbSessoes.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbSessoes.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbSessoes.setStartColor(new java.awt.Color(73, 136, 137));
+
+        javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
+        jpMenu.setLayout(jpMenuLayout);
+        jpMenuLayout.setHorizontalGroup(
+            jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(lbMenu)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        pnMenuLayout.setVerticalGroup(
-            pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-            .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnMenuLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(46, 46, 46)
-                    .addGroup(pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btHome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(330, 330, 330)
-                            .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(66, 66, 66)
-                            .addComponent(btVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(198, 198, 198)
-                            .addComponent(btFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(264, 264, 264)
-                            .addComponent(btProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnMenuLayout.createSequentialGroup()
-                            .addGap(132, 132, 132)
-                            .addComponent(btSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+        jpMenuLayout.setVerticalGroup(
+            jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGap(0, 207, Short.MAX_VALUE)
+                .addComponent(lbMenu)
+                .addGap(46, 46, 46)
+                .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mbVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(mbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
+        );
+
+        jpPrincipal.setBackground(java.awt.Color.white);
+
+        jpHome.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel1.setText("Bem vindo, usuário !");
+
+        javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
+        jpHome.setLayout(jpHomeLayout);
+        jpHomeLayout.setHorizontalGroup(
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(548, Short.MAX_VALUE))
+        );
+        jpHomeLayout.setVerticalGroup(
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(864, Short.MAX_VALUE))
+        );
+
+        jpVenda.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jpVendaLayout = new javax.swing.GroupLayout(jpVenda);
+        jpVenda.setLayout(jpVendaLayout);
+        jpVendaLayout.setHorizontalGroup(
+            jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 759, Short.MAX_VALUE)
+        );
+        jpVendaLayout.setVerticalGroup(
+            jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 854, Short.MAX_VALUE)
+        );
+
+        jpSessoes.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jpSessoesLayout = new javax.swing.GroupLayout(jpSessoes);
+        jpSessoes.setLayout(jpSessoesLayout);
+        jpSessoesLayout.setHorizontalGroup(
+            jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 699, Short.MAX_VALUE)
+        );
+        jpSessoesLayout.setVerticalGroup(
+            jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 570, Short.MAX_VALUE)
+        );
+
+        jpProdutos.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jpProdutosLayout = new javax.swing.GroupLayout(jpProdutos);
+        jpProdutos.setLayout(jpProdutosLayout);
+        jpProdutosLayout.setHorizontalGroup(
+            jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 687, Short.MAX_VALUE)
+        );
+        jpProdutosLayout.setVerticalGroup(
+            jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 546, Short.MAX_VALUE)
+        );
+
+        jpFilmes.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jpFilmesLayout = new javax.swing.GroupLayout(jpFilmes);
+        jpFilmes.setLayout(jpFilmesLayout);
+        jpFilmesLayout.setHorizontalGroup(
+            jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 747, Short.MAX_VALUE)
+        );
+        jpFilmesLayout.setVerticalGroup(
+            jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 594, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
+        jpPrincipal.setLayout(jpPrincipalLayout);
+        jpPrincipalLayout.setHorizontalGroup(
+            jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 759, Short.MAX_VALUE)
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
+                    .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jpPrincipalLayout.setVerticalGroup(
+            jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(24, 24, 24)))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addGap(36, 36, 36)
+                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(36, 36, 36)))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(48, 48, 48)))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addGap(36, 36, 36)
+                    .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(36, 36, 36)))
         );
 
         javax.swing.GroupLayout PMainLayout = new javax.swing.GroupLayout(PMain);
@@ -139,13 +291,16 @@ public class Menu extends javax.swing.JFrame {
         PMainLayout.setHorizontalGroup(
             PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PMainLayout.createSequentialGroup()
-                .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 577, Short.MAX_VALUE))
+                .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PMainLayout.setVerticalGroup(
             PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PMainLayout.createSequentialGroup()
-                .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(PMainLayout.createSequentialGroup()
+                .addGroup(PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -155,7 +310,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,24 +323,42 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSairMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btSairMouseClicked
+    private void mbSairKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbSairKeyPressed
+    }//GEN-LAST:event_mbSairKeyPressed
 
-    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btSairActionPerformed
+    private void mbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_mbSairActionPerformed
+
+    private void mBHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBHomeActionPerformed
+        mbFilmes.setEnabled(false);
+        jp
+        
+        mbProdutos.setEnabled(false);
+        mbSessoes.setEnabled(false);
+        mbVendas.setEnabled(false);
+        
+        jpHome.setVisible(true);
+
+    }//GEN-LAST:event_mBHomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btFilmes;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btHome;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btProdutos;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btSair;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btSessoes;
-    private com.hq.swingmaterialdesign.materialdesign.MButton btVenda;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel pnMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jpFilmes;
+    private javax.swing.JPanel jpHome;
+    private javax.swing.JPanel jpMenu;
+    private javax.swing.JPanel jpPrincipal;
+    private javax.swing.JPanel jpProdutos;
+    private javax.swing.JPanel jpSessoes;
+    private javax.swing.JPanel jpVenda;
+    private javax.swing.JLabel lbMenu;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbProdutos;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     // End of variables declaration//GEN-END:variables
 }

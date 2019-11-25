@@ -71,11 +71,13 @@ public class teste {
     
         ControleSessao cs = new ControleSessao();
         
-        List<Sessao> ls = cs.localizarConflito(sala, new Date(), new Date());
+        List<Sessao> ls = cs.localizarSessao(sala, new Date(), new Date());
         
         for(Sessao ss: ls){
             System.out.println(ss);
         }
+        
+        System.out.println(new Date());
 
     }
 }

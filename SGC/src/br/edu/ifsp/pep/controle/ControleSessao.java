@@ -23,7 +23,7 @@ public class ControleSessao extends ControleGenerico<Sessao>{
         super(Sessao.class);
     }
 
-    public List<Sessao> localizarConflito(Sala sala, Date dataInicio, Date dataFim){ 
+    public List<Sessao> localizarSessao(Sala sala, Date dataInicio, Date dataFim){ 
         EntityManager em = getEntityManager();
         TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findConflito", Sessao.class)
                 .setParameter("sala", sala)
@@ -31,8 +31,7 @@ public class ControleSessao extends ControleGenerico<Sessao>{
                 .setParameter("dataFim", dataFim)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);        
         return query.getResultList();
-    }
-    
+    }    
 
 
 }
