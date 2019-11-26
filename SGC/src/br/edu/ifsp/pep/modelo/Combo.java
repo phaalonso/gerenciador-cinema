@@ -22,12 +22,9 @@ import javax.persistence.Table;
             query = "SELECT c FROM Combo c WHERE c.codigo = :codigo")
 })
 public class Combo extends Item{        
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "combo_produto",
-            joinColumns = @JoinColumn(name = "combo_codigo"),
-            inverseJoinColumns = @JoinColumn(name = "produto_codigo")
-    )
-    private List<Produto> produtos;
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            mappedBy = "combo")
+    private List<ComboProduto> produtos;
 
     public Combo() {
     }
@@ -37,11 +34,11 @@ public class Combo extends Item{
         this.produtos = new ArrayList<>();
     }
 
-    public List<Produto> getProdutos() {
+    public List<ComboProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(List<ComboProduto> produtos) {
         this.produtos = produtos;
     }
 

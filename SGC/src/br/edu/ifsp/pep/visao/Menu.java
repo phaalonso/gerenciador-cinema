@@ -10,7 +10,7 @@ import br.edu.ifsp.pep.controle.ControleProduto;
 import br.edu.ifsp.pep.modelo.Combo;
 import br.edu.ifsp.pep.modelo.Item;
 import br.edu.ifsp.pep.modelo.Produto;
-import br.edu.ifsp.pep.modelo.UsuarioComum;
+import br.edu.ifsp.pep.modelo.Usuario;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
@@ -24,11 +24,11 @@ public class Menu extends javax.swing.JFrame {
     
     private List<Item> listaItens;
 
-    private UsuarioComum usuario;
+    private Usuario usuario;
     private ControleItem controleI;
     private ControleProduto controleP;
     
-    public Menu(UsuarioComum usuario) {
+    public Menu(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
         this.setResizable(false);

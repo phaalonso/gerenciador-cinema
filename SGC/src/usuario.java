@@ -1,6 +1,7 @@
 
 import br.edu.ifsp.pep.controle.ControleUsuario;
-import br.edu.ifsp.pep.modelo.UsuarioComum;
+import br.edu.ifsp.pep.modelo.TipoUsuario;
+import br.edu.ifsp.pep.modelo.Usuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +17,7 @@ public class usuario {
     public static void main(String[] args) {
         ControleUsuario cu = new ControleUsuario();
         
-        UsuarioComum usuario = new UsuarioComum(1,"Pedro","phaalonso","1234");
+        Usuario usuario = new Usuario(1,"Pedro","phaalonso","1234", TipoUsuario.SUPER);
         cu.persist(usuario);
     }
 }

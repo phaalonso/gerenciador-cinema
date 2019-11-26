@@ -6,7 +6,7 @@
 package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleUsuario;
-import br.edu.ifsp.pep.modelo.UsuarioComum;
+import br.edu.ifsp.pep.modelo.Usuario;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 
@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
         String senha = String.valueOf(pfSenha.getPassword());
         
         try{
-            UsuarioComum usuario = controle.login(login, senha);
+            Usuario usuario = controle.login(login, senha);
             Menu menu = new Menu(usuario);
             menu.setVisible(true);
             dispose();

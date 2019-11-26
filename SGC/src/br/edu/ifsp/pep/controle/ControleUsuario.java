@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.edu.ifsp.pep.controle;
-import br.edu.ifsp.pep.modelo.UsuarioComum;
+import br.edu.ifsp.pep.modelo.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -15,15 +15,15 @@ import org.eclipse.persistence.config.QueryHints;
  *
  * @author pedro
  */
-public class ControleUsuario extends ControleGenerico<UsuarioComum>{
+public class ControleUsuario extends ControleGenerico<Usuario>{
 
     public ControleUsuario() {
-        super(UsuarioComum.class);
+        super(Usuario.class);
     }
 
-    public UsuarioComum login(String login, String senha) throws NoResultException{
+    public Usuario login(String login, String senha) throws NoResultException{
         EntityManager em = getEntityManager();
-        TypedQuery<UsuarioComum> query = em.createNamedQuery("UsuarioComum.login", UsuarioComum.class)
+        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.login", Usuario.class)
                 .setParameter("login", login)
                 .setParameter("senha", senha)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);

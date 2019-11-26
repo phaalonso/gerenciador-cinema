@@ -25,12 +25,12 @@ import javax.persistence.TemporalType;
 })
 public class Ingresso implements Serializable{
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "sessao_codigo", referencedColumnName = "codigo")
     private Sessao sessao;
     
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumns(value = {
         @JoinColumn(name = "assento_codigo", referencedColumnName = "codigo"),
         @JoinColumn(name = "assento_sala_codigo", referencedColumnName = "sala_codigo")

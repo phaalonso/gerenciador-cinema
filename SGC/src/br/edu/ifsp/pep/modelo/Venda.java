@@ -51,8 +51,9 @@ public class Venda implements Serializable{
     )
     private List<Ingresso> ingressos;
     
-    @ManyToOne()
-    private UsuarioComum vendedor;
+    @ManyToOne
+    @JoinColumn(name = "vendedor_codigo", referencedColumnName = "codigo")
+    private Usuario vendedor;
 
     public Venda() {
     }

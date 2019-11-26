@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
 @NamedQueries({
-    @NamedQuery(name = "Item.findByCodigo", query = "SELECT I FROM Item I WHERE I.codigo = :codigo"),
-    @NamedQuery(name = "Item.findByDesc", query = "SELECT I FROM Item I WHERE I.descricao LIKE :desc")
+    @NamedQuery(name = "Item.findByCodigo", query = "SELECT i FROM Item i WHERE i.codigo = :codigo"),
+    @NamedQuery(name = "Item.findByDesc", query = "SELECT i FROM Item i WHERE i.descricao LIKE :desc")
 })
 public abstract class Item  implements Serializable{
     @Id
@@ -63,7 +63,7 @@ public abstract class Item  implements Serializable{
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
+    
     @Override
     public String toString() {
         return "Item{" + "codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + '}';

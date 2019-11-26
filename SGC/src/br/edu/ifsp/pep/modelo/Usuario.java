@@ -3,30 +3,25 @@ package br.edu.ifsp.pep.modelo;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="usuario_comum", uniqueConstraints = @UniqueConstraint(
+@Table(name="usuario", uniqueConstraints = @UniqueConstraint(
         name = "uniqueLogin", columnNames = "login"
 ))
-@DiscriminatorColumn(name = "tipo")
-@DiscriminatorValue(value = "comum")
-@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
-    @NamedQuery(name = "UsuarioComum.findAll", query = "SELECT U FROM UsuarioComum U"),
-    @NamedQuery(name = "UsuarioComum.login", query = "SELECT U FROM UsuarioComum U"
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT U FROM Usuario U"),
+    @NamedQuery(name = "Usuario.login", query = "SELECT U FROM Usuario U"
             + " WHERE U.login = :login AND U.senha = :senha")
 })
-public class UsuarioComum implements Serializable{
+public class Usuario implements Serializable{
     @Id
     @Column(name = "codigo")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,15 +32,19 @@ public class UsuarioComum implements Serializable{
     private String login;
     @Column(name = "senha", length = 20, nullable = false)
     private String senha;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", length = 20, nullable = false)
+    private TipoUsuario tipo;
 
-    public UsuarioComum() {
+    public Usuario() {
     }
 
-    public UsuarioComum(Integer codigo, String nome, String login, String senha) {
+    public Usuario(Integer codigo, String nome, String login, String senha, TipoUsuario tipo) {
         this.codigo = codigo;
         this.nome = nome;
         this.login = login;
         this.senha = senha;
+        this.tipo = tipo;
     }
 
     public Integer getCodigo() {
@@ -80,9 +79,17 @@ public class UsuarioComum implements Serializable{
         this.senha = senha;
     }
 
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
+    
     @Override
     public String toString() {
-        return "UsuarioComum{" + "codigo=" + codigo + ", nome=" + nome + ", login=" + login + ", senha=" + senha + '}';
+        return "Usuario{" + "codigo=" + codigo + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", tipo=" + tipo + '}';
     }
 
     @Override
@@ -105,7 +112,7 @@ public class UsuarioComum implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UsuarioComum other = (UsuarioComum) obj;
+        final Usuario other = (Usuario) obj;
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
@@ -117,7 +124,5 @@ public class UsuarioComum implements Serializable{
         }
         return true;
     }
-    
-    
     
 }

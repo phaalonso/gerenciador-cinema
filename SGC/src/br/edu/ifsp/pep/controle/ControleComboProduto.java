@@ -4,20 +4,17 @@
  * and open the template in the editor.
  */
 package br.edu.ifsp.pep.controle;
-import br.edu.ifsp.pep.modelo.SuperUsuario;
+
+import br.edu.ifsp.pep.modelo.ComboProduto;
 
 /**
  *
  * @author pedro
  */
-public class ControleSuperUsuario extends ControleGenerico<SuperUsuario>{
-
-    public ControleSuperUsuario() {
-        super(SuperUsuario.class);
+public class ControleComboProduto extends ControleGenerico<ComboProduto>{
+    public ControleComboProduto(){
+        super(ComboProduto.class);
     }
-
     
     
-
-
 }
