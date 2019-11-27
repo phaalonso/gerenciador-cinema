@@ -5,11 +5,6 @@
  */
 package br.edu.ifsp.pep.controle;
 import br.edu.ifsp.pep.modelo.TipoIngresso;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import org.eclipse.persistence.config.HintValues;
-import org.eclipse.persistence.config.QueryHints;
 
 /**
  *
@@ -19,16 +14,5 @@ public class ControleTipoIngresso extends ControleGenerico<TipoIngresso>{
 
     public ControleTipoIngresso() {
         super(TipoIngresso.class);
-    }
-    
-    public List<TipoIngresso> findByDescricao(String descricao){
-        EntityManager em = super.getEntityManager();
-        TypedQuery<TipoIngresso> query = 
-                em.createNamedQuery("TipoIngresso.findByNome", TipoIngresso.class)
-                .setParameter("descricao", descricao)
-                .setHint(QueryHints.REFRESH, HintValues.TRUE);
-        List<TipoIngresso> lista = query.getResultList();
-        
-        return lista;
     }
 }
