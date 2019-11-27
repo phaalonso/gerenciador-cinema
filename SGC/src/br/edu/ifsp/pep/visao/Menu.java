@@ -637,7 +637,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void mbPesquisarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarProdutosActionPerformed
         System.out.println(mCPesquisaProduto.getSelectedIndex());
-        if(tfPesquisaProduto.getText().isBlank()){
+        if(tfPesquisaProduto.getText().isEmpty()){
             this.listaItens = controleI.findAll();
                 atualizarProdutos();
         }else{

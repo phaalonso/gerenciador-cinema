@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,7 +26,7 @@ import javax.persistence.UniqueConstraint;
 public class Usuario implements Serializable{
     @Id
     @Column(name = "codigo")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
@@ -39,8 +41,7 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(Integer codigo, String nome, String login, String senha, TipoUsuario tipo) {
-        this.codigo = codigo;
+    public Usuario(String nome, String login, String senha, TipoUsuario tipo) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;

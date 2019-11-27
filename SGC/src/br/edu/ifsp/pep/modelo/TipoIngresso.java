@@ -3,6 +3,8 @@ package br.edu.ifsp.pep.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -11,13 +13,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipo_ingresso")
 @NamedQueries({
-    @NamedQuery(name = "TipoIngresso.findAll",
-            query = "SELECT t FROM TipoIngresso t"),
-    @NamedQuery(name = "TipoIngresso.findByCOdigo",
-            query = "SELECT t FROM TipoIngresso t WHERE t.codigo = :codigo")
+    @NamedQuery(name = "TipoIngresso.findByDescricao",
+            query = "SELECT t FROM TipoIngresso t WHERE t.descricao = :descricao")
 })
 public class TipoIngresso implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
     
@@ -30,8 +31,7 @@ public class TipoIngresso implements Serializable{
     public TipoIngresso() {
     }
 
-    public TipoIngresso(Integer codigo, String descricao, double valor) {
-        this.codigo = codigo;
+    public TipoIngresso(String descricao, double valor) {
         this.valor = valor;
         this.descricao = descricao;
     }

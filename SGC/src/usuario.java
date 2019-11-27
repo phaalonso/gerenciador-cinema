@@ -17,7 +17,7 @@ public class usuario {
     public static void main(String[] args) {
         ControleUsuario cu = new ControleUsuario();
         
-        Usuario usuario = new Usuario(1,"Pedro","phaalonso","1234", TipoUsuario.SUPER);
+        Usuario usuario = new Usuario("Pedro","phaalonso","1234", TipoUsuario.SUPER);
         cu.persist(usuario);
     }
 }
