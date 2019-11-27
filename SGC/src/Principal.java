@@ -32,6 +32,7 @@ public class Principal {
         listaUsuario = null;
         
         // Dar dispose da tela de carregamento
+        // a
         
         Login telaLogin = new Login();
         telaLogin.setVisible(true);
