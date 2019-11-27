@@ -22,10 +22,14 @@ public class teste {
                 = Persistence.createEntityManagerFactory("SGCPU");
         EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
         Filme f3  = new Filme( 3, "a", "a", new Date(), 180, "a", 16);
         Filme f6  = new Filme( 6, "b", "b", new Date(), 360, "b", 16);
         Filme f12 = new Filme(12, "c", "c", new Date(), 720, "c", 16);
-
+        em.persist(f3);
+        em.persist(f6);
+        em.persist(f12);
+        em.getTransaction().commit();
         Sala sala = new Sala(1, true, 1);
         //Assento assento = new Assento(new CodigoAssento(sala, "a01"), true);
         //Assento assento2 = new Assento(new CodigoAssento(sala, "a02"), true);

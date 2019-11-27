@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author pedro
  */
-public class CadastroProduto extends javax.swing.JDialog {
+public class CadastroFilme extends javax.swing.JDialog {
 
     private ControleProduto controleP;
     private Produto selecionado;
             
-    public CadastroProduto(java.awt.Frame parent, boolean modal) {
+    public CadastroFilme(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.controleP = new ControleProduto();
@@ -35,11 +35,11 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         jpPrincipal = new javax.swing.JPanel();
         tfCodigo = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        tfDescricao = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        tfEstoque = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfTitulo = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfIdadeMinima = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        tfValor = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfDuracao = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -56,9 +56,9 @@ public class CadastroProduto extends javax.swing.JDialog {
             }
         });
 
-        tfDescricao.setLabel("Descrição");
+        tfTitulo.setLabel("Título");
 
-        tfEstoque.setLabel("Estoque");
+        tfIdadeMinima.setLabel("IdadeMinima");
 
         mbSair.setBackground(new java.awt.Color(73, 136, 137));
         mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -88,7 +88,7 @@ public class CadastroProduto extends javax.swing.JDialog {
             }
         });
 
-        tfValor.setLabel("Valor");
+        tfDuracao.setLabel("Duração");
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
@@ -103,31 +103,31 @@ public class CadastroProduto extends javax.swing.JDialog {
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addGap(106, 106, 106)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 360));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 410));
 
         pack();
         setLocationRelativeTo(null);
@@ -136,9 +136,9 @@ public class CadastroProduto extends javax.swing.JDialog {
     public void setSelecionado(Produto p){
         this.selecionado = p;
         this.tfCodigo.setText(String.valueOf(p.getCodigo()));
-        this.tfDescricao.setText(p.getDescricao());
-        this.tfEstoque.setText((String.valueOf(p.getEstoque())));
-        this.tfValor.setText(String.valueOf(p.getPreco()));
+        this.tfTitulo.setText(p.getDescricao());
+        this.tfIdadeMinima.setText((String.valueOf(p.getEstoque())));
+        this.tfDuracao.setText(String.valueOf(p.getPreco()));
     }
     
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
@@ -167,8 +167,8 @@ public class CadastroProduto extends javax.swing.JDialog {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfDescricao;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfEstoque;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfValor;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfDuracao;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfIdadeMinima;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfTitulo;
     // End of variables declaration//GEN-END:variables
 }
