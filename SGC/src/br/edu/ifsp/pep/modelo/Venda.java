@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,7 +42,7 @@ public class Venda implements Serializable{
     private List<Ingresso> ingressos;
     
     @ManyToOne
-    @JoinColumn(name = "vendedor_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "vendedor_codigo", referencedColumnName = "codigo", nullable = false)
     private Usuario vendedor;
 
     public Venda() {
