@@ -5,17 +5,24 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@IdClass(ItemVendaPK.class)
 @Entity
 @Table(name = "item_venda")
 public class ItemVenda implements Serializable{
     @Id
-    @Column(name = "codigo")
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer codigo;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "item_codigo", nullable = false)
+    private Item item;
+    
+    @Id
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "venda_codigo", nullable = false)
+    private Venda venda;
     
     @Column(name = "quantidade", nullable = false)
     private int quantidade;
@@ -23,32 +30,14 @@ public class ItemVenda implements Serializable{
     @Column(name = "valor_unitario", nullable = false)
     private double valorUnitario;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "item_codigo", nullable = false)
-    private Item item;
-    
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinColumn(name = "venda_codigo", nullable = false)
-    private Venda venda;
-    
     public ItemVenda() {
     }
 
-    public ItemVenda(Integer codigo, Item item, int quantidade, double valorUnitario) {
-        this.codigo = codigo;
+    public ItemVenda(Item item, int quantidade, double valorUnitario) {
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
         this.item = item;
     }
-
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }

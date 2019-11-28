@@ -38,15 +38,8 @@ public class Venda implements Serializable{
         mappedBy = "venda")
     private List<ItemVenda> itens;
         
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    @JoinTable(name = "venda_ingresso",
-            joinColumns = @JoinColumn(name = "venda_codigo"),
-            inverseJoinColumns = {
-                @JoinColumn(name = "ingresso_sessao_codigo", referencedColumnName = "sessao_codigo"),
-                @JoinColumn(name = "ingresso_assento_codigo", referencedColumnName = "assento_codigo"),
-                @JoinColumn(name = "ingresso_sala_codigo", referencedColumnName = "assento_sala_codigo")
-            }
-    )
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            mappedBy = "venda")
     private List<Ingresso> ingressos;
     
     @ManyToOne

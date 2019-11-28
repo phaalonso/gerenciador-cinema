@@ -10,17 +10,12 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @IdClass(IngressoPK.class)
 @Entity
 @Table(name = "ingresso")
-@NamedQueries({
-})
 public class Ingresso implements Serializable{
     @Id
     @ManyToOne
@@ -35,9 +30,9 @@ public class Ingresso implements Serializable{
     })
     private Assento assento;
     
-    @Column(name = "data_venda", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dataVenda;
+    @ManyToOne
+    @JoinColumn(name = "codigo_venda", referencedColumnName = "codigo")
+    private Venda venda;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(referencedColumnName = "codigo", name = "tipo_ingresso", nullable = false)
@@ -46,10 +41,10 @@ public class Ingresso implements Serializable{
     public Ingresso() {
     }
 
-    public Ingresso(Sessao sessao, Assento assento, Date dataVenda, TipoIngresso tipo) {
+    public Ingresso(Sessao sessao, Assento assento, Venda venda, TipoIngresso tipo) {
         this.sessao = sessao;
         this.assento = assento;
-        this.dataVenda = dataVenda;
+        this.venda = venda;
         this.tipo = tipo;
     }
 
@@ -69,12 +64,12 @@ public class Ingresso implements Serializable{
         this.assento = assento;
     }
 
-    public Date getDataVenda() {
-        return dataVenda;
+    public Venda getVenda() {
+        return venda;
     }
 
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
 
     public TipoIngresso getTipo() {
@@ -83,10 +78,5 @@ public class Ingresso implements Serializable{
 
     public void setTipo(TipoIngresso tipo) {
         this.tipo = tipo;
-    }
-    
-    @Override
-    public String toString() {
-        return "Ingresso{dataVenda=" + dataVenda + '}';
     }
 }
