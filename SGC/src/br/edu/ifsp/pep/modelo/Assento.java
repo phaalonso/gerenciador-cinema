@@ -15,8 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "assento")
 @NamedQueries({
-    @NamedQuery(name = "Assento.findAll",
-            query = "SELECT a FROM Assento a"),
     @NamedQuery(name = "Assento.findByCodigo",
             query = "SELECT a FROM Assento a WHERE a.codigo = :codigo")
 })
