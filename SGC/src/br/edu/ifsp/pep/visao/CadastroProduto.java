@@ -146,7 +146,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_mbSairMouseClicked
 
     private void mbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_mbSairActionPerformed
 
     private void mbCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbCadastrarMouseClicked
@@ -154,7 +154,52 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_mbCadastrarMouseClicked
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        // TODO add your handling code here:
+        try{ 
+            Integer codigo = Integer.parseInt(tfCodigo.getText().trim());
+            String nome = tfDescricao.getText().trim();
+            Double valor = Double.parseDouble(tfValor.getText().trim());
+            Integer estoque = Integer.parseInt(tfEstoque.getText().trim());
+
+            if(codigo != null){
+                if(valor >= 0){
+                    if(codigo >= 0){
+                        if(estoque >= 0){
+
+                                Produto p = new Produto();
+                                p.setCodigo(codigo);
+                                p.setDescricao(nome);
+                                p.setPreco(valor);
+                                p.setEstoque(estoque);
+
+                                if(this.selecionado == null){
+                                    try{
+                                        controleP.persist(p);
+                                        JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+                                        dispose();
+                                    }catch(EntityExistsException ex){
+                                        JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
+                                    }
+                                }else{
+                                    controleP.merge(p);
+                                    JOptionPane.showMessageDialog(null, "Produto atualizado!");
+                                    dispose();
+                                }
+
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Estoque deve ser maior que 0!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "O codigo deve ser maior que 0!");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "O valor deve ser acima de 0!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Preencha o campo do código");
+            }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Por favor insira apenas numeros nos campos\nvalor e estoque");
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_mbCadastrarActionPerformed
 
     private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed

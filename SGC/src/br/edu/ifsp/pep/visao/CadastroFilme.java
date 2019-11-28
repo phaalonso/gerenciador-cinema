@@ -72,11 +72,6 @@ public class CadastroFilme extends javax.swing.JDialog {
         mbSair.setBackground(new java.awt.Color(73, 136, 137));
         mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mbSair.setText("Sair");
-        mbSair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mbSairMouseClicked(evt);
-            }
-        });
         mbSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mbSairActionPerformed(evt);
@@ -202,12 +197,8 @@ public class CadastroFilme extends javax.swing.JDialog {
 
     }
     
-    private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbSairMouseClicked
-
     private void mbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_mbSairActionPerformed
 
     private void mbCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbCadastrarMouseClicked
@@ -215,7 +206,11 @@ public class CadastroFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_mbCadastrarMouseClicked
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        // TODO add your handling code here:
+        Integer codigo = Integer.parseInt(tfCodigo.getText());
+        String direcao = tfDirecao.getText();
+        String titulo = tfTitulo.getText();
+        
+
     }//GEN-LAST:event_mbCadastrarActionPerformed
 
     private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
@@ -231,7 +226,9 @@ public class CadastroFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_mbSelecionarGenerosMouseClicked
 
     private void mbSelecionarGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSelecionarGenerosActionPerformed
-        // TODO add your handling code here:
+        SelecionarGeneros sg = new SelecionarGeneros(null, true, this.listaG);
+        sg.setModal(true);
+        sg.setVisible(true);
     }//GEN-LAST:event_mbSelecionarGenerosActionPerformed
 
 

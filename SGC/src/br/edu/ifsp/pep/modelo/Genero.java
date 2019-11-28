@@ -1,6 +1,7 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 @Table(name = "genero")
 @NamedQueries({
     @NamedQuery(name = "Genero.findByCodigo", 
-            query = "SELECT g FROM Genero g WHERE g.codigo = :codigo")
+            query = "SELECT g FROM Genero g WHERE g.codigo = :codigo"),
+    @NamedQuery(name = "Genero.findByDesc",
+            query = "SELECT g FROM Genero g WHERE g.descricao = :desc")
 })
 public class Genero implements Serializable {
     @Id
@@ -45,5 +48,35 @@ public class Genero implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.codigo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Genero other = (Genero) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Genero{" + "codigo=" + codigo + ", descricao=" + descricao + '}';
     }
 }

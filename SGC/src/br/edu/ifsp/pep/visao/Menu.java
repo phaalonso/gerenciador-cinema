@@ -650,6 +650,7 @@ public class Menu extends javax.swing.JFrame {
         jpHome.setVisible(false);     
                         
         this.listaItens = controleI.findAll();
+//        this.listaItens.forEach((i) -> {System.out.println(i);});
         atualizarProdutos();
     }//GEN-LAST:event_mbProdutosActionPerformed
 
@@ -785,7 +786,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbPesquisarProdutosActionPerformed
 
     private void mbCadastrarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarFilmesActionPerformed
-        // TODO add your handling code here:
+        CadastroFilme cf = new CadastroFilme(this, true);
+        cf.setVisible(true);
+        cf.setModal(true);
     }//GEN-LAST:event_mbCadastrarFilmesActionPerformed
 
     private void mbEditarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarFilmesActionPerformed
@@ -805,6 +808,7 @@ public class Menu extends javax.swing.JFrame {
         modelo.setNumRows(0);
         for(Item i: this.listaItens){
             if(i instanceof Produto){
+                System.out.println(i);
                 modelo.addRow(new Object[] {i.getCodigo(), i.getDescricao(), i.getPreco(), ((Produto) i).getEstoque()});
             }else if(i instanceof Combo){
                 modelo.addRow(new Object[] {i.getCodigo(), i.getDescricao(), i.getPreco(), null});
