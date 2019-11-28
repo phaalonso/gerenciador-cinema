@@ -6,9 +6,10 @@
 package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleProduto;
-import br.edu.ifsp.pep.modelo.Produto;
-import javax.persistence.EntityExistsException;
-import javax.swing.JOptionPane;
+import br.edu.ifsp.pep.modelo.Filme;
+import br.edu.ifsp.pep.modelo.Genero;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,11 +18,13 @@ import javax.swing.JOptionPane;
 public class CadastroFilme extends javax.swing.JDialog {
 
     private ControleProduto controleP;
-    private Produto selecionado;
+    private Filme selecionado;
+    private List<Genero> listaG;
             
     public CadastroFilme(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.listaG = new ArrayList<>();
         this.controleP = new ControleProduto();
     }
     /**
@@ -40,6 +43,12 @@ public class CadastroFilme extends javax.swing.JDialog {
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfDuracao = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfDataEstreia = new com.hq.swingmaterialdesign.materialdesign.MFormattedTextField();
+        tfDirecao = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDescricao = new javax.swing.JTextArea();
+        lbDescricao = new javax.swing.JLabel();
+        mbSelecionarGeneros = new com.hq.swingmaterialdesign.materialdesign.MButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -90,55 +99,107 @@ public class CadastroFilme extends javax.swing.JDialog {
 
         tfDuracao.setLabel("Duração");
 
+        tfDataEstreia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        tfDataEstreia.setLabel("Data estreia");
+
+        tfDirecao.setLabel("Direção");
+        tfDirecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDirecaoActionPerformed(evt);
+            }
+        });
+
+        taDescricao.setColumns(20);
+        taDescricao.setRows(5);
+        taDescricao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane1.setViewportView(taDescricao);
+
+        lbDescricao.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        lbDescricao.setText("Descrição");
+
+        mbSelecionarGeneros.setBackground(new java.awt.Color(73, 136, 137));
+        mbSelecionarGeneros.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbSelecionarGeneros.setText("Selecionar generos");
+        mbSelecionarGeneros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mbSelecionarGenerosMouseClicked(evt);
+            }
+        });
+        mbSelecionarGeneros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbSelecionarGenerosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
             .addGroup(jpPrincipalLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(23, 23, 23)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfDataEstreia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(24, Short.MAX_VALUE))
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbDescricao)
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(231, 231, 231)
+                                .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfDataEstreia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 410));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 470));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setSelecionado(Produto p){
-        this.selecionado = p;
-        this.tfCodigo.setText(String.valueOf(p.getCodigo()));
-        this.tfTitulo.setText(p.getDescricao());
-        this.tfIdadeMinima.setText((String.valueOf(p.getEstoque())));
-        this.tfDuracao.setText(String.valueOf(p.getPreco()));
+    public void setSelecionado(Filme f){
+
     }
     
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
@@ -161,12 +222,30 @@ public class CadastroFilme extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCodigoActionPerformed
 
+    private void tfDirecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDirecaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDirecaoActionPerformed
+
+    private void mbSelecionarGenerosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSelecionarGenerosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbSelecionarGenerosMouseClicked
+
+    private void mbSelecionarGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSelecionarGenerosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbSelecionarGenerosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpPrincipal;
+    private javax.swing.JLabel lbDescricao;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbSelecionarGeneros;
+    private javax.swing.JTextArea taDescricao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
+    private com.hq.swingmaterialdesign.materialdesign.MFormattedTextField tfDataEstreia;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfDirecao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDuracao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfIdadeMinima;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfTitulo;
