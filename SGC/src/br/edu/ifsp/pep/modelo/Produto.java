@@ -11,8 +11,6 @@ import javax.persistence.Table;
 @Table(name = "produto")
 @DiscriminatorValue(value = "produto")
 @NamedQueries({
-    @NamedQuery(name = "Produto.findAll",
-            query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByCodigo",
             query = "SELECT p FROM Produto p WHERE p.codigo = :codigo")
 })

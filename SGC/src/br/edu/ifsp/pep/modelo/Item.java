@@ -16,10 +16,12 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo")
 @NamedQueries({
-    @NamedQuery(name = "Item.findByCodigo", query = "SELECT i FROM Item i WHERE i.codigo = :codigo"),
-    @NamedQuery(name = "Item.findByDesc", query = "SELECT i FROM Item i WHERE i.descricao LIKE :desc")
+    @NamedQuery(name = "Item.findByCodigo", 
+            query = "SELECT i FROM Item i WHERE i.codigo = :codigo"),
+    @NamedQuery(name = "Item.findByDesc", 
+            query = "SELECT i FROM Item i WHERE i.descricao LIKE :desc")
 })
-public abstract class Item  implements Serializable{
+public abstract class Item implements Serializable{
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "codigo")

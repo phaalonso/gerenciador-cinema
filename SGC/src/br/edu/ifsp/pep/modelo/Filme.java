@@ -20,8 +20,6 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "filme")
 @NamedQueries({
-        @NamedQuery(name = "Filme.findAll", 
-                query = "SELECT f FROM Filme f"),
         @NamedQuery(name = "Filme.findByCodigo", 
                 query = "SELECT f FROM Filme f WHERE f.codigo = :codigo")
 })

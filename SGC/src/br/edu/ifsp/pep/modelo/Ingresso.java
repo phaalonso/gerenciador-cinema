@@ -20,8 +20,6 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ingresso")
 @NamedQueries({
-    @NamedQuery(name = "Ingresso.findAll",
-            query = "SELECT i FROM Ingresso i")
 })
 public class Ingresso implements Serializable{
     @Id
