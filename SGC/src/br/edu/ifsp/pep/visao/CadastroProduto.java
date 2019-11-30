@@ -6,7 +6,12 @@
 package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleProduto;
+import br.edu.ifsp.pep.modelo.Combo;
+import br.edu.ifsp.pep.modelo.ComboProduto;
+import br.edu.ifsp.pep.modelo.Item;
 import br.edu.ifsp.pep.modelo.Produto;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.swing.JOptionPane;
 
@@ -17,11 +22,13 @@ import javax.swing.JOptionPane;
 public class CadastroProduto extends javax.swing.JDialog {
 
     private ControleProduto controleP;
-    private Produto selecionado;
+    private Item selecionado;
+    private List<ComboProduto> listaCombo;
             
     public CadastroProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.listaCombo = new ArrayList<>();
         this.controleP = new ControleProduto();
     }
     /**
@@ -40,6 +47,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfValor = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        mComboBox1 = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mbItensCombo = new com.hq.swingmaterialdesign.materialdesign.MButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -90,56 +99,100 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         tfValor.setLabel("Valor");
 
+        mComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Produto", "Combo" }));
+        mComboBox1.setAccent(new java.awt.Color(73, 136, 137));
+        mComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                mComboBox1ItemStateChanged(evt);
+            }
+        });
+
+        mbItensCombo.setBackground(new java.awt.Color(73, 136, 137));
+        mbItensCombo.setBorder(null);
+        mbItensCombo.setText("Items do combo");
+        mbItensCombo.setBorderRadius(0);
+        mbItensCombo.setEnabled(false);
+        mbItensCombo.setNextFocusableComponent(mbSair);
+        mbItensCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mbItensComboMouseClicked(evt);
+            }
+        });
+        mbItensCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbItensComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
             .addGroup(jpPrincipalLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 360));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setSelecionado(Produto p){
-        this.selecionado = p;
-        this.tfCodigo.setText(String.valueOf(p.getCodigo()));
+    public void setSelecionado(Item i){
+        this.selecionado = i;
+        this.tfCodigo.setText(String.valueOf(i.getCodigo()));
         this.tfCodigo.setEditable(false);
-        this.tfDescricao.setText(p.getDescricao());
-        this.tfEstoque.setText((String.valueOf(p.getEstoque())));
-        this.tfValor.setText(String.valueOf(p.getPreco()));
+        this.tfDescricao.setText(i.getDescricao());
+        this.tfValor.setText(String.valueOf(i.getPreco()));
+        mComboBox1.setEditable(false);
+        if(i instanceof Produto){
+            this.tfEstoque.setText((String.valueOf(((Produto) i).getEstoque())));
+            mComboBox1.setSelectedIndex(0);
+        }else{
+            this.listaCombo = ((Combo) i).getProdutos();
+            mComboBox1.setSelectedIndex(1);
+        }
     }
     
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
@@ -207,10 +260,31 @@ public class CadastroProduto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCodigoActionPerformed
 
+    private void mbItensComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbItensComboMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbItensComboMouseClicked
+
+    private void mbItensComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbItensComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbItensComboActionPerformed
+
+    private void mComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBox1ItemStateChanged
+        switch(mComboBox1.getSelectedIndex()){
+            case 1:
+                mbItensCombo.setEnabled(true);
+                break;
+            default:
+                mbItensCombo.setEnabled(false);
+                break;
+        }
+    }//GEN-LAST:event_mComboBox1ItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpPrincipal;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mComboBox1;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbItensCombo;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDescricao;
