@@ -34,8 +34,8 @@ public class Produto extends Item{
 
     public void setEstoque(Integer estoque) {
         this.estoque = estoque;
-    }
-
+    }    
+    
     @Override
     public String toString() {
         return "Produto{" + "estoque=" + estoque + '}';
