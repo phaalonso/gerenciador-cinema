@@ -10,7 +10,7 @@ import br.edu.ifsp.pep.modelo.Genero;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.graalvm.compiler.nodes.NodeView;
+//import org.graalvm.compiler.nodes.NodeView;
 
 /**
  *
