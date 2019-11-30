@@ -80,14 +80,14 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jpSessoes = new javax.swing.JPanel();
         jpProdutos = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbItens = new javax.swing.JTable();
         mbCadastrarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbRemoverProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mCPesquisaProduto = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbPesquisarProdutos = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfPesquisaProduto = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbItems = new javax.swing.JTable();
         jpFilmes = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbFilmes = new javax.swing.JTable();
@@ -99,6 +99,7 @@ public class Menu extends javax.swing.JFrame {
         tfPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(960, 720));
 
         PMain.setBackground(java.awt.Color.white);
         PMain.setPreferredSize(new java.awt.Dimension(960, 720));
@@ -290,32 +291,6 @@ public class Menu extends javax.swing.JFrame {
 
         jpProdutos.setBackground(java.awt.Color.white);
 
-        tbItens.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Descrição", "Valor", "Estoque"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbItens.setPreferredSize(new java.awt.Dimension(450, 0));
-        jScrollPane2.setViewportView(tbItens);
-
         mbCadastrarProduto.setBackground(new java.awt.Color(73, 136, 137));
         mbCadastrarProduto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mbCadastrarProduto.setText("Cadastrar produto");
@@ -357,29 +332,51 @@ public class Menu extends javax.swing.JFrame {
 
         tfPesquisaProduto.setLabel("Pesquisa");
 
+        tbItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Descrição", "Valor", "Estoque"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbItems);
+
         javax.swing.GroupLayout jpProdutosLayout = new javax.swing.GroupLayout(jpProdutos);
         jpProdutos.setLayout(jpProdutosLayout);
         jpProdutosLayout.setHorizontalGroup(
             jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpProdutosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mbCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jpProdutosLayout.createSequentialGroup()
-                        .addComponent(mbEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mbCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpProdutosLayout.createSequentialGroup()
-                        .addComponent(mCPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(237, Short.MAX_VALUE))
-            .addGroup(jpProdutosLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpProdutosLayout.createSequentialGroup()
+                                .addComponent(mbEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpProdutosLayout.createSequentialGroup()
+                                .addComponent(mCPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 229, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpProdutosLayout.setVerticalGroup(
             jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,8 +395,8 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(mbEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jpFilmes.setBackground(java.awt.Color.white);
@@ -692,11 +689,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbCadastrarProdutoActionPerformed
 
     private void mbEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarProdutoActionPerformed
-        int row = tbItens.getSelectedRow();
+        int row = tbItems.getSelectedRow();
         
         if(row > -1){
             Integer cod = null;
-            cod = (Integer) tbItens.getValueAt(row, 0);
+            cod = (Integer) tbItems.getValueAt(row, 0);
             System.out.println(cod);
             if(cod != null){
                 try{
@@ -715,11 +712,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbEditarProdutoActionPerformed
 
     private void mbRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverProdutoActionPerformed
-        int row = tbItens.getSelectedRow();
+        int row = tbItems.getSelectedRow();
         
         if(row > -1){
             Integer cod = null;
-            cod = (Integer) tbItens.getValueAt(row, 0);
+            cod = (Integer) tbItems.getValueAt(row, 0);
             System.out.println(cod);
             if(cod != null){
                 try{
@@ -864,7 +861,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbPesquisarFilmesActionPerformed
 
     public void atualizarProdutos(){        
-        DefaultTableModel modelo = (DefaultTableModel) tbItens.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tbItems.getModel();
         modelo.setNumRows(0);
         for(Item i: this.listaItens){
             if(i instanceof Produto){
@@ -890,7 +887,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel jpFilmes;
     private javax.swing.JPanel jpHome;
@@ -917,7 +914,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     private javax.swing.JTable tbFilmes;
-    private javax.swing.JTable tbItens;
+    private javax.swing.JTable tbItems;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
     // End of variables declaration//GEN-END:variables
