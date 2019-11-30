@@ -54,6 +54,14 @@ public class ItemVenda implements Serializable{
         this.valorUnitario = valorUnitario;
     }
 
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
     public Item getItem() {
         return item;
     }

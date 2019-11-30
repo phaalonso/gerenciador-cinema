@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProduto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ffbb48d-17cb-4030-82dc-196f0999c40e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCAdapter.xml"/>
+	<parameter name="dataInicial" class="java.lang.String"/>
+	<parameter name="dataFinal" class="java.lang.String"/>
+	<queryString language="EJBQL">
+		<![CDATA[SELECT iv FROM ItemVenda iv WHERE CAST(iv.venda.data AS DATE) BETWEEN CAST($P{dataInicial} AS DATE) AND CAST($P{dataFinal} AS DATE)  ORDER BY iv.venda]]>
+	</queryString>
+	<field name="venda" class="br.edu.ifsp.pep.modelo.Venda">
+		<fieldDescription><![CDATA[venda]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+	</field>
+	<field name="valorUnitario" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorUnitario]]></fieldDescription>
+	</field>
+	<field name="item" class="br.edu.ifsp.pep.modelo.Item">
+		<fieldDescription><![CDATA[item]]></fieldDescription>
+	</field>
+	<variable name="TotalVenda" class="java.lang.Double" resetType="Group" resetGroup="Venda" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantidade} * $F{valorUnitario}]]></variableExpression>
+	</variable>
+	<group name="Venda">
+		<groupExpression><![CDATA[$F{venda}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField>
+					<reportElement x="0" y="0" width="100" height="20" uuid="8b14519a-581b-4b97-9733-53f18f0299a9"/>
+					<textFieldExpression><![CDATA["Venda "+$F{venda}.getCodigo()]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy HH:mm">
+					<reportElement x="0" y="20" width="100" height="19" uuid="63307c4d-f6f4-488d-8ae0-c951995b0316"/>
+					<textFieldExpression><![CDATA[$F{venda}.getData()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="150" y="20" width="100" height="18" uuid="37a1c4ff-6424-4b3d-b902-ce3396b31896"/>
+					<text><![CDATA[item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="250" y="20" width="100" height="18" uuid="06b21bcd-b4dd-436a-800e-aa327532f100"/>
+					<text><![CDATA[quantidade]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="350" y="20" width="100" height="18" uuid="94fc8f56-e9b5-4cb0-9e97-6818f64c4fce"/>
+					<text><![CDATA[valorUnitario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="450" y="20" width="100" height="18" uuid="a1e27d75-f7a6-4b8a-8ad0-c60101353d2c"/>
+					<text><![CDATA[valorUnitario]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<textField>
+					<reportElement x="455" y="0" width="100" height="20" uuid="844a8322-358f-416c-b7d6-abadebbbb1e7"/>
+					<textFieldExpression><![CDATA[$V{TotalVenda}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="89be2ca3-8aaf-4136-950a-13ad7b5c241c"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de vendas de produtos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="155" y="0" width="100" height="20" uuid="d8656105-e8e3-4748-a303-0a6e80117eb7"/>
+				<textFieldExpression><![CDATA[$F{item}.getDescricao()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="100" height="20" uuid="543e4800-01c2-42ee-ac9d-a3326d48eb14"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" uuid="8ee82e98-2abe-4789-9ad6-1acb5e7e55f4"/>
+				<textFieldExpression><![CDATA[$F{valorUnitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="11f273e2-d146-42a6-b25e-c2a3ed047f92"/>
+				<textFieldExpression><![CDATA[$F{valorUnitario} * $F{quantidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

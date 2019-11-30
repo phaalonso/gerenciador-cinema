@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProduto" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0ffbb48d-17cb-4030-82dc-196f0999c40e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SGCAdapter.xml"/>
+	<queryString language="EJBQL">
+		<![CDATA[SELECT i FROM Ingresso i WHERE i.sessao.arquivada = true ORDER BY i.sessao]]>
+	</queryString>
+	<field name="preco" class="java.lang.Double">
+		<fieldDescription><![CDATA[preco]]></fieldDescription>
+	</field>
+	<field name="sessao" class="br.edu.ifsp.pep.modelo.Sessao">
+		<fieldDescription><![CDATA[sessao]]></fieldDescription>
+	</field>
+	<field name="tipo" class="br.edu.ifsp.pep.modelo.TipoIngresso">
+		<fieldDescription><![CDATA[tipo]]></fieldDescription>
+	</field>
+	<variable name="ArrecadacaoSessao" class="java.lang.Double" resetType="Group" resetGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$F{preco}]]></variableExpression>
+	</variable>
+	<variable name="QtdIngressos" class="java.lang.Integer" resetType="Group" resetGroup="Group1" calculation="Count">
+		<variableExpression><![CDATA[$F{sessao}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{sessao}]]></groupExpression>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="360" y="10" width="100" height="30" uuid="daa63c72-ccc7-4990-8648-231af3854f48"/>
+					<textFieldExpression><![CDATA[$V{ArrecadacaoSessao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="8" width="100" height="30" uuid="b073e7a6-1fdc-48dd-9622-35bf95d78a1e"/>
+					<textFieldExpression><![CDATA[$F{sessao}.getCodigo()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="240" y="10" width="100" height="30" uuid="5d7b0dce-3499-428a-af4c-64bb3e46db39"/>
+					<textFieldExpression><![CDATA[$V{QtdIngressos}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="120" y="10" width="100" height="30" uuid="2ec2a103-5b18-4843-abd6-bb7aaf1da5c2"/>
+					<textFieldExpression><![CDATA[$F{sessao}.getDescricao()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="89be2ca3-8aaf-4136-950a-13ad7b5c241c"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de sessão]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28"/>
+	</columnHeader>
+	<pageFooter>
+		<band height="25" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
