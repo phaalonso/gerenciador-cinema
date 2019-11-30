@@ -51,7 +51,7 @@ public class Filme implements Serializable {
     @Column(name="idade_minima", nullable = false)
     private Integer idadeMinima;
     
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(name = "filme_genero",
             joinColumns = @JoinColumn(name = "filme_codigo"),
             inverseJoinColumns = @JoinColumn(name = "genero_codigo")

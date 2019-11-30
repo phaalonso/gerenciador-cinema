@@ -5,11 +5,16 @@
  */
 package br.edu.ifsp.pep.visao;
 
-import br.edu.ifsp.pep.controle.ControleProduto;
+import br.edu.ifsp.pep.controle.ControleFilme;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Genero;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityExistsException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +22,7 @@ import java.util.List;
  */
 public class CadastroFilme extends javax.swing.JDialog {
 
-    private ControleProduto controleP;
+    private ControleFilme controleF;
     private Filme selecionado;
     private List<Genero> listaG;
             
@@ -25,7 +30,7 @@ public class CadastroFilme extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.listaG = new ArrayList<>();
-        this.controleP = new ControleProduto();
+        this.controleF = new ControleFilme();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,9 +211,46 @@ public class CadastroFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_mbCadastrarMouseClicked
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        Integer codigo = Integer.parseInt(tfCodigo.getText());
-        String direcao = tfDirecao.getText();
-        String titulo = tfTitulo.getText();
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");            
+            Integer codigo = Integer.parseInt(tfCodigo.getText());
+            String titulo = tfTitulo.getText();
+            Integer duracao = Integer.parseInt(tfDuracao.getText());
+            String direcao = tfDirecao.getText();
+            Integer idadeMinima = Integer.parseInt(tfIdadeMinima.getText());
+            Date dataEstreia = sdf.parse(tfDataEstreia.getText());
+            String descricao = taDescricao.getText();
+            
+            if(!this.listaG.isEmpty()){
+                Filme f = new Filme();
+                f.setCodigo(codigo);
+                f.setTitulo(titulo);
+                f.setDuracao(duracao);
+                f.setDirecao(direcao);
+                f.setIdadeMinima(idadeMinima);
+                f.setDataEstreia(dataEstreia);
+                f.setDescricao(descricao);
+                f.setGeneros(this.listaG);
+                
+                try{
+                    System.out.println(f);
+                    controleF.persist(f);
+                    JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
+                    dispose();
+                }catch(EntityExistsException ex){
+                    JOptionPane.showMessageDialog(null, "Ja existe uma entidade com esse código!");
+                    System.out.println(ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Por favor selecione os generos do filme!");
+            } 
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Certifiquese que os campos codigo, duração, idade minima possuem apenas numeros");
+            System.out.println(ex);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Porfavor insira a data na forma correta dd/mm/yyyy");
+            System.out.println(ex);
+        }
         
 
     }//GEN-LAST:event_mbCadastrarActionPerformed
