@@ -12,7 +12,9 @@ import javax.persistence.Table;
 @DiscriminatorValue(value = "produto")
 @NamedQueries({
     @NamedQuery(name = "Produto.findByCodigo",
-            query = "SELECT p FROM Produto p WHERE p.codigo = :codigo")
+            query = "SELECT p FROM Produto p WHERE p.codigo = :codigo"),
+    @NamedQuery(name = "Produto.findByDesc",
+            query = "SELECT p FROM Produto p WHERE p.descricao LIKE :desc")
 })
 public class Produto extends Item{        
     @Column(name = "estoque", nullable = false)

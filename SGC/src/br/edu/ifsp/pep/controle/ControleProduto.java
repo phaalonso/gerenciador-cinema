@@ -5,6 +5,7 @@
  */
 package br.edu.ifsp.pep.controle;
 import br.edu.ifsp.pep.modelo.Produto;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -28,6 +29,14 @@ public class ControleProduto extends ControleGenerico<Produto>{
                 .setParameter("codigo", codigo)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);        
         return query.getSingleResult();
+    }
+    
+    public List<Produto> findByDesc(String desc){
+        EntityManager em = getEntityManager();
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.findByDesc", Produto.class)
+                .setParameter("desc", "%" + desc + "%")
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);     
+        return query.getResultList();
     }
     
 

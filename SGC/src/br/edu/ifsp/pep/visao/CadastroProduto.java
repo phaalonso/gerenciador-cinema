@@ -265,7 +265,9 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_mbItensComboMouseClicked
 
     private void mbItensComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbItensComboActionPerformed
-        // TODO add your handling code here:
+        ItensCombo ic = new ItensCombo(null, true, this.listaCombo);
+        ic.setModal(true);
+        ic.setVisible(true);
     }//GEN-LAST:event_mbItensComboActionPerformed
 
     private void mComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBox1ItemStateChanged
