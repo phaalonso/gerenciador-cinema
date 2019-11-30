@@ -5,6 +5,7 @@
  */
 package br.edu.ifsp.pep.controle;
 import br.edu.ifsp.pep.modelo.Filme;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -27,6 +28,14 @@ public class ControleFilme extends ControleGenerico<Filme>{
                 .setParameter("codigo", codigo)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);  
         return query.getSingleResult();
+    }
+    
+    public List<Filme> findByTitulo(String titulo) throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Filme> query = em.createNamedQuery("Filme.findByTitulo", Filme.class)
+                .setParameter("titulo", "%" + titulo + "%")
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getResultList();
     }
     
 

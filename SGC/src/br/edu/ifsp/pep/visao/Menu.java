@@ -235,7 +235,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
@@ -409,7 +409,7 @@ public class Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Titulo", "Idade minima", "Data estreia", "Duração", "Direção"
+                "Código", "Titulo", "Idade minima", "Data estreia", "Duração", "Direção"
             }
         ) {
             Class[] types = new Class [] {
@@ -456,7 +456,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        mCPesquisaFilmes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
+        mCPesquisaFilmes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Título" }));
         mCPesquisaFilmes.setAccent(new java.awt.Color(73, 136, 137));
 
         mbPesquisarFilmes.setBackground(new java.awt.Color(73, 136, 137));
@@ -522,7 +522,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 799, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -829,7 +829,38 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverFilmesActionPerformed
 
     private void mbPesquisarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarFilmesActionPerformed
-        // TODO add your handling code here:
+        System.out.println(mCPesquisaFilmes.getSelectedIndex());
+        if(tfPesquisaFilmes.getText().isEmpty()){
+            this.listaFilmes = controleF.findAll();
+                atualizarFilmes();
+        }else{
+            switch(mCPesquisaFilmes.getSelectedIndex()){
+                case -1:
+                    this.listaFilmes = controleF.findAll();
+                    atualizarProdutos();
+                    break;
+                case 0:
+                    try{
+                        Integer codigo = Integer.parseInt(tfPesquisaFilmes.getText());
+                        try{
+                            Filme f = controleF.findByCodigo(codigo);
+                            this.listaFilmes.clear();
+                            this.listaFilmes.add(f);   
+                            atualizarFilmes();
+                        }catch(NoResultException ex){
+                            JOptionPane.showMessageDialog(null, "Nenhum resultado com esse código!");
+                        }
+                    }catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Digite apenas número para pesquisar por código");
+                    }
+                    break;
+                case 1:
+                        this.listaFilmes.clear();
+                        this.listaFilmes = controleF.findByTitulo(tfPesquisaFilmes.getText().trim());
+                        atualizarFilmes();
+                    break;
+            }
+        }
     }//GEN-LAST:event_mbPesquisarFilmesActionPerformed
 
     public void atualizarProdutos(){        
@@ -850,6 +881,7 @@ public class Menu extends javax.swing.JFrame {
         modelo.setNumRows(0);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for(Filme f: this.listaFilmes){
+            System.out.println(f);
             modelo.addRow(new Object[] {f.getCodigo(), f.getTitulo(), f.getIdadeMinima(), sdf.format(f.getDataEstreia()), f.getDuracao(), f.getDirecao()});
         }
     }

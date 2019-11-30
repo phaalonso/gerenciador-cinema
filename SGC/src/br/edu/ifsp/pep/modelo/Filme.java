@@ -21,7 +21,9 @@ import javax.persistence.TemporalType;
 @Table(name = "filme")
 @NamedQueries({
         @NamedQuery(name = "Filme.findByCodigo", 
-                query = "SELECT f FROM Filme f WHERE f.codigo = :codigo")
+                query = "SELECT f FROM Filme f WHERE f.codigo = :codigo"),
+        @NamedQuery(name = "Filme.findByTitulo",
+                query = "SELECT f FROM Filme f WHERE f.titulo LIKE :titulo")
 })
 public class Filme implements Serializable {
     @Id
@@ -137,4 +139,8 @@ public class Filme implements Serializable {
         this.generos = generos;
     }   
 
+    @Override
+    public String toString() {
+        return "Filme{" + "codigo=" + codigo + ", titulo=" + titulo + ", descricao=" + descricao + ", dataEstreia=" + dataEstreia + ", duracao=" + duracao + ", direcao=" + direcao + ", idadeMinima=" + idadeMinima + ", generos=" + generos + '}';
+    }
 }
