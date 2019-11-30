@@ -38,18 +38,18 @@ public class Ingresso implements Serializable{
     @JoinColumn(referencedColumnName = "codigo", name = "tipo_ingresso", nullable = false)
     private TipoIngresso tipo;
     
-    @Column(name = "valor", nullable = false)
-    private Double valor;
+    @Column(name = "preco", nullable = false)
+    private Double preco;
     
     public Ingresso() {
     }
 
-    public Ingresso(Sessao sessao, Assento assento, Venda venda, TipoIngresso tipo, Double valor) {
+    public Ingresso(Sessao sessao, Assento assento, Venda venda, TipoIngresso tipo, Double preco) {
         this.sessao = sessao;
         this.assento = assento;
         this.venda = venda;
         this.tipo = tipo;
-        this.valor = valor;
+        this.preco = preco;
     }
 
     public Sessao getSessao() {
@@ -76,12 +76,12 @@ public class Ingresso implements Serializable{
         this.venda = venda;
     }
 
-    public Double getValor() {
-        return valor;
+    public Double getPreco() {
+        return preco;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
 
     public TipoIngresso getTipo() {
@@ -94,6 +94,6 @@ public class Ingresso implements Serializable{
 
     @Override
     public String toString() {
-        return "Ingresso{" + "sessao=" + sessao + ", assento=" + assento + ", venda=" + venda + ", tipo=" + tipo + ", valor=" + valor + '}';
+        return "Ingresso{" + "sessao=" + sessao + ", assento=" + assento + ", venda=" + venda + ", tipo=" + tipo + ", preco=" + preco + '}';
     }
 }
