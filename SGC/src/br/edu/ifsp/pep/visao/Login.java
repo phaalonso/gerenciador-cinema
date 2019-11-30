@@ -46,6 +46,11 @@ public class Login extends javax.swing.JFrame {
         tfUsuario.setLabel("Usuario");
 
         pfSenha.setLabel("Senha");
+        pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pfSenhaKeyPressed(evt);
+            }
+        });
 
         mButton1.setBackground(new java.awt.Color(73, 136, 137));
         mButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -139,7 +144,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_mButton2MouseClicked
 
     private void mButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mButton1MouseClicked
-        String login = tfUsuario.getText();
+        entrar();
+    }//GEN-LAST:event_mButton1MouseClicked
+
+    private void mButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mButton1ActionPerformed
+
+    private void pfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyPressed
+    }//GEN-LAST:event_pfSenhaKeyPressed
+
+    public void entrar(){
+        String login = tfUsuario.getText().trim();
         String senha = String.valueOf(pfSenha.getPassword());
         
         try{
@@ -150,13 +166,8 @@ public class Login extends javax.swing.JFrame {
         }catch(NoResultException ex){
             JOptionPane.showMessageDialog(null, "Usuario não encontrado");
         }
-                
-    }//GEN-LAST:event_mButton1MouseClicked
-
-    private void mButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mButton1ActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */

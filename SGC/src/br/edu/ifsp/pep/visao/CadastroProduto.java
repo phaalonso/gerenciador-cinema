@@ -136,6 +136,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     public void setSelecionado(Produto p){
         this.selecionado = p;
         this.tfCodigo.setText(String.valueOf(p.getCodigo()));
+        this.tfCodigo.setEditable(false);
         this.tfDescricao.setText(p.getDescricao());
         this.tfEstoque.setText((String.valueOf(p.getEstoque())));
         this.tfValor.setText(String.valueOf(p.getPreco()));

@@ -786,11 +786,46 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbCadastrarFilmesActionPerformed
 
     private void mbEditarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarFilmesActionPerformed
-        // TODO add your handling code here:
+        int row = tbFilmes.getSelectedRow();
+        
+        if(row > -1){
+            Integer cod = null;
+            cod = (Integer) tbFilmes.getValueAt(row, 0);
+            try{
+                Filme f = controleF.findByCodigo(cod);
+                CadastroFilme cf = new CadastroFilme(this, true);
+                cf.setSelecionado(f);
+                cf.setModal(true);
+                cf.setVisible(true);
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+            }            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um filme para editar na tabela");
+        }       
     }//GEN-LAST:event_mbEditarFilmesActionPerformed
 
     private void mbRemoverFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverFilmesActionPerformed
-        // TODO add your handling code here:
+        int row = tbFilmes.getSelectedRow();
+        
+        if(row > -1){
+            Integer cod = null;
+            cod = (Integer) tbFilmes.getValueAt(row, 0);
+            System.out.println(cod);
+            if(cod != null){
+                try{
+                    Filme f = controleF.findByCodigo(cod);
+                    controleF.remove(f);
+                    JOptionPane.showMessageDialog(null, "Filme removido!");
+                    this.listaFilmes = controleF.findAll();
+                    atualizarFilmes();
+                }catch(NoResultException ex){
+                    JOptionPane.showMessageDialog(null, "Filme não encontrado");
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um Filme na tabela!");
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_mbRemoverFilmesActionPerformed
 
     private void mbPesquisarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarFilmesActionPerformed

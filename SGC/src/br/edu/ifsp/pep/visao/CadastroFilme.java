@@ -161,7 +161,7 @@ public class CadastroFilme extends javax.swing.JDialog {
                                 .addGap(231, 231, 231)
                                 .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jpPrincipalLayout.setVerticalGroup(
@@ -199,7 +199,18 @@ public class CadastroFilme extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setSelecionado(Filme f){
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        this.selecionado = f;
+        tfCodigo.setText(String.valueOf(f.getCodigo()));
+        tfCodigo.setEditable(false);
+        tfDataEstreia.setText(sdf.format(f.getDataEstreia()));
+        tfDirecao.setText(f.getDirecao());
+        tfDuracao.setText(String.valueOf(f.getDuracao()));
+        tfIdadeMinima.setText(String.valueOf(f.getIdadeMinima()));
+        tfTitulo.setText(f.getTitulo());
+        taDescricao.setText(f.getDescricao());
+        this.listaG = f.getGeneros();    
+        mbCadastrar.setText("Editar");
     }
     
     private void mbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSairActionPerformed
@@ -232,15 +243,22 @@ public class CadastroFilme extends javax.swing.JDialog {
                 f.setDescricao(descricao);
                 f.setGeneros(this.listaG);
                 
-                try{
-                    System.out.println(f);
-                    controleF.persist(f);
-                    JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
+                if(this.selecionado == null){
+                    try{
+                        System.out.println(f);
+                        controleF.persist(f);
+                        JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
+                        dispose();
+                    }catch(EntityExistsException ex){
+                        JOptionPane.showMessageDialog(null, "Ja existe uma entidade com esse código!");
+                        System.out.println(ex);
+                    }
+                }else{
+                    controleF.merge(f);
+                    JOptionPane.showMessageDialog(null, "Produto atualizado");
                     dispose();
-                }catch(EntityExistsException ex){
-                    JOptionPane.showMessageDialog(null, "Ja existe uma entidade com esse código!");
-                    System.out.println(ex);
                 }
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Por favor selecione os generos do filme!");
             } 
