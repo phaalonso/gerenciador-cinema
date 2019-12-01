@@ -6,8 +6,10 @@
 package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleUsuario;
+import br.edu.ifsp.pep.modelo.TipoUsuario;
 import br.edu.ifsp.pep.modelo.Usuario;
 import javax.persistence.NoResultException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -160,11 +162,16 @@ public class Login extends javax.swing.JFrame {
         
         try{
             Usuario usuario = controle.login(login, senha);
-            Menu menu = new Menu(usuario);
+            JFrame menu;
+            if(usuario.getTipo() == TipoUsuario.SUPER){
+                menu = new Menu(usuario);
+            }else{
+                menu = new MenuComum(usuario);
+            }
             menu.setVisible(true);
             dispose();
         }catch(NoResultException ex){
-            JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+            JOptionPane.showMessageDialog(null, "Credenciais incorretos");
         }
     }
     
