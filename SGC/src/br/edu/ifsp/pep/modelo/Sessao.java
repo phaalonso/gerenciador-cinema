@@ -1,7 +1,9 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,6 +52,9 @@ public class Sessao implements Serializable {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "sala_codigo", nullable = false)
     private Sala sala;
+    
+    @OneToMany(mappedBy = "sessao")
+    private List<Ingresso> ingressos;
     
     public Sessao() {
     }
@@ -108,6 +114,32 @@ public class Sessao implements Serializable {
 
     public void setArquivada(boolean arquivada) {
         this.arquivada = arquivada;
+    }
+    
+    public List<Assento> verificarAssentosDisponiveis(){
+        List<Assento> lista = this.sala.getAssentos();
+        List<Assento> assentosDisponiveis = new ArrayList<>();
+        
+        Assento a2;
+        boolean disponivel;
+        int index;
+        
+        for(Assento a : lista){
+            disponivel = a.isDisponivel();
+            if(disponivel){
+                for(Ingresso i : ingressos){
+                    a2 = i.getAssento();
+                    index = 0;
+                    while(index < lista.size() && 
+                            !a2.getCodigo().equals(a.getCodigo()))
+                        index++;
+                    if(index == lista.size())
+                        assentosDisponiveis.add(a);
+                }
+            }
+        }
+        
+        return assentosDisponiveis;
     }
     
     @Override
