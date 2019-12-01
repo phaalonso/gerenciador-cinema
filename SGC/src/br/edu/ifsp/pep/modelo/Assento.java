@@ -40,6 +40,22 @@ public class Assento implements Serializable{
         this.disponivel = disponivel;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
     public boolean isDisponivel() {
         return disponivel;
     }
