@@ -55,14 +55,13 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="tfValor" min="-2" pref="180" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                           <Component id="mbItensCombo" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="mComboBox1" min="-2" pref="180" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tfCodigo" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="tfValor" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="tfDescricao" min="-2" pref="180" max="-2" attributes="0"/>
@@ -85,21 +84,15 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="mComboBox1" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="tfCodigo" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="tfValor" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tfEstoque" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="tfDescricao" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfValor" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                          <Component id="mbItensCombo" min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="mbItensCombo" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="mbSair" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -111,14 +104,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfCodigo">
-          <Properties>
-            <Property name="label" type="java.lang.String" value="Codigo"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCodigoActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfDescricao">
           <Properties>
             <Property name="label" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>

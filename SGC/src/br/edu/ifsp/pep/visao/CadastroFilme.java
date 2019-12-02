@@ -42,7 +42,6 @@ public class CadastroFilme extends javax.swing.JDialog {
     private void initComponents() {
 
         jpPrincipal = new javax.swing.JPanel();
-        tfCodigo = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         tfTitulo = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         tfIdadeMinima = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -62,13 +61,6 @@ public class CadastroFilme extends javax.swing.JDialog {
         jpPrincipal.setBackground(java.awt.Color.white);
         jpPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jpPrincipal.setPreferredSize(new java.awt.Dimension(410, 360));
-
-        tfCodigo.setLabel("Codigo");
-        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCodigoActionPerformed(evt);
-            }
-        });
 
         tfTitulo.setLabel("Título");
 
@@ -138,47 +130,37 @@ public class CadastroFilme extends javax.swing.JDialog {
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
                         .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfDataEstreia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpPrincipalLayout.createSequentialGroup()
-                                .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(24, Short.MAX_VALUE))
-                            .addGroup(jpPrincipalLayout.createSequentialGroup()
-                                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbDescricao)
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbDescricao)
-                            .addGroup(jpPrincipalLayout.createSequentialGroup()
-                                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(231, 231, 231)
-                                .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(231, 231, 231)
+                        .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbSelecionarGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfIdadeMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDataEstreia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tfDataEstreia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbDescricao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,10 +255,6 @@ public class CadastroFilme extends javax.swing.JDialog {
 
     }//GEN-LAST:event_mbCadastrarActionPerformed
 
-    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCodigoActionPerformed
-
     private void tfDirecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDirecaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDirecaoActionPerformed
@@ -300,7 +278,6 @@ public class CadastroFilme extends javax.swing.JDialog {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSelecionarGeneros;
     private javax.swing.JTextArea taDescricao;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
     private com.hq.swingmaterialdesign.materialdesign.MFormattedTextField tfDataEstreia;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDirecao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDuracao;

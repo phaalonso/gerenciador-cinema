@@ -36,7 +36,7 @@ public class MenuComum extends javax.swing.JFrame {
     public MenuComum(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
-        this.labelBoasVindas.setText("Bem-vindo, " + usuario.getNome() + "!");
+        this.lbBoasVindas.setText("Bem-vindo, " + usuario.getNome() + "!");
         this.setResizable(false);
         this.controleI = new ControleItem();
         this.controleP = new ControleProduto();
@@ -71,7 +71,7 @@ public class MenuComum extends javax.swing.JFrame {
         jpPrincipal = new javax.swing.JPanel();
         jpVenda = new javax.swing.JPanel();
         jpHome = new javax.swing.JPanel();
-        labelBoasVindas = new javax.swing.JLabel();
+        lbBoasVindas = new javax.swing.JLabel();
         jpSessoes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -198,8 +198,8 @@ public class MenuComum extends javax.swing.JFrame {
 
         jpHome.setBackground(java.awt.Color.white);
 
-        labelBoasVindas.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        labelBoasVindas.setText("Bem vindo, usuário !");
+        lbBoasVindas.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lbBoasVindas.setText("Bem vindo, usuário !");
 
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
@@ -207,14 +207,14 @@ public class MenuComum extends javax.swing.JFrame {
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelBoasVindas)
+                .addComponent(lbBoasVindas)
                 .addContainerGap(572, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelBoasVindas)
+                .addComponent(lbBoasVindas)
                 .addContainerGap(994, Short.MAX_VALUE))
         );
 
@@ -339,7 +339,7 @@ public class MenuComum extends javax.swing.JFrame {
     private javax.swing.JPanel jpPrincipal;
     private javax.swing.JPanel jpSessoes;
     private javax.swing.JPanel jpVenda;
-    private javax.swing.JLabel labelBoasVindas;
+    private javax.swing.JLabel lbBoasVindas;
     private javax.swing.JLabel lbMenu;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;

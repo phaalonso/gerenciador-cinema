@@ -41,7 +41,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     private void initComponents() {
 
         jpPrincipal = new javax.swing.JPanel();
-        tfCodigo = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         tfDescricao = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         tfEstoque = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -57,13 +56,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         jpPrincipal.setBackground(java.awt.Color.white);
         jpPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jpPrincipal.setPreferredSize(new java.awt.Dimension(410, 360));
-
-        tfCodigo.setLabel("Codigo");
-        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCodigoActionPerformed(evt);
-            }
-        });
 
         tfDescricao.setLabel("Descrição");
 
@@ -132,13 +124,12 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(198, 198, 198)
                         .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
                         .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
                         .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -155,17 +146,13 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,10 +243,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_mbCadastrarActionPerformed
 
-    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCodigoActionPerformed
-
     private void mbItensComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbItensComboMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_mbItensComboMouseClicked
@@ -288,7 +271,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbItensCombo;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDescricao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfEstoque;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfValor;

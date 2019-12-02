@@ -46,6 +46,8 @@ public class Menu extends javax.swing.JFrame {
         this.controleP = new ControleProduto();
         this.controleF = new ControleFilme();
         this.controleS = new ControleSessao();
+        
+        lbBoasVindas.setText("Bem-vindo, "+usuario.getNome()+"!");
         mbFilmes.setSelected(false);
         jpFilmes.setVisible(false);
         
@@ -83,7 +85,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal = new javax.swing.JPanel();
         jpVenda = new javax.swing.JPanel();
         jpHome = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbBoasVindas = new javax.swing.JLabel();
         jpSessoes = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbSessoes = new javax.swing.JTable();
@@ -270,8 +272,8 @@ public class Menu extends javax.swing.JFrame {
 
         jpHome.setBackground(java.awt.Color.white);
 
-        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        jLabel1.setText("Bem vindo, usuário !");
+        lbBoasVindas.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lbBoasVindas.setText("Bem vindo, usuário !");
 
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
@@ -279,14 +281,14 @@ public class Menu extends javax.swing.JFrame {
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbBoasVindas)
                 .addContainerGap(636, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbBoasVindas)
                 .addContainerGap(994, Short.MAX_VALUE))
         );
 
@@ -316,7 +318,17 @@ public class Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbSessoes.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbSessoes);
+        if (tbSessoes.getColumnModel().getColumnCount() > 0) {
+            tbSessoes.getColumnModel().getColumn(0).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(0).setHeaderValue("Código");
+            tbSessoes.getColumnModel().getColumn(1).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(2).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(3).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(4).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         mbCadastrarSessoes.setBackground(new java.awt.Color(73, 136, 137));
         mbCadastrarSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -379,8 +391,8 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpSessoesLayout.setVerticalGroup(
             jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,8 +408,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpProdutos.setBackground(java.awt.Color.white);
@@ -460,12 +472,27 @@ public class Menu extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        tbItems.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbItems);
+        if (tbItems.getColumnModel().getColumnCount() > 0) {
+            tbItems.getColumnModel().getColumn(0).setResizable(false);
+            tbItems.getColumnModel().getColumn(0).setHeaderValue("Código");
+            tbItems.getColumnModel().getColumn(1).setResizable(false);
+            tbItems.getColumnModel().getColumn(2).setResizable(false);
+            tbItems.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout jpProdutosLayout = new javax.swing.GroupLayout(jpProdutos);
         jpProdutos.setLayout(jpProdutosLayout);
@@ -486,10 +513,9 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(jpProdutosLayout.createSequentialGroup()
                                 .addComponent(mCPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 265, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                                .addComponent(mbPesquisarProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jpProdutosLayout.setVerticalGroup(
             jpProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,7 +549,7 @@ public class Menu extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -534,10 +560,16 @@ public class Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbFilmes.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(tbFilmes);
         if (tbFilmes.getColumnModel().getColumnCount() > 0) {
-            tbFilmes.getColumnModel().getColumn(3).setHeaderValue("Data estreia");
-            tbFilmes.getColumnModel().getColumn(4).setHeaderValue("Duração");
+            tbFilmes.getColumnModel().getColumn(0).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(0).setHeaderValue("Código");
+            tbFilmes.getColumnModel().getColumn(1).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(2).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(3).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(4).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(5).setResizable(false);
         }
 
         mbCadastrarFilmes.setBackground(new java.awt.Color(73, 136, 137));
@@ -587,7 +619,6 @@ public class Menu extends javax.swing.JFrame {
             jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpFilmesLayout.createSequentialGroup()
                 .addGroup(jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6)
                     .addGroup(jpFilmesLayout.createSequentialGroup()
                         .addGroup(jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -601,9 +632,9 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(jpFilmesLayout.createSequentialGroup()
                                 .addComponent(mbEditarFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mbRemoverFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 241, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(mbRemoverFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpFilmesLayout.setVerticalGroup(
             jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -619,30 +650,29 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbEditarFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemoverFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 823, Short.MAX_VALUE)
+            .addGap(0, 832, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addContainerGap()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 21, Short.MAX_VALUE)))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,8 +686,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addContainerGap()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
@@ -685,13 +714,13 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.PREFERRED_SIZE, 993, Short.MAX_VALUE)
+                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, Short.MAX_VALUE)
+                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1056, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1004,7 +1033,6 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -1015,6 +1043,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jpProdutos;
     private javax.swing.JPanel jpSessoes;
     private javax.swing.JPanel jpVenda;
+    private javax.swing.JLabel lbBoasVindas;
     private javax.swing.JLabel lbMenu;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaFilmes;

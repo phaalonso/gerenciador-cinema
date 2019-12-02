@@ -102,6 +102,9 @@ public class SelecionarGeneros extends javax.swing.JDialog {
         tbSelecionado.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tbSelecionado);
         tbSelecionado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tbSelecionado.getColumnModel().getColumnCount() > 0) {
+            tbSelecionado.getColumnModel().getColumn(0).setHeaderValue("Código");
+        }
 
         mbRemoverGenero.setBackground(new java.awt.Color(73, 136, 137));
         mbRemoverGenero.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
