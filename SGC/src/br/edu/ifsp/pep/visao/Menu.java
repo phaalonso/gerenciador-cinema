@@ -14,6 +14,7 @@ import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Item;
 import br.edu.ifsp.pep.modelo.Produto;
 import br.edu.ifsp.pep.modelo.Sessao;
+import br.edu.ifsp.pep.modelo.TipoUsuario;
 import br.edu.ifsp.pep.modelo.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -47,6 +48,12 @@ public class Menu extends javax.swing.JFrame {
         this.controleF = new ControleFilme();
         this.controleS = new ControleSessao();
         
+        if(usuario.getTipo() == TipoUsuario.COMUM){
+            mbProdutos.setVisible(false);
+            mbSessoes.setVisible(false);
+            mbFilmes.setVisible(false);
+        }
+        
         lbBoasVindas.setText("Bem-vindo, "+usuario.getNome()+"!");
         mbFilmes.setSelected(false);
         jpFilmes.setVisible(false);
@@ -77,15 +84,19 @@ public class Menu extends javax.swing.JFrame {
         jpMenu = new javax.swing.JPanel();
         lbMenu = new javax.swing.JLabel();
         mBHome = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbSair = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbVendas = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbProdutos = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbFilmes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbSessoes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbSair = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         jpPrincipal = new javax.swing.JPanel();
         jpVenda = new javax.swing.JPanel();
         jpHome = new javax.swing.JPanel();
         lbBoasVindas = new javax.swing.JLabel();
+        mbGerarRelatorio = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tbSessoes1 = new javax.swing.JTable();
+        lbCalendario = new javax.swing.JLabel();
         jpSessoes = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbSessoes = new javax.swing.JTable();
@@ -139,25 +150,6 @@ public class Menu extends javax.swing.JFrame {
         mBHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mBHomeActionPerformed(evt);
-            }
-        });
-
-        mbSair.setBackground(new java.awt.Color(73, 136, 137));
-        mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbSair.setText("Sair");
-        mbSair.setEndColor(new java.awt.Color(73, 136, 137));
-        mbSair.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbSair.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbSair.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbSair.setStartColor(new java.awt.Color(73, 136, 137));
-        mbSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbSairActionPerformed(evt);
-            }
-        });
-        mbSair.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbSairKeyPressed(evt);
             }
         });
 
@@ -217,30 +209,51 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        mbSair.setBackground(new java.awt.Color(73, 136, 137));
+        mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbSair.setText("Sair");
+        mbSair.setEndColor(new java.awt.Color(73, 136, 137));
+        mbSair.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbSair.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbSair.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbSair.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbSair.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbSair.setStartColor(new java.awt.Color(73, 136, 137));
+        mbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbSairActionPerformed(evt);
+            }
+        });
+        mbSair.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbSairKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mBHome, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(72, 72, 72)
                 .addComponent(lbMenu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(mbSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(46, 46, 46)
                 .addComponent(lbMenu)
-                .addGap(108, 108, 108)
+                .addGap(112, 112, 112)
                 .addComponent(mBHome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,8 +264,8 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
@@ -275,21 +288,75 @@ public class Menu extends javax.swing.JFrame {
         lbBoasVindas.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lbBoasVindas.setText("Bem vindo, usuário !");
 
+        mbGerarRelatorio.setBackground(new java.awt.Color(73, 136, 137));
+        mbGerarRelatorio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbGerarRelatorio.setText("GERAR RELATÓRIOS");
+        mbGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbGerarRelatorioActionPerformed(evt);
+            }
+        });
+
+        tbSessoes1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Filme", "Sala", "Data", "Horario Inicio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbSessoes1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane7.setViewportView(tbSessoes1);
+        if (tbSessoes1.getColumnModel().getColumnCount() > 0) {
+            tbSessoes1.getColumnModel().getColumn(0).setResizable(false);
+            tbSessoes1.getColumnModel().getColumn(1).setResizable(false);
+            tbSessoes1.getColumnModel().getColumn(2).setResizable(false);
+            tbSessoes1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        lbCalendario.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        lbCalendario.setText("Verifique o calendário de sessões");
+
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
         jpHomeLayout.setHorizontalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbBoasVindas)
-                .addContainerGap(636, Short.MAX_VALUE))
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mbGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                        .addComponent(lbBoasVindas)
+                        .addComponent(lbCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbBoasVindas)
-                .addContainerGap(994, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(lbCalendario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(mbGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(478, Short.MAX_VALUE))
         );
 
         jpSessoes.setBackground(java.awt.Color.white);
@@ -328,6 +395,7 @@ public class Menu extends javax.swing.JFrame {
             tbSessoes.getColumnModel().getColumn(3).setResizable(false);
             tbSessoes.getColumnModel().getColumn(4).setResizable(false);
             tbSessoes.getColumnModel().getColumn(5).setResizable(false);
+            tbSessoes.getColumnModel().getColumn(5).setHeaderValue("Arquivada");
         }
 
         mbCadastrarSessoes.setBackground(new java.awt.Color(73, 136, 137));
@@ -676,15 +744,15 @@ public class Menu extends javax.swing.JFrame {
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1057, Short.MAX_VALUE)
+            .addGap(0, 1066, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -697,7 +765,7 @@ public class Menu extends javax.swing.JFrame {
             PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PMainLayout.createSequentialGroup()
                 .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PMainLayout.setVerticalGroup(
@@ -842,7 +910,7 @@ public class Menu extends javax.swing.JFrame {
         if(row > -1){
             Integer cod = null;
             cod = (Integer) tbItems.getValueAt(row, 0);
-            System.out.println(cod);
+            //System.out.println(cod);
             if(cod != null){
                 try{
                     Produto p = controleP.findByCodigo(cod);
@@ -865,7 +933,7 @@ public class Menu extends javax.swing.JFrame {
         if(row > -1){
             Integer cod = null;
             cod = (Integer) tbItems.getValueAt(row, 0);
-            System.out.println(cod);
+            //System.out.println(cod);
             if(cod != null){
                 try{
                     Produto p = controleP.findByCodigo(cod);
@@ -887,7 +955,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverProdutoActionPerformed
 
     private void mbPesquisarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarProdutosActionPerformed
-        System.out.println(mCPesquisaProduto.getSelectedIndex());
+        //System.out.println(mCPesquisaProduto.getSelectedIndex());
         if(tfPesquisaProduto.getText().isEmpty()){
             this.listaItens = controleI.findAll();
                 atualizarProdutos();
@@ -940,7 +1008,7 @@ public class Menu extends javax.swing.JFrame {
             Integer cod = (Integer) tbSessoes.getValueAt(row, 0);
             Sessao s = controleS.findByCodigo(cod);
             if(!s.isArquivada()){
-                System.out.println("OI");
+                //System.out.println("OI");
                 CadastrarSessao cs = new CadastrarSessao(this, true);
                 cs.setModal(true);
                 cs.setSelecionado(s);
@@ -996,12 +1064,17 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mbPesquisarFilmesActionPerformed
 
+    private void mbGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbGerarRelatorioActionPerformed
+        TelaRelatorio telaRelatorio = new TelaRelatorio(this, false);
+        telaRelatorio.setVisible(true);
+    }//GEN-LAST:event_mbGerarRelatorioActionPerformed
+
     public void atualizarProdutos(){        
         DefaultTableModel modelo = (DefaultTableModel) tbItems.getModel();
         modelo.setNumRows(0);
         for(Item i: this.listaItens){
             if(i instanceof Produto){
-                System.out.println(i);
+                //System.out.println(i);
                 modelo.addRow(new Object[] {i.getCodigo(), i.getDescricao(), i.getPreco(), ((Produto) i).getEstoque()});
             }else if(i instanceof Combo){
                 modelo.addRow(new Object[] {i.getCodigo(), i.getDescricao(), i.getPreco(), null});
@@ -1014,7 +1087,7 @@ public class Menu extends javax.swing.JFrame {
         modelo.setNumRows(0);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         for(Filme f: this.listaFilmes){
-            System.out.println(f);
+            //System.out.println(f);
             modelo.addRow(new Object[] {f.getCodigo(), f.getTitulo(), f.getIdadeMinima(), sdf.format(f.getDataEstreia()), f.getDuracao(), f.getDirecao()});
         }
     }
@@ -1036,6 +1109,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel jpFilmes;
     private javax.swing.JPanel jpHome;
     private javax.swing.JPanel jpMenu;
@@ -1044,6 +1118,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jpSessoes;
     private javax.swing.JPanel jpVenda;
     private javax.swing.JLabel lbBoasVindas;
+    private javax.swing.JLabel lbCalendario;
     private javax.swing.JLabel lbMenu;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaFilmes;
@@ -1056,6 +1131,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbGerarRelatorio;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarSessoes;
@@ -1069,6 +1145,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbItems;
     private javax.swing.JTable tbSessoes;
+    private javax.swing.JTable tbSessoes1;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaSessoes;

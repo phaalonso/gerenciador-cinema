@@ -174,11 +174,7 @@ public class Login extends javax.swing.JFrame {
         try{
             Usuario usuario = controle.login(login, senha);
             JFrame menu;
-            if(usuario.getTipo() == TipoUsuario.SUPER){
-                menu = new Menu(usuario);
-            }else{
-                menu = new MenuComum(usuario);
-            }
+            menu = new Menu(usuario);
             menu.setVisible(true);
             dispose();
         }catch(NoResultException ex){

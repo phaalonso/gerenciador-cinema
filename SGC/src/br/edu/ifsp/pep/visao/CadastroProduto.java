@@ -21,16 +21,18 @@ import javax.swing.JOptionPane;
  */
 public class CadastroProduto extends javax.swing.JDialog {
 
-    private ControleProduto controleP;
+    private ControleProduto controleProduto;
     private Item selecionado;
     private List<ComboProduto> listaCombo;
-            
+
     public CadastroProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         this.listaCombo = new ArrayList<>();
-        this.controleP = new ControleProduto();
+        this.controleProduto = new ControleProduto();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,22 +168,20 @@ public class CadastroProduto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setSelecionado(Item i){
+    public void setSelecionado(Item i) {
         this.selecionado = i;
-        this.tfCodigo.setText(String.valueOf(i.getCodigo()));
-        this.tfCodigo.setEditable(false);
         this.tfDescricao.setText(i.getDescricao());
         this.tfValor.setText(String.valueOf(i.getPreco()));
         mComboBox1.setEditable(false);
-        if(i instanceof Produto){
+        if (i instanceof Produto) {
             this.tfEstoque.setText((String.valueOf(((Produto) i).getEstoque())));
             mComboBox1.setSelectedIndex(0);
-        }else{
+        } else {
             this.listaCombo = ((Combo) i).getProdutos();
             mComboBox1.setSelectedIndex(1);
         }
     }
-    
+
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_mbSairMouseClicked
@@ -195,50 +195,41 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_mbCadastrarMouseClicked
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        try{ 
-            Integer codigo = Integer.parseInt(tfCodigo.getText().trim());
+        try {
             String nome = tfDescricao.getText().trim();
             Double valor = Double.parseDouble(tfValor.getText().trim());
             Integer estoque = Integer.parseInt(tfEstoque.getText().trim());
 
-            if(codigo != null){
-                if(valor >= 0){
-                    if(codigo >= 0){
-                        if(estoque >= 0){
+            if (valor >= 0) {
+                if (estoque >= 0) {
 
-                                Produto p = new Produto();
-                                p.setCodigo(codigo);
-                                p.setDescricao(nome);
-                                p.setPreco(valor);
-                                p.setEstoque(estoque);
+                    Produto p = new Produto();
+                    p.setDescricao(nome);
+                    p.setPreco(valor);
+                    p.setEstoque(estoque);
 
-                                if(this.selecionado == null){
-                                    try{
-                                        controleP.persist(p);
-                                        JOptionPane.showMessageDialog(null, "Produto cadastrado!");
-                                        dispose();
-                                    }catch(EntityExistsException ex){
-                                        JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
-                                    }
-                                }else{
-                                    controleP.merge(p);
-                                    JOptionPane.showMessageDialog(null, "Produto atualizado!");
-                                    dispose();
-                                }
-
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Estoque deve ser maior que 0!");
+                    if (this.selecionado == null) {
+                        try {
+                            controleProduto.persist(p);
+                            JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+                            dispose();
+                        } catch (EntityExistsException ex) {
+                            JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(null, "O codigo deve ser maior que 0!");
+                    } else {
+                        controleProduto.merge(p);
+                        JOptionPane.showMessageDialog(null, "Produto atualizado!");
+                        dispose();
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "O valor deve ser acima de 0!");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Estoque deve ser maior que 0!");
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "Preencha o campo do código");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "O valor deve ser acima de 0!");
             }
-        }catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor insira apenas numeros nos campos\nvalor e estoque");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_mbCadastrarActionPerformed
@@ -254,7 +245,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_mbItensComboActionPerformed
 
     private void mComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBox1ItemStateChanged
-        switch(mComboBox1.getSelectedIndex()){
+        switch (mComboBox1.getSelectedIndex()) {
             case 1:
                 mbItensCombo.setEnabled(true);
                 break;

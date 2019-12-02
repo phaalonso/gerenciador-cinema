@@ -34,6 +34,13 @@ public class ControleSessao extends ControleGenerico<Sessao>{
         return query.getSingleResult();
     }
     
+    public List<Sessao> findNotArquivada() throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findByCodigo", Sessao.class)
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getResultList();
+    }
+    
     private boolean verificarHorarioEntre(Date data, Date inicio, Date fim){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String horaCompara, horarioInicio, horarioFim;

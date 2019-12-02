@@ -22,15 +22,15 @@ import javax.swing.JOptionPane;
  */
 public class CadastroFilme extends javax.swing.JDialog {
 
-    private ControleFilme controleF;
+    private ControleFilme controleFilme;
     private Filme selecionado;
-    private List<Genero> listaG;
+    private List<Genero> listaGenero;
             
     public CadastroFilme(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.listaG = new ArrayList<>();
-        this.controleF = new ControleFilme();
+        this.listaGenero = new ArrayList<>();
+        this.controleFilme = new ControleFilme();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,15 +183,13 @@ public class CadastroFilme extends javax.swing.JDialog {
     public void setSelecionado(Filme f){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         this.selecionado = f;
-        tfCodigo.setText(String.valueOf(f.getCodigo()));
-        tfCodigo.setEditable(false);
         tfDataEstreia.setText(sdf.format(f.getDataEstreia()));
         tfDirecao.setText(f.getDirecao());
         tfDuracao.setText(String.valueOf(f.getDuracao()));
         tfIdadeMinima.setText(String.valueOf(f.getIdadeMinima()));
         tfTitulo.setText(f.getTitulo());
         taDescricao.setText(f.getDescricao());
-        this.listaG = f.getGeneros();    
+        this.listaGenero = f.getGeneros();    
         mbCadastrar.setText("Editar");
     }
     
@@ -205,8 +203,7 @@ public class CadastroFilme extends javax.swing.JDialog {
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
         try{
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");            
-            Integer codigo = Integer.parseInt(tfCodigo.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");   
             String titulo = tfTitulo.getText();
             Integer duracao = Integer.parseInt(tfDuracao.getText());
             String direcao = tfDirecao.getText();
@@ -214,41 +211,34 @@ public class CadastroFilme extends javax.swing.JDialog {
             Date dataEstreia = sdf.parse(tfDataEstreia.getText());
             String descricao = taDescricao.getText();
             
-            if(!this.listaG.isEmpty()){
+            if(!this.listaGenero.isEmpty()){
                 Filme f = new Filme();
-                f.setCodigo(codigo);
                 f.setTitulo(titulo);
                 f.setDuracao(duracao);
                 f.setDirecao(direcao);
                 f.setIdadeMinima(idadeMinima);
                 f.setDataEstreia(dataEstreia);
                 f.setDescricao(descricao);
-                f.setGeneros(this.listaG);
+                f.setGeneros(this.listaGenero);
                 
                 if(this.selecionado == null){
-                    try{
-                        System.out.println(f);
-                        controleF.persist(f);
-                        JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
-                        dispose();
-                    }catch(EntityExistsException ex){
-                        JOptionPane.showMessageDialog(null, "Ja existe uma entidade com esse código!");
-                        System.out.println(ex);
-                    }
+                    controleFilme.persist(f);
+                    JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso");
+                    dispose();
                 }else{
-                    controleF.merge(f);
+                    controleFilme.merge(f);
                     JOptionPane.showMessageDialog(null, "Produto atualizado");
                     dispose();
                 }
                 
             }else{
-                JOptionPane.showMessageDialog(null, "Por favor selecione os generos do filme!");
+                JOptionPane.showMessageDialog(null, "Por favor selecione os gêneros do filme!");
             } 
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Certifiquese que os campos codigo, duração, idade minima possuem apenas numeros");
+            JOptionPane.showMessageDialog(null, "Certifique-se que os campos duração, idade mínima possuem apenas números");
             System.out.println(ex);
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Porfavor insira a data na forma correta dd/mm/yyyy");
+            JOptionPane.showMessageDialog(null, "Por favor, insira a data na forma correta dd/mm/aaaa");
             System.out.println(ex);
         }
         
@@ -264,7 +254,7 @@ public class CadastroFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_mbSelecionarGenerosMouseClicked
 
     private void mbSelecionarGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSelecionarGenerosActionPerformed
-        SelecionarGeneros sg = new SelecionarGeneros(null, true, this.listaG);
+        SelecionarGeneros sg = new SelecionarGeneros(null, true, this.listaGenero);
         sg.setModal(true);
         sg.setVisible(true);
     }//GEN-LAST:event_mbSelecionarGenerosActionPerformed

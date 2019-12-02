@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import javax.persistence.EntityManager;
+import javax.swing.WindowConstants;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -32,7 +33,7 @@ public class GerarRelatorio {
             JasperPrint jp = JasperFillManager.fillReport(jasper, parametros);
             
             // Exibir
-            JasperViewer jv = new JasperViewer(jp, true);
+            JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);
         }catch(JRException ex){
             System.err.println(ex.getMessage());
@@ -59,7 +60,7 @@ public class GerarRelatorio {
             JasperPrint jp = JasperFillManager.fillReport(jasper, parametros);
             
             // Exibir
-            JasperViewer jv = new JasperViewer(jp, true);
+            JasperViewer jv = new JasperViewer(jp, false);
             jv.setVisible(true);
         }catch(JRException ex){
             System.err.println(ex.getMessage());

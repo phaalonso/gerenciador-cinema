@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Sessao.findByCodigo",
             query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
-    @NamedQuery(name = "Sessao.findQuaseAll",
+    @NamedQuery(name = "Sessao.findNotArquivada",
             query = "SELECT s FROM Sessao s WHERE s.arquivada = false"),
     @NamedQuery(name = "Sessao.findConflito",
             query = "SELECT s FROM Sessao s " 
