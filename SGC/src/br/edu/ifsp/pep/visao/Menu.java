@@ -302,7 +302,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(540, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
@@ -966,7 +966,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 832, Short.MAX_VALUE)
+            .addGap(0, 834, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -976,7 +976,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -990,9 +990,9 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE))
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1128, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1144,6 +1144,8 @@ public class Menu extends javax.swing.JFrame {
         CadastroProduto cp = new CadastroProduto(this, true);
         cp.setModal(true);
         cp.setVisible(true);
+        this.listaItens = controleItem.findAll();
+        atualizarProdutos();
     }//GEN-LAST:event_mbCadastrarProdutoActionPerformed
 
     private void mbEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarProdutoActionPerformed
@@ -1242,6 +1244,8 @@ public class Menu extends javax.swing.JFrame {
         CadastrarSessao cs = new CadastrarSessao(this, true);
         cs.setModal(true);
         cs.setVisible(true);
+        this.listaSessoes = controleSessao.findAll();
+        atualizarSessoes();
     }//GEN-LAST:event_mbCadastrarSessoesActionPerformed
 
     private void mbEditarSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarSessoesActionPerformed
@@ -1312,7 +1316,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbGerarRelatorioActionPerformed
 
     private void mbMontarProgramacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbMontarProgramacaoActionPerformed
-        // TODO add your handling code here:
+        MontarProgramacao mp = new MontarProgramacao(this, true);
+        mp.setModal(true);
+        mp.setVisible(true);
+        this.listaSessoes = controleSessao.findAll();
+        atualizarSessoes();
     }//GEN-LAST:event_mbMontarProgramacaoActionPerformed
 
     private void mbAdicionarIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaActionPerformed
