@@ -28,7 +28,7 @@ public class CadastrarSessao extends javax.swing.JDialog {
     private Sessao selecionado;
     private ControleSessao controleSessao;
     private ControleSala controleSala;
-    private ControleFilme controleF;
+    private ControleFilme controleFilme;
     
     
     private List<Filme> listaFilmes;
@@ -39,8 +39,8 @@ public class CadastrarSessao extends javax.swing.JDialog {
         initComponents();
         this.controleSessao = new ControleSessao();
         this.controleSala = new ControleSala();
-        this.controleF = new ControleFilme();
-        this.listaFilmes = controleF.findAll();
+        this.controleFilme = new ControleFilme();
+        this.listaFilmes = controleFilme.findAll();
         this.listaSala = controleSala.findAll();
         atualizarFilme();
         atualizarSala();
@@ -50,8 +50,6 @@ public class CadastrarSessao extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdfT = new SimpleDateFormat("HH:mm");
         this.selecionado = s;
-        tfCodigo.setText(String.valueOf(s.getCodigo()));
-        tfCodigo.setEnabled(false);
         tfData.setText(sdf.format(s.getDataInicio()));
         tfHorario.setText(sdfT.format(s.getDataInicio()));
         taDescricao.setText(s.getDescricao());
@@ -106,7 +104,7 @@ public class CadastrarSessao extends javax.swing.JDialog {
             }
         });
 
-        tfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        tfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         tfData.setLabel("Data");
 
         taDescricao.setColumns(20);
@@ -225,13 +223,11 @@ public class CadastrarSessao extends javax.swing.JDialog {
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
         try{
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-            Integer codigo = Integer.parseInt(tfCodigo.getText());
             Date data = sdf.parse(tfData.getText() + " " + tfHorario.getText().trim() + ":00");
             String descricao = taDescricao.getText();
             
             Sala s = (Sala) mcSala.getSelectedItem();
             Filme f = (Filme) mcFilme.getSelectedItem();
-            System.out.println(f.getCodigo());
                         
             if(s != null){
                 if(f != null){
@@ -245,17 +241,11 @@ public class CadastrarSessao extends javax.swing.JDialog {
                         sessao.setFilme(f);
                         sessao.setSala(s);
                         sessao.setArquivada(false);
-                        sessao.setCodigo(codigo);
                         
                         controleSessao.persist(sessao);
                         JOptionPane.showMessageDialog(null, "Sessao cadastrada");
                         dispose();
-                    }else{
-                        System.out.println("Sessoes em conflito");
-                        for(Sessao se: conflito){
-                            System.out.println(se);
-                        }
-                        
+                    }else{                        
                         JOptionPane.showMessageDialog(null, "A sala esta ocupada nesse horário!");
                     }
                 }else{

@@ -36,7 +36,7 @@ public class ControleSessao extends ControleGenerico<Sessao>{
     
     public List<Sessao> findNotArquivada() throws NoResultException{
         EntityManager em = getEntityManager();
-        TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findByCodigo", Sessao.class)
+        TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findNotArquivada", Sessao.class)
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);
         return query.getResultList();
     }
