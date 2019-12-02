@@ -23,6 +23,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Sessao.findByCodigo",
             query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
+    @NamedQuery(name = "Sessao.findQuaseAll",
+            query = "SELECT s FROM Sessao s WHERE s.arquivada = false"),
     @NamedQuery(name = "Sessao.findConflito",
             query = "SELECT s FROM Sessao s " 
                 + "WHERE (s.arquivada = false) AND (s.sala = :sala)"
@@ -45,11 +47,11 @@ public class Sessao implements Serializable {
     @Column(name = "arquivada", nullable = false)
     private boolean arquivada;
     
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne
     @JoinColumn(name = "filme_codigo", nullable = false)
     private Filme filme;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "sala_codigo", nullable = false)
     private Sala sala;
     

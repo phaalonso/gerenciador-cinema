@@ -76,7 +76,7 @@ public class Sala implements Serializable{
     
     @Override
     public String toString() {
-        return "Sala{" + "codigo=" + codigo + ", disponivel=" + disponivel + ", qtdAssendo=" + qtdAssendo + '}';
+        return "" +this.codigo;
     }
 
 }

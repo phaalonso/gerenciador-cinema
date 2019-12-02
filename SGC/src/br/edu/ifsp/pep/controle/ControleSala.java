@@ -5,6 +5,10 @@
  */
 package br.edu.ifsp.pep.controle;
 import br.edu.ifsp.pep.modelo.Sala;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import org.eclipse.persistence.config.HintValues;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  *
@@ -15,7 +19,14 @@ public class ControleSala extends ControleGenerico<Sala>{
     public ControleSala() {
         super(Sala.class);
     }
-
+    
+    public Sala findByCodigo(Integer codigo){
+        EntityManager em = getEntityManager();
+        TypedQuery<Sala> query = em.createNamedQuery("Sala.findByCodigo", Sala.class)
+                .setParameter("codigo", codigo)
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getSingleResult();
+    }
     
     
 

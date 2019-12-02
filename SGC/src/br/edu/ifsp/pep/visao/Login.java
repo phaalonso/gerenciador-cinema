@@ -46,6 +46,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(java.awt.Color.white);
 
         tfUsuario.setLabel("Usuario");
+        tfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfUsuarioKeyPressed(evt);
+            }
+        });
 
         pfSenha.setLabel("Senha");
         pfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -154,7 +159,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_mButton1ActionPerformed
 
     private void pfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfSenhaKeyPressed
+        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
+            entrar();
+        }
     }//GEN-LAST:event_pfSenhaKeyPressed
+
+    private void tfUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsuarioKeyPressed
+    }//GEN-LAST:event_tfUsuarioKeyPressed
 
     public void entrar(){
         String login = tfUsuario.getText().trim();

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.eclipse.persistence.config.HintValues;
 import org.eclipse.persistence.config.QueryHints;
@@ -23,6 +24,14 @@ public class ControleSessao extends ControleGenerico<Sessao>{
 
     public ControleSessao() {
         super(Sessao.class);
+    }
+    
+    public Sessao findByCodigo(Integer codigo) throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findByCodigo", Sessao.class)
+                .setParameter("codigo", codigo)
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getSingleResult();
     }
     
     private boolean verificarHorarioEntre(Date data, Date inicio, Date fim){

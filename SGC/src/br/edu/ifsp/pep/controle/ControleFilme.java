@@ -30,14 +30,21 @@ public class ControleFilme extends ControleGenerico<Filme>{
         return query.getSingleResult();
     }
     
-    public List<Filme> findByTitulo(String titulo) throws NoResultException{
+    public List<Filme> findByTitulo(String titulo){
         EntityManager em = getEntityManager();
-        TypedQuery<Filme> query = em.createNamedQuery("Filme.findByTitulo", Filme.class)
+        TypedQuery<Filme> query = em.createNamedQuery("Filme.findByTituloP", Filme.class)
                 .setParameter("titulo", "%" + titulo + "%")
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);
         return query.getResultList();
     }
     
+    public Filme findEqualsTitulo(String titulo) throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Filme> query = em.createNamedQuery("Filme.findEqualsTitulo", Filme.class)
+                .setParameter("titulo", titulo)
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getSingleResult();
+    }
 
 
 }

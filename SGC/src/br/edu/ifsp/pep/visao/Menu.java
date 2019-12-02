@@ -8,13 +8,16 @@ package br.edu.ifsp.pep.visao;
 import br.edu.ifsp.pep.controle.ControleFilme;
 import br.edu.ifsp.pep.controle.ControleItem;
 import br.edu.ifsp.pep.controle.ControleProduto;
+import br.edu.ifsp.pep.controle.ControleSessao;
 import br.edu.ifsp.pep.modelo.Combo;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Item;
 import br.edu.ifsp.pep.modelo.Produto;
+import br.edu.ifsp.pep.modelo.Sessao;
 import br.edu.ifsp.pep.modelo.Usuario;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.SimpleTimeZone;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,11 +30,13 @@ public class Menu extends javax.swing.JFrame {
     
     private List<Item> listaItens;
     private List<Filme> listaFilmes;
+    private List<Sessao> listaSessoes;
     
     private Usuario usuario;
     private ControleItem controleI;
     private ControleProduto controleP;
     private ControleFilme controleF;
+    private ControleSessao controleS;
     
     public Menu(Usuario usuario) {
         this.usuario = usuario;
@@ -40,6 +45,7 @@ public class Menu extends javax.swing.JFrame {
         this.controleI = new ControleItem();
         this.controleP = new ControleProduto();
         this.controleF = new ControleFilme();
+        this.controleS = new ControleSessao();
         mbFilmes.setSelected(false);
         jpFilmes.setVisible(false);
         
@@ -79,6 +85,14 @@ public class Menu extends javax.swing.JFrame {
         jpHome = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jpSessoes = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbSessoes = new javax.swing.JTable();
+        mbCadastrarSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbEditarSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbRemoverSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mCPesquisaSessoes = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mbPesquisarSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        tfPesquisaSessoes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         jpProdutos = new javax.swing.JPanel();
         mbCadastrarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -278,15 +292,118 @@ public class Menu extends javax.swing.JFrame {
 
         jpSessoes.setBackground(java.awt.Color.white);
 
+        tbSessoes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Filme", "Sala", "Data", "Horario Inicio", "Arquivada"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tbSessoes);
+
+        mbCadastrarSessoes.setBackground(new java.awt.Color(73, 136, 137));
+        mbCadastrarSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbCadastrarSessoes.setText("Cadastrar Sesão");
+        mbCadastrarSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbCadastrarSessoesActionPerformed(evt);
+            }
+        });
+
+        mbEditarSessoes.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditarSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditarSessoes.setText("Editar sessão");
+        mbEditarSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbEditarSessoesActionPerformed(evt);
+            }
+        });
+
+        mbRemoverSessoes.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemoverSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemoverSessoes.setText("Remover Sessão");
+        mbRemoverSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRemoverSessoesActionPerformed(evt);
+            }
+        });
+
+        mCPesquisaSessoes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Filme" }));
+        mCPesquisaSessoes.setAccent(new java.awt.Color(73, 136, 137));
+
+        mbPesquisarSessoes.setBackground(new java.awt.Color(73, 136, 137));
+        mbPesquisarSessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbPesquisarSessoes.setText("Pesquisar");
+        mbPesquisarSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbPesquisarSessoesActionPerformed(evt);
+            }
+        });
+
+        tfPesquisaSessoes.setLabel("Pesquisa");
+
         javax.swing.GroupLayout jpSessoesLayout = new javax.swing.GroupLayout(jpSessoes);
         jpSessoes.setLayout(jpSessoesLayout);
         jpSessoesLayout.setHorizontalGroup(
             jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGroup(jpSessoesLayout.createSequentialGroup()
+                .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jpSessoesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfPesquisaSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpSessoesLayout.createSequentialGroup()
+                                .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpSessoesLayout.createSequentialGroup()
+                                .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 129, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpSessoesLayout.setVerticalGroup(
             jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1032, Short.MAX_VALUE)
+            .addGroup(jpSessoesLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpSessoesLayout.createSequentialGroup()
+                        .addComponent(tfPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpSessoesLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(113, 113, 113)
+                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jpProdutos.setBackground(java.awt.Color.white);
@@ -320,6 +437,11 @@ public class Menu extends javax.swing.JFrame {
 
         mCPesquisaProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome" }));
         mCPesquisaProduto.setAccent(new java.awt.Color(73, 136, 137));
+        mCPesquisaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mCPesquisaProdutoActionPerformed(evt);
+            }
+        });
 
         mbPesquisarProdutos.setBackground(new java.awt.Color(73, 136, 137));
         mbPesquisarProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -334,10 +456,7 @@ public class Menu extends javax.swing.JFrame {
 
         tbItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Descrição", "Valor", "Estoque"
@@ -425,6 +544,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(tbFilmes);
+        if (tbFilmes.getColumnModel().getColumnCount() > 0) {
+            tbFilmes.getColumnModel().getColumn(3).setHeaderValue("Data estreia");
+            tbFilmes.getColumnModel().getColumn(4).setHeaderValue("Duração");
+        }
 
         mbCadastrarFilmes.setBackground(new java.awt.Color(73, 136, 137));
         mbCadastrarFilmes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -680,6 +803,9 @@ public class Menu extends javax.swing.JFrame {
         
         mBHome.setSelected(false);
         jpHome.setVisible(false); 
+        
+        this.listaSessoes = controleS.findAll();
+        atualizarSessoes();
     }//GEN-LAST:event_mbSessoesActionPerformed
 
     private void mbCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarProdutoActionPerformed
@@ -860,6 +986,62 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mbPesquisarFilmesActionPerformed
 
+    private void mCPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCPesquisaProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mCPesquisaProdutoActionPerformed
+
+    private void mbCadastrarSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarSessoesActionPerformed
+        CadastrarSessao cs = new CadastrarSessao(this, true);
+        cs.setModal(true);
+        cs.setVisible(true);
+    }//GEN-LAST:event_mbCadastrarSessoesActionPerformed
+
+    private void mbEditarSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarSessoesActionPerformed
+        int row = tbSessoes.getSelectedRow();
+        if(row > -1){
+            Integer cod = (Integer) tbSessoes.getValueAt(row, 0);
+            Sessao s = controleS.findByCodigo(cod);
+            if(!s.isArquivada()){
+                System.out.println("OI");
+                CadastrarSessao cs = new CadastrarSessao(this, true);
+                cs.setModal(true);
+                cs.setSelecionado(s);
+                cs.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Não é possivel editar sessões arquivadas!");
+            }
+        }
+        
+    }//GEN-LAST:event_mbEditarSessoesActionPerformed
+
+    private void mbRemoverSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverSessoesActionPerformed
+        int row = tbSessoes.getSelectedRow();
+        
+        if(row > -1){
+            Integer cod = null;
+            cod = (Integer) tbSessoes.getValueAt(row, 0);
+            try{
+                Sessao s = controleS.findByCodigo(cod);
+                if(!s.isArquivada()){
+                    controleS.remove(s);
+                    JOptionPane.showMessageDialog(null, "Sessão removida!");
+                    this.listaSessoes = controleS.findAll();
+                    atualizarSessoes();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Não é possivel remover uma sesão arquivada");
+                }
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Sessão não encontrada");
+            }            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma sessão a remover na tabela");
+        }
+    }//GEN-LAST:event_mbRemoverSessoesActionPerformed
+
+    private void mbPesquisarSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarSessoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbPesquisarSessoesActionPerformed
+
     public void atualizarProdutos(){        
         DefaultTableModel modelo = (DefaultTableModel) tbItems.getModel();
         modelo.setNumRows(0);
@@ -883,12 +1065,24 @@ public class Menu extends javax.swing.JFrame {
         }
     }
     
+    public void atualizarSessoes(){
+        DefaultTableModel modelo = (DefaultTableModel) tbSessoes.getModel();
+        modelo.setNumRows(0);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+        for(Sessao s: this.listaSessoes){
+            modelo.addRow(new Object[] {s.getCodigo(), s.getFilme().getTitulo(), s.getSala().getCodigo(), 
+                sdf.format(s.getDataInicio()), sdf2.format(s.getDataInicio()), s.isArquivada() });
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel jpFilmes;
     private javax.swing.JPanel jpHome;
     private javax.swing.JPanel jpMenu;
@@ -900,22 +1094,29 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarProdutos;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbItems;
+    private javax.swing.JTable tbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaSessoes;
     // End of variables declaration//GEN-END:variables
 }
