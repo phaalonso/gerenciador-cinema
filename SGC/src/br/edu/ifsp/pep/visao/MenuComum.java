@@ -75,6 +75,7 @@ public class MenuComum extends javax.swing.JFrame {
         jpSessoes = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(960, 720));
 
         PMain.setBackground(java.awt.Color.white);
         PMain.setPreferredSize(new java.awt.Dimension(960, 720));
