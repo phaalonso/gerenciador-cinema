@@ -891,7 +891,7 @@
                               </Group>
                               <Component id="jScrollPane5" min="-2" pref="745" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="54" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -913,7 +913,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="475" max="32767" attributes="0"/>
+                          <EmptySpace pref="399" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1297,7 +1297,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="mCPesquisaFilmes" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Component id="mcPesquisaFilmes" min="-2" pref="97" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="mbPesquisarFilmes" min="-2" pref="88" max="-2" attributes="0"/>
                                       </Group>
@@ -1319,7 +1319,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="mCPesquisaFilmes" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="mcPesquisaFilmes" min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="tfPesquisaFilmes" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="mbPesquisarFilmes" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
@@ -1445,7 +1445,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbRemoverFilmesActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="com.hq.swingmaterialdesign.materialdesign.MComboBox" name="mCPesquisaFilmes">
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MComboBox" name="mcPesquisaFilmes">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="2">

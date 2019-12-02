@@ -158,7 +158,7 @@ public class Menu extends javax.swing.JFrame {
         mbCadastrarFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbRemoverFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        mCPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mcPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbPesquisarFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
@@ -907,8 +907,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        mCPesquisaFilmes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Título" }));
-        mCPesquisaFilmes.setAccent(new java.awt.Color(73, 136, 137));
+        mcPesquisaFilmes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Título" }));
+        mcPesquisaFilmes.setAccent(new java.awt.Color(73, 136, 137));
 
         mbPesquisarFilmes.setBackground(new java.awt.Color(73, 136, 137));
         mbPesquisarFilmes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -934,7 +934,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpFilmesLayout.createSequentialGroup()
-                                .addComponent(mCPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(mcPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(mbPesquisarFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpFilmesLayout.createSequentialGroup()
@@ -949,7 +949,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpFilmesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpFilmesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mCPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mcPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfPesquisaFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbPesquisarFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(122, 122, 122)
@@ -1161,6 +1161,8 @@ public class Menu extends javax.swing.JFrame {
                     CadastroProduto cp = new CadastroProduto(this, true);
                     cp.setSelecionado(p);
                     cp.setVisible(true);
+                    this.listaItens = controleItem.findAll();
+                    atualizarProdutos();
                 }catch(NoResultException ex){
                     JOptionPane.showMessageDialog(null, "Produto não encontrado");
                 }
@@ -1259,6 +1261,8 @@ public class Menu extends javax.swing.JFrame {
                 cs.setModal(true);
                 cs.setSelecionado(s);
                 cs.setVisible(true);
+                this.listaSessoes = controleSessao.findAll();
+                atualizarSessoes();
             }else{
                 JOptionPane.showMessageDialog(null, "Não é possivel editar sessões arquivadas!");
             }
@@ -1341,7 +1345,32 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverFilmesActionPerformed
 
     private void mbPesquisarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarFilmesActionPerformed
-        // TODO add your handling code here:
+        int index = mcPesquisaFilmes.getSelectedIndex();
+        System.out.println(index);
+        if(index == -1 || tfPesquisaFilmes.getText().trim().isEmpty()){
+            this.listaFilmes = controleFilme.findAll();
+            atualizarFilmes();
+        }else{
+            switch(index){
+                case 0:
+                    Integer codigo = Integer.parseInt(tfPesquisaFilmes.getText().trim());
+                    try{
+                        Filme f = controleFilme.findByCodigo(codigo);
+                        this.listaFilmes.clear();
+                        this.listaFilmes.add(f);
+                        atualizarFilmes();
+                    }catch(NoResultException ex){
+                        JOptionPane.showMessageDialog(null, "Nenhum filme encontrado com esse código");
+                    }
+                    break;
+                case 1:
+                    String pesquisa = tfPesquisaFilmes.getText().trim();
+                    
+                    this.listaFilmes = controleFilme.findByTitulo(pesquisa);
+                    atualizarFilmes();
+                    break;
+            }
+        }
     }//GEN-LAST:event_mbPesquisarFilmesActionPerformed
 
     private void mbGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbGerarRelatorioActionPerformed
@@ -1451,7 +1480,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lbMenu;
     private javax.swing.JLabel lbSessaoVenda;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mBHome;
-    private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaProduto;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda;
@@ -1477,6 +1505,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mcPesquisaFilmes;
     private javax.swing.JTable tbCalendarioSessao;
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbIngressosVenda;
