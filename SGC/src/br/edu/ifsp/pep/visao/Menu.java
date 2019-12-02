@@ -1295,15 +1295,49 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbPesquisarSessoesActionPerformed
 
     private void mbCadastrarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarFilmesActionPerformed
-        // TODO add your handling code here:
+        CadastroFilme cadastroFilme = new CadastroFilme(this, true);
+        cadastroFilme.setModal(true);
+        cadastroFilme.setVisible(true);
+        this.listaFilmes = controleFilme.findAll();
+        atualizarFilmes();
     }//GEN-LAST:event_mbCadastrarFilmesActionPerformed
 
     private void mbEditarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarFilmesActionPerformed
-        // TODO add your handling code here:
+        int row = tbFilmes.getSelectedRow();
+        if(row > -1){
+            try{
+                Integer codigo = (Integer) tbFilmes.getValueAt(row, 0);
+                Filme f = controleFilme.findByCodigo(codigo);
+                CadastroFilme cadastroFilme = new CadastroFilme(this, true);
+                cadastroFilme.setModal(true);
+                cadastroFilme.setSelecionado(f);
+                cadastroFilme.setVisible(true);
+                this.listaFilmes = controleFilme.findAll();
+                atualizarFilmes();
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Filme não encontrado");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um filme na tabela para editar");
+        }   
     }//GEN-LAST:event_mbEditarFilmesActionPerformed
 
     private void mbRemoverFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverFilmesActionPerformed
-        // TODO add your handling code here:
+        int row = tbFilmes.getSelectedRow();
+        if(row > -1){
+            try{
+                Integer codigo = (Integer) tbFilmes.getValueAt(row, 0);
+                Filme f = controleFilme.findByCodigo(codigo);
+                System.out.println(JOptionPane.showConfirmDialog(null, "Deseja remover esse filme?"));
+                
+                controleFilme.remove(f);
+                
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selelcione um filme para remover");
+        }
     }//GEN-LAST:event_mbRemoverFilmesActionPerformed
 
     private void mbPesquisarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarFilmesActionPerformed
