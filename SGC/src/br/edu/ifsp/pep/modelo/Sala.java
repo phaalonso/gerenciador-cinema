@@ -76,7 +76,7 @@ public class Sala implements Serializable{
     
     @Override
     public String toString() {
-        return "" +this.codigo;
+        return String.valueOf(this.codigo);
     }
 
 }

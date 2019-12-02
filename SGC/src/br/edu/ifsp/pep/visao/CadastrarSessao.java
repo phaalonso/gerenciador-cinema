@@ -11,7 +11,6 @@ import br.edu.ifsp.pep.controle.ControleSessao;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Sala;
 import br.edu.ifsp.pep.modelo.Sessao;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
