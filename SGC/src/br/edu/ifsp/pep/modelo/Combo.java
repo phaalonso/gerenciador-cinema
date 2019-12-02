@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,8 +25,8 @@ public class Combo extends Item{
     public Combo() {
     }
 
-    public Combo(Integer codigo, String descricao, double preco) {
-        super(codigo, descricao, preco);
+    public Combo(String descricao, double preco) {
+        super(descricao, preco);
         this.produtos = new ArrayList<>();
     }
 

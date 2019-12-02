@@ -23,8 +23,8 @@ public class Produto extends Item{
     public Produto() {
     }
 
-    public Produto(Integer codigo, String descricao, double preco, Integer estoque) {
-        super(codigo, descricao, preco);
+    public Produto(String descricao, double preco, Integer estoque) {
+        super(descricao, preco);
         this.estoque = estoque;
     }
 
