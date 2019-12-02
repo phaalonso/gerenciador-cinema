@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 })
 public class Sala implements Serializable{
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
     
@@ -35,8 +37,7 @@ public class Sala implements Serializable{
     public Sala() {
     }
 
-    public Sala(Integer codigo, boolean disponivel, Integer qtdAssendo) {
-        this.codigo = codigo;
+    public Sala(boolean disponivel, Integer qtdAssendo) {
         this.disponivel = disponivel;
         this.qtdAssendo = qtdAssendo;
         this.assentos = new ArrayList<>();

@@ -3,6 +3,8 @@ package br.edu.ifsp.pep.modelo;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -24,7 +26,7 @@ import javax.persistence.Table;
 })
 public abstract class Item implements Serializable{
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Integer codigo;
     
@@ -37,8 +39,7 @@ public abstract class Item implements Serializable{
     public Item() {
     }
 
-    public Item(Integer codigo, String descricao, double preco) {
-        this.codigo = codigo;
+    public Item(String descricao, double preco) {
         this.descricao = descricao;
         this.preco = preco;
     }

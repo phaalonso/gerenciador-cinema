@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -31,7 +32,7 @@ import javax.persistence.TemporalType;
 public class Filme implements Serializable {
     @Id
     @Column(name = "codigo")
-    /// @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /// Habilitar depois
     private Integer codigo;
     
@@ -66,9 +67,8 @@ public class Filme implements Serializable {
     public Filme() {
     }
 
-    public Filme(Integer codigo, String descricao, String titulo, Date dataEstreia,
+    public Filme(String descricao, String titulo, Date dataEstreia,
             Integer duracao, String direcao, Integer idadeMinima) {
-        this.codigo = codigo;
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataEstreia = dataEstreia;

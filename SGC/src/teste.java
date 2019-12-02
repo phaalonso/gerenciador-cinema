@@ -23,14 +23,14 @@ public class teste {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        Filme f3  = new Filme( 3, "a", "a", new Date(), 180, "a", 16);
-        Filme f6  = new Filme( 6, "b", "b", new Date(), 360, "b", 16);
-        Filme f12 = new Filme(12, "c", "c", new Date(), 720, "c", 16);
+        Filme f3  = new Filme("a", "a", new Date(), 180, "a", 16);
+        Filme f6  = new Filme("b", "b", new Date(), 360, "b", 16);
+        Filme f12 = new Filme("c", "c", new Date(), 720, "c", 16);
         em.persist(f3);
         em.persist(f6);
         em.persist(f12);
         em.getTransaction().commit();
-        Sala sala = new Sala(1, true, 1);
+        Sala sala = new Sala(true, 1);
         //Assento assento = new Assento(new CodigoAssento(sala, "a01"), true);
         //Assento assento2 = new Assento(new CodigoAssento(sala, "a02"), true);
 //        Assento assento = new Assento("a01", sala, true);
@@ -53,9 +53,9 @@ public class teste {
 //        em.persist(sala);
 //        em.persist(sala2);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Sessao s1 = new Sessao(1, "a", sdf.parse("2019-11-19 00:00:00"), f12, sala);
-        Sessao s2 = new Sessao(2, "b", sdf.parse("2019-11-20 18:00:00"), f6, sala);
-        Sessao s3 = new Sessao(3, "c", sdf.parse("2019-11-21 06:00:00"), f6, sala);
+        Sessao s1 = new Sessao("a", sdf.parse("2019-11-19 00:00:00"), f12, sala);
+        Sessao s2 = new Sessao("b", sdf.parse("2019-11-20 18:00:00"), f6, sala);
+        Sessao s3 = new Sessao("c", sdf.parse("2019-11-21 06:00:00"), f6, sala);
         
 ////        em.getTransaction().begin();
 ////        em.persist(s1);
