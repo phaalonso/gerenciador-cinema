@@ -387,6 +387,8 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
+        jpPrincipal.setMinimumSize(new java.awt.Dimension(960, 720));
+        jpPrincipal.setPreferredSize(new java.awt.Dimension(960, 720));
 
         jpVenda.setBackground(java.awt.Color.white);
 
@@ -1232,7 +1234,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1036, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1242,7 +1244,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1260,9 +1262,9 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1182, Short.MAX_VALUE))
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1182, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1293,12 +1295,12 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PMain, javax.swing.GroupLayout.PREFERRED_SIZE, 993, Short.MAX_VALUE)
+            .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.PREFERRED_SIZE, 1056, Short.MAX_VALUE)
+                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1056, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 

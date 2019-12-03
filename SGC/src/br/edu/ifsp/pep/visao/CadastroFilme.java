@@ -6,6 +6,7 @@
 package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleFilme;
+import br.edu.ifsp.pep.controle.ControleGenero;
 import br.edu.ifsp.pep.modelo.Filme;
 import br.edu.ifsp.pep.modelo.Genero;
 import java.text.ParseException;
@@ -23,6 +24,7 @@ import javax.swing.JOptionPane;
 public class CadastroFilme extends javax.swing.JDialog {
 
     private ControleFilme controleFilme;
+    private ControleGenero controleGenero;
     private Filme selecionado;
     private List<Genero> listaGenero;
             
@@ -31,6 +33,7 @@ public class CadastroFilme extends javax.swing.JDialog {
         initComponents();
         this.listaGenero = new ArrayList<>();
         this.controleFilme = new ControleFilme();
+        this.controleGenero = new ControleGenero();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -254,9 +257,15 @@ public class CadastroFilme extends javax.swing.JDialog {
     }//GEN-LAST:event_mbSelecionarGenerosMouseClicked
 
     private void mbSelecionarGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSelecionarGenerosActionPerformed
-        SelecionarGeneros sg = new SelecionarGeneros(null, true, this.listaGenero);
-        sg.setModal(true);
-        sg.setVisible(true);
+        List<Genero> listaG = controleGenero.findAll();
+        
+        if(listaG.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nenhum genero cadastrado!");
+        }else{
+            SelecionarGeneros sg = new SelecionarGeneros(null, true, this.listaGenero);
+            sg.setModal(true);
+            sg.setVisible(true);
+        }
     }//GEN-LAST:event_mbSelecionarGenerosActionPerformed
 
 
