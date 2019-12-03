@@ -42,6 +42,12 @@ public class CadastrarUsuario extends javax.swing.JDialog {
         tfSenha.setText(u.getSenha());
     }
     
+    public void setEditarCargo(boolean f){ 
+        System.out.println(f);
+        cbTipoUsuario.setEditable(f);
+        cbTipoUsuario.setEnabled(f);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

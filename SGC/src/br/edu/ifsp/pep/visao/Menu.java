@@ -182,6 +182,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tbCalendarioSessao = new javax.swing.JTable();
         lbCalendario = new javax.swing.JLabel();
+        mbEditarProprioUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
         jpSessoes = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbSessoes = new javax.swing.JTable();
@@ -605,7 +606,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(lbSessaoVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbSessaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbBoasVindas2)
@@ -673,6 +674,15 @@ public class Menu extends javax.swing.JFrame {
         lbCalendario.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lbCalendario.setText("Verifique o calendário de sessões");
 
+        mbEditarProprioUsuario.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditarProprioUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditarProprioUsuario.setText("Editar usuario");
+        mbEditarProprioUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbEditarProprioUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
         jpHomeLayout.setHorizontalGroup(
@@ -683,22 +693,27 @@ public class Menu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(mbGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-                    .addComponent(lbBoasVindas, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
+                        .addComponent(lbBoasVindas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mbEditarProprioUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbCalendario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 87, Short.MAX_VALUE))
+                .addGap(0, 215, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbBoasVindas)
-                .addGap(46, 46, 46)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbBoasVindas)
+                    .addComponent(mbEditarProprioUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(lbCalendario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(mbGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(584, Short.MAX_VALUE))
+                .addContainerGap(581, Short.MAX_VALUE))
         );
 
         jpSessoes.setBackground(java.awt.Color.white);
@@ -987,7 +1002,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
 
         jpFilmes.setBackground(java.awt.Color.white);
@@ -1235,7 +1250,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbRemoverUusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
@@ -1264,15 +1279,15 @@ public class Menu extends javax.swing.JFrame {
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1182, Short.MAX_VALUE)
+            .addGap(0, 1177, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE))
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1177, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1901,6 +1916,9 @@ public class Menu extends javax.swing.JFrame {
                 CadastrarUsuario cdu = new CadastrarUsuario(this, true);
                 cdu.setModal(true);
                 cdu.setSelecionado(us);
+                if(this.usuario.equals(us)){
+                    cdu.setEditarCargo(false);
+                }
                 cdu.setVisible(true);
                 this.listaUsuarios = controleUsuario.findAll();
                 atualizarTabelaUsuario();
@@ -1989,6 +2007,15 @@ public class Menu extends javax.swing.JFrame {
         gg.setModal(true);
         gg.setVisible(true);
     }//GEN-LAST:event_mbGeneroActionPerformed
+
+    private void mbEditarProprioUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarProprioUsuarioActionPerformed
+        CadastrarUsuario cdu = new CadastrarUsuario(null, true);
+        cdu.setModal(true);
+        cdu.setSelecionado(this.usuario);
+        cdu.setEditarCargo(false);
+        cdu.setVisible(true);
+        System.out.println(this.usuario);
+    }//GEN-LAST:event_mbEditarProprioUsuarioActionPerformed
 
     private void validarRegrasNegocioTipoIngresso(){
         String resultado;
@@ -2129,6 +2156,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProprioUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbEfetuarVenda;
