@@ -35,11 +35,11 @@ public class Venda implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date data;
     
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+    @OneToMany(cascade = {CascadeType.PERSIST},
         mappedBy = "venda")
     private List<ItemVenda> itens;
         
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+    @OneToMany(cascade = {CascadeType.PERSIST},
             mappedBy = "venda")
     private List<Ingresso> ingressos;
     

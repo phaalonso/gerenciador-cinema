@@ -34,7 +34,7 @@ public class Ingresso implements Serializable{
     @JoinColumn(name = "codigo_venda", referencedColumnName = "codigo", nullable = false)
     private Venda venda;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(referencedColumnName = "codigo", name = "tipo_ingresso", nullable = false)
     private TipoIngresso tipo;
     

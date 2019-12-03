@@ -1,7 +1,6 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,12 +14,12 @@ import javax.persistence.Table;
 @Table(name = "item_venda")
 public class ItemVenda implements Serializable{
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "item_codigo", nullable = false)
     private Item item;
     
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne
     @JoinColumn(name = "venda_codigo", nullable = false)
     private Venda venda;
     
@@ -33,7 +32,8 @@ public class ItemVenda implements Serializable{
     public ItemVenda() {
     }
 
-    public ItemVenda(Item item, int quantidade, double valorUnitario) {
+    public ItemVenda(Venda venda, Item item, int quantidade, double valorUnitario) {
+        this.venda = venda;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
         this.item = item;

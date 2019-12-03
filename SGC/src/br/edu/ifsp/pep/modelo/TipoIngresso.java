@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tipo_ingresso")
 @NamedQueries({
-    @NamedQuery(name = "TipoIngresso.findByDescricao",
+    @NamedQuery(name = "TipoIngresso.findByNome",
             query = "SELECT t FROM TipoIngresso t WHERE t.descricao = :descricao")
 })
 public class TipoIngresso implements Serializable{
@@ -62,7 +62,7 @@ public class TipoIngresso implements Serializable{
     
     @Override
     public String toString() {
-        return "TipoIngresso{" + "codigo=" + codigo + ", valor=" + valor + ", descricao=" + descricao + '}';
+        return descricao;
     }
     
 }

@@ -37,9 +37,18 @@ public class Combo extends Item{
     public void setProdutos(List<ComboProduto> produtos) {
         this.produtos = produtos;
     }
-
+    
     @Override
-    public String toString() {
-        return "Combo{" + "produtos=" + produtos + '}';
+    public boolean verificaEstoque(int qtd){
+        int qtdTotal;
+        int estoque;
+        for(ComboProduto cp : this.getProdutos()){
+            qtdTotal = cp.getQuantidade() * qtd;
+            estoque = cp.getProduto().getEstoque();
+            if(estoque < qtdTotal || estoque <= 0)
+                return false;
+        }
+        return true;
     }
+    
 }

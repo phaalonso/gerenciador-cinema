@@ -95,6 +95,8 @@ public abstract class Item implements Serializable{
     
     @Override
     public String toString() {
-        return "Item{" + "codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + '}';
+        return descricao;
     }    
+    
+    public abstract boolean verificaEstoque(int qtd);
 }

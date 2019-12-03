@@ -37,8 +37,10 @@ public class Produto extends Item{
     }    
     
     @Override
-    public String toString() {
-        return "Produto{" + "estoque=" + estoque + '}';
+    public boolean verificaEstoque(int qtd){
+        if(this.estoque < qtd || this.estoque <= 0)
+            return false;
+        return true;
     }
     
 }

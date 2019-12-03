@@ -1,6 +1,7 @@
 package br.edu.ifsp.pep.modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -135,17 +136,19 @@ public class Sessao implements Serializable {
                     while(index < lista.size() && 
                             !a2.getCodigo().equals(a.getCodigo()))
                         index++;
-                    if(index == lista.size())
-                        assentosDisponiveis.add(a);
+                    if(index != lista.size())
+                        disponivel = false;
                 }
+                if(disponivel)
+                    assentosDisponiveis.add(a);
             }
         }
-        
         return assentosDisponiveis;
     }
     
     @Override
     public String toString() {
-        return "Sessao{" + "codigo=" + codigo + ", descricao=" + descricao + ", dataInicio=" + dataInicio + ", filme: " + this.filme.getTitulo() + '}';
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return descricao + ", "+ dataInicio;
     }
 }

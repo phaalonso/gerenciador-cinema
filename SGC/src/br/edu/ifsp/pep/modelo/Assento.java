@@ -66,6 +66,6 @@ public class Assento implements Serializable{
     
     @Override
     public String toString() {
-        return "Assento{" + "codigo=" + codigo + ", disponivel=" + disponivel + '}';
+        return codigo;
     }
 }

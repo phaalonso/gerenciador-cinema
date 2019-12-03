@@ -8,17 +8,26 @@ package br.edu.ifsp.pep.visao;
 import br.edu.ifsp.pep.controle.ControleFilme;
 import br.edu.ifsp.pep.controle.ControleItem;
 import br.edu.ifsp.pep.controle.ControleProduto;
+import br.edu.ifsp.pep.controle.ControleSala;
 import br.edu.ifsp.pep.controle.ControleSessao;
+import br.edu.ifsp.pep.controle.ControleTipoIngresso;
+import br.edu.ifsp.pep.controle.ControleVenda;
 import br.edu.ifsp.pep.modelo.Combo;
 import br.edu.ifsp.pep.modelo.Filme;
+import br.edu.ifsp.pep.modelo.Ingresso;
 import br.edu.ifsp.pep.modelo.Item;
+import br.edu.ifsp.pep.modelo.ItemVenda;
 import br.edu.ifsp.pep.modelo.Produto;
 import br.edu.ifsp.pep.modelo.Sessao;
+import br.edu.ifsp.pep.modelo.TipoIngresso;
 import br.edu.ifsp.pep.modelo.TipoUsuario;
 import br.edu.ifsp.pep.modelo.Usuario;
+import br.edu.ifsp.pep.modelo.Venda;
+import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.SimpleTimeZone;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,12 +41,19 @@ public class Menu extends javax.swing.JFrame {
     private List<Item> listaItens;
     private List<Filme> listaFilmes;
     private List<Sessao> listaSessoes;
+    private List<Ingresso> listaIngresso;
+    private List<ItemVenda> listaItemVenda;
     
     private Usuario usuario;
     private ControleItem controleItem;
     private ControleProduto controleProduto;
     private ControleFilme controleFilme;
     private ControleSessao controleSessao;
+    private ControleSala controleSala;
+    private ControleVenda controleVenda;
+    private ControleTipoIngresso controleTipoIngresso;
+    
+    private Venda venda;
     
     public Menu(Usuario usuario) {
         this.usuario = usuario;
@@ -48,6 +64,12 @@ public class Menu extends javax.swing.JFrame {
         this.controleProduto = new ControleProduto();
         this.controleFilme = new ControleFilme();
         this.controleSessao = new ControleSessao();
+        this.controleSala = new ControleSala();
+        this.controleVenda = new ControleVenda();
+        this.controleTipoIngresso = new ControleTipoIngresso();
+        
+        this.listaItemVenda = new ArrayList<>();
+        this.listaIngresso = new ArrayList<>();
         
         if(usuario.getTipo() == TipoUsuario.COMUM){
             mbSessoes.setVisible(false);
@@ -117,7 +139,7 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal = new javax.swing.JPanel();
         jpVenda = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        tbProdutosVenda = new javax.swing.JTable();
+        tbItensVenda = new javax.swing.JTable();
         lbBoasVindas1 = new javax.swing.JLabel();
         lbBoasVindas2 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -127,6 +149,8 @@ public class Menu extends javax.swing.JFrame {
         lbSessaoVenda = new javax.swing.JLabel();
         mbRemoverIngressoVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbRemoverProdutoVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        cbSessaoVenda = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mbEfetuarVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         jpHome = new javax.swing.JPanel();
         lbBoasVindas = new javax.swing.JLabel();
         mbGerarRelatorio = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -163,7 +187,6 @@ public class Menu extends javax.swing.JFrame {
         tfPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(960, 720));
 
         PMain.setBackground(java.awt.Color.white);
         PMain.setPreferredSize(new java.awt.Dimension(960, 720));
@@ -302,26 +325,26 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
 
         jpVenda.setBackground(java.awt.Color.white);
 
-        tbProdutosVenda.setModel(new javax.swing.table.DefaultTableModel(
+        tbItensVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Produto", "Valor", "Quantidade", "total"
+                "Produto", "Valor", "Quantidade", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -332,13 +355,8 @@ public class Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbProdutosVenda.getTableHeader().setReorderingAllowed(false);
-        jScrollPane8.setViewportView(tbProdutosVenda);
-        if (tbProdutosVenda.getColumnModel().getColumnCount() > 0) {
-            tbProdutosVenda.getColumnModel().getColumn(0).setHeaderValue("Código");
-            tbProdutosVenda.getColumnModel().getColumn(3).setHeaderValue("Quantidade");
-            tbProdutosVenda.getColumnModel().getColumn(4).setHeaderValue("total");
-        }
+        tbItensVenda.getTableHeader().setReorderingAllowed(false);
+        jScrollPane8.setViewportView(tbItensVenda);
 
         lbBoasVindas1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         lbBoasVindas1.setText("Produtos");
@@ -351,14 +369,14 @@ public class Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "tipo", "Valor"
+                "Assento", "Tipo", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -459,6 +477,34 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        cbSessaoVenda.setAccent(new java.awt.Color(73, 136, 137));
+        cbSessaoVenda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbSessaoVendaItemStateChanged(evt);
+            }
+        });
+
+        mbEfetuarVenda.setBackground(new java.awt.Color(73, 136, 137));
+        mbEfetuarVenda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEfetuarVenda.setText("EFETUAR VENDA");
+        mbEfetuarVenda.setEndColor(new java.awt.Color(73, 136, 137));
+        mbEfetuarVenda.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbEfetuarVenda.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbEfetuarVenda.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbEfetuarVenda.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbEfetuarVenda.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbEfetuarVenda.setStartColor(new java.awt.Color(73, 136, 137));
+        mbEfetuarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbEfetuarVendaActionPerformed(evt);
+            }
+        });
+        mbEfetuarVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbEfetuarVendaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpVendaLayout = new javax.swing.GroupLayout(jpVenda);
         jpVenda.setLayout(jpVendaLayout);
         jpVendaLayout.setHorizontalGroup(
@@ -468,43 +514,50 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpVendaLayout.createSequentialGroup()
                 .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpVendaLayout.createSequentialGroup()
-                        .addComponent(lbBoasVindas1)
-                        .addGap(335, 335, 335)
-                        .addComponent(mbRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mbAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpVendaLayout.createSequentialGroup()
-                                .addComponent(lbBoasVindas2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(mbEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jpVendaLayout.createSequentialGroup()
+                            .addComponent(lbBoasVindas1)
+                            .addGap(335, 335, 335)
+                            .addComponent(mbRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mbAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpVendaLayout.createSequentialGroup()
+                            .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cbSessaoVenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpVendaLayout.createSequentialGroup()
+                                    .addComponent(lbBoasVindas2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jpVendaLayout.setVerticalGroup(
             jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpVendaLayout.createSequentialGroup()
-                .addComponent(lbSessaoVenda, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addGap(25, 25, 25)
+                .addComponent(lbSessaoVenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbSessaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbBoasVindas2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
                 .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbBoasVindas1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(620, 620, 620))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mbEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(665, 665, 665))
         );
 
         jpHome.setBackground(java.awt.Color.white);
@@ -973,7 +1026,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE))
@@ -1040,7 +1093,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbSairKeyPressed
 
     private void mbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbSairActionPerformed
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_mbSairActionPerformed
 
     private void mBHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBHomeActionPerformed
@@ -1063,20 +1116,44 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mBHomeActionPerformed
 
     private void mbVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbVendasActionPerformed
-        mbFilmes.setSelected(false);
-        jpFilmes.setVisible(false);
+        // Validação inicial pra inteira e meia
+        this.validarRegrasNegocioTipoIngresso();
         
-        mbProdutos.setSelected(false);
-        jpProdutos.setVisible(false);
         
-        mbSessoes.setSelected(false);
-        jpSessoes.setVisible(false);
-        
-        mbVendas.setSelected(true);
-        jpVenda.setVisible(true);
-        
-        mBHome.setSelected(false);
-        jpHome.setVisible(false); 
+        listaSessoes = controleSessao.findNotArquivada();
+        cbSessaoVenda.removeAllItems();
+        if(listaSessoes.size() > 0){
+            for(Sessao s : listaSessoes){
+                if (s.verificarAssentosDisponiveis().size() > 0){
+                    cbSessaoVenda.addItem(s);
+                }
+            }
+            if(cbSessaoVenda.getItemCount() > 0){
+                cbSessaoVenda.setSelectedIndex(-1);
+
+                this.venda = new Venda();
+
+                mbFilmes.setSelected(false);
+                jpFilmes.setVisible(false);
+
+                mbProdutos.setSelected(false);
+                jpProdutos.setVisible(false);
+
+                mbSessoes.setSelected(false);
+                jpSessoes.setVisible(false);
+
+                mbVendas.setSelected(true);
+                jpVenda.setVisible(true);
+
+                mBHome.setSelected(false);
+                jpHome.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "Nenhuma sessão disponível!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma sessão disponível!");
+            mbVendas.setSelected(false);
+        }
     }//GEN-LAST:event_mbVendasActionPerformed
 
     private void mbProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbProdutosActionPerformed
@@ -1332,7 +1409,7 @@ public class Menu extends javax.swing.JFrame {
                 
                 controleFilme.remove(f);
                 
-            }catch(Exception ex){
+            }catch(HeadlessException | NoResultException ex){
                 System.out.println(ex);
             }
         }else{
@@ -1356,9 +1433,20 @@ public class Menu extends javax.swing.JFrame {
         this.listaSessoes = controleSessao.findAll();
         atualizarSessoes();
     }//GEN-LAST:event_mbMontarProgramacaoActionPerformed
-
+    
     private void mbAdicionarIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaActionPerformed
-        // TODO add your handling code here:
+        Sessao s = (Sessao) cbSessaoVenda.getSelectedItem();
+        if(s == null){
+            JOptionPane.showMessageDialog(null, "Selecione uma sessão!");
+        }else{
+            AdicionarIngresso ai = new AdicionarIngresso(
+                this, true, listaIngresso, s, this.venda
+            );
+            ai.setVisible(true);
+            ai.setModal(true);
+            this.atualizarTbIngressosVenda();
+            
+        }
     }//GEN-LAST:event_mbAdicionarIngressoVendaActionPerformed
 
     private void mbAdicionarIngressoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaKeyPressed
@@ -1366,7 +1454,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbAdicionarIngressoVendaKeyPressed
 
     private void mbAdicionarProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarProdutoVendaActionPerformed
-        // TODO add your handling code here:
+        AdicionarItem ai = new AdicionarItem(
+                this, true, listaItemVenda, this.venda
+            );
+            ai.setVisible(true);
+            ai.setModal(true);
+            this.atualizarTbItemVenda();
     }//GEN-LAST:event_mbAdicionarProdutoVendaActionPerformed
 
     private void mbAdicionarProdutoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarProdutoVendaKeyPressed
@@ -1374,7 +1467,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbAdicionarProdutoVendaKeyPressed
 
     private void mbRemoverIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVendaActionPerformed
-        // TODO add your handling code here:
+        int row = tbIngressosVenda.getSelectedRow();
+        
+        if(row > -1){
+            listaIngresso.remove(row);
+            this.atualizarTbIngressosVenda();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um ingresso na tabela!");
+        }
     }//GEN-LAST:event_mbRemoverIngressoVendaActionPerformed
 
     private void mbRemoverIngressoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVendaKeyPressed
@@ -1382,13 +1482,127 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverIngressoVendaKeyPressed
 
     private void mbRemoverProdutoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverProdutoVendaActionPerformed
-        // TODO add your handling code here:
+        int row = tbItensVenda.getSelectedRow();
+        
+        if(row > -1){
+            listaItemVenda.remove(row);
+            this.atualizarTbItemVenda();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto na tabela!");
+        }
     }//GEN-LAST:event_mbRemoverProdutoVendaActionPerformed
 
     private void mbRemoverProdutoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverProdutoVendaKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_mbRemoverProdutoVendaKeyPressed
 
+    private void cbSessaoVendaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSessaoVendaItemStateChanged
+        this.listaIngresso.clear();
+        this.atualizarTbIngressosVenda();
+    }//GEN-LAST:event_cbSessaoVendaItemStateChanged
+
+    private void mbEfetuarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEfetuarVendaActionPerformed
+        if(listaIngresso.isEmpty() && listaItemVenda.isEmpty())
+            JOptionPane.showMessageDialog(null, "Adicione produtos ou ingressos!");
+        else{
+            if(!listaIngresso.isEmpty())
+                this.venda.setIngressos(listaIngresso);
+            if(!listaItemVenda.isEmpty())
+                this.venda.setItens(listaItemVenda);
+            this.venda.setVendedor(usuario);
+            this.venda.setData(new Date());
+            controleVenda.persist(venda);
+            
+            JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso!");
+            
+            listaIngresso.clear();
+            listaItemVenda.clear();
+            listaSessoes = controleSessao.findNotArquivada();
+            cbSessaoVenda.removeAllItems();
+            if(listaSessoes.size() > 0){
+                for(Sessao s : listaSessoes){
+                    if (s.verificarAssentosDisponiveis().size() > 0){
+                        cbSessaoVenda.addItem(s);
+                    }
+                }
+                if(cbSessaoVenda.getItemCount() > 0){
+                    this.atualizarTbIngressosVenda();
+                    this.atualizarTbItemVenda();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Não há mais sessões disponíveis!");  
+                    mBHomeActionPerformed(evt);
+                }
+            }else{
+                  JOptionPane.showMessageDialog(null, "Não há mais sessões disponíveis!");  
+                  mBHomeActionPerformed(evt);
+            }
+            
+        }
+    }//GEN-LAST:event_mbEfetuarVendaActionPerformed
+
+    private void mbEfetuarVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbEfetuarVendaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbEfetuarVendaKeyPressed
+
+    private void validarRegrasNegocioTipoIngresso(){
+        double preco = 20;
+        boolean valido;
+        TipoIngresso tipo;
+        try{
+            controleTipoIngresso.findByNome("Inteira");
+        }catch(NoResultException ex){
+            JOptionPane.showMessageDialog(null, "Será necessário cadastrar um "
+                    + "ingresso inteira antes de prosseguir\n");
+            valido = false;
+            while(!valido){
+                try{
+                    preco = Float.parseFloat(JOptionPane.showInputDialog("Insira o valor"));
+                    if(preco > 0)
+                        valido = true;
+                    else
+                        JOptionPane.showMessageDialog(null, "Valor invalido");
+                }catch(NumberFormatException nfex){
+                    JOptionPane.showMessageDialog(null, "Erro no valor");
+                }
+            }
+            controleTipoIngresso.persist(new TipoIngresso("Inteira", preco));
+        }
+        try{
+            controleTipoIngresso.findByNome("Meia");
+        }catch(NoResultException ex){
+            JOptionPane.showMessageDialog(null, "Será cadastrado um "
+                    + "ingresso meia com 50% de desconto da inteira!\n");
+            tipo = controleTipoIngresso.findByNome("Inteira");
+            preco = tipo.getValor() / 2;
+            controleTipoIngresso.persist(new TipoIngresso("Meia", preco));
+        }
+    }
+    
+    private void atualizarTbIngressosVenda(){
+        DefaultTableModel model = (DefaultTableModel) tbIngressosVenda.getModel();
+        model.setRowCount(0);
+        for(Ingresso i : listaIngresso){
+            model.addRow(new Object[]{
+                i.getAssento().getCodigo(),
+                i.getTipo().getDescricao(),
+                i.getPreco()
+            });
+        }
+    }
+    
+    private void atualizarTbItemVenda(){
+        DefaultTableModel model = (DefaultTableModel) tbItensVenda.getModel();
+        model.setRowCount(0);
+        for(ItemVenda iv : listaItemVenda){
+            model.addRow(new Object[]{
+                iv.getItem().getDescricao(),
+                Double.toString(iv.getValorUnitario()),
+                Integer.toString(iv.getQuantidade()),
+                Double.toString(iv.getValorUnitario() * iv.getQuantidade())
+            });
+        }
+    }
+    
     public void atualizarProdutos(){        
         DefaultTableModel modelo = (DefaultTableModel) tbItems.getModel();
         modelo.setNumRows(0);
@@ -1431,6 +1645,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PMain;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox cbSessaoVenda;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -1462,6 +1677,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbEfetuarVenda;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbGerarRelatorio;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbMontarProgramacao;
@@ -1481,7 +1697,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbIngressosVenda;
     private javax.swing.JTable tbItems;
-    private javax.swing.JTable tbProdutosVenda;
+    private javax.swing.JTable tbItensVenda;
     private javax.swing.JTable tbSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
