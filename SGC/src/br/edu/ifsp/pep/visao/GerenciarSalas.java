@@ -60,6 +60,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
         mbAdicionar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbRemover = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbConcluir1 = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -156,6 +157,27 @@ public class GerenciarSalas extends javax.swing.JDialog {
             }
         });
 
+        mbConcluir1.setBackground(new java.awt.Color(73, 136, 137));
+        mbConcluir1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbConcluir1.setText("Adicionar assento");
+        mbConcluir1.setEndColor(new java.awt.Color(73, 136, 137));
+        mbConcluir1.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbConcluir1.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbConcluir1.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbConcluir1.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbConcluir1.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbConcluir1.setStartColor(new java.awt.Color(73, 136, 137));
+        mbConcluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbConcluir1ActionPerformed(evt);
+            }
+        });
+        mbConcluir1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbConcluir1KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,13 +185,15 @@ public class GerenciarSalas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mbConcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,15 +209,17 @@ public class GerenciarSalas extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mbConcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,6 +311,14 @@ public class GerenciarSalas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_mbRemoverActionPerformed
 
+    private void mbConcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbConcluir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbConcluir1ActionPerformed
+
+    private void mbConcluir1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbConcluir1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbConcluir1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -332,6 +366,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbAdicionar;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir1;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemover;
