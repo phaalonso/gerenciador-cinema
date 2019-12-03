@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class CadastroProduto extends javax.swing.JDialog {
 
     private ControleItem controleItem;
-    private Item selecionado;
+    private Item itemSelecionado;
     private List<ComboProduto> listaCombo;
 
     public CadastroProduto(java.awt.Frame parent, boolean modal) {
@@ -49,7 +49,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfValor = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        mComboBox = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mcProdutos = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbItensCombo = new com.hq.swingmaterialdesign.materialdesign.MButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -94,11 +94,11 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         tfValor.setLabel("Valor");
 
-        mComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Produto", "Combo" }));
-        mComboBox.setAccent(new java.awt.Color(73, 136, 137));
-        mComboBox.addItemListener(new java.awt.event.ItemListener() {
+        mcProdutos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Produto", "Combo" }));
+        mcProdutos.setAccent(new java.awt.Color(73, 136, 137));
+        mcProdutos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mComboBoxItemStateChanged(evt);
+                mcProdutosItemStateChanged(evt);
             }
         });
 
@@ -124,20 +124,23 @@ public class CadastroProduto extends javax.swing.JDialog {
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addGap(198, 198, 198)
+                                .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addComponent(mcProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addComponent(mComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -148,39 +151,41 @@ public class CadastroProduto extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mcProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 290));
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 260));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void setSelecionado(Item i) {
-        this.selecionado = i;
+        this.itemSelecionado = i;
         this.tfDescricao.setText(i.getDescricao());
         this.tfValor.setText(String.valueOf(i.getPreco()));
-        mComboBox.setEditable(false);
+        mcProdutos.setEditable(false);
+        mcProdutos.setEnabled(false);
         if (i instanceof Produto) {
             this.tfEstoque.setText((String.valueOf(((Produto) i).getEstoque())));
-            mComboBox.setSelectedIndex(0);
+            mcProdutos.setSelectedIndex(0);
         } else {
             this.listaCombo = ((Combo) i).getProdutos();
-            mComboBox.setSelectedIndex(1);
+            mcProdutos.setSelectedIndex(1);
         }
+        mbCadastrar.setText("Salvar");
     }
 
     private void mbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mbSairMouseClicked
@@ -197,38 +202,74 @@ public class CadastroProduto extends javax.swing.JDialog {
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
         try {
-            String nome = tfDescricao.getText().trim();
+            String descricao = tfDescricao.getText().trim();
             Double valor = Double.parseDouble(tfValor.getText().trim());
-            Integer estoque = Integer.parseInt(tfEstoque.getText().trim());
+            
+            if(this.itemSelecionado == null){
+                if (valor >= 0) {
+                    Item item = null;
 
-            if (valor >= 0) {
-                if (estoque >= 0) {
+                    if(mcProdutos.getSelectedIndex() == 0){
+                        Integer estoque = Integer.parseInt(tfEstoque.getText().trim());
+                        if(estoque > 0){
+                            item = new Produto();
+                            item.setDescricao(descricao);
+                            ((Produto) item).setEstoque(estoque);
+                        }else
+                            JOptionPane.showMessageDialog(null, "O estoque do produto deve ser maior que zero!");
+                    }else if(mcProdutos.getSelectedIndex() == 1){
+                        if(!this.listaCombo.isEmpty()){
+                            item = new Combo();
+                            item.setDescricao(descricao);
+                            ((Combo) item).setProdutos(this.listaCombo);
+                            for(ComboProduto cp : this.listaCombo){
+                                cp.setCombo((Combo) item);
+                            }
+                        }else
+                            JOptionPane.showMessageDialog(null, "Insira os produtos do combo");
+                    }else
+                        JOptionPane.showMessageDialog(null, "Selecione um tipo para o item!");
 
-                    Produto p = new Produto();
-                    p.setDescricao(nome);
-                    p.setPreco(valor);
-                    p.setEstoque(estoque);
-
-                    if (this.selecionado == null) {
+                    if(item != null){
+                        item.setDescricao(descricao);
+                        item.setPreco(valor);
                         try {
-                            controleItem.persist(p);
-                            JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+                            controleItem.persist(item);
+                            if(item instanceof Produto)
+                                JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+                            else
+                                JOptionPane.showMessageDialog(null, "Combo cadastrado!");
                             dispose();
                         } catch (EntityExistsException ex) {
                             JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
                         }
-                    } else {
-                        controleItem.merge(p);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "O valor deve ser acima de 0!");
+                }
+            }else{
+                this.itemSelecionado.setDescricao(descricao);
+                this.itemSelecionado.setPreco(valor);
+                if(this.itemSelecionado instanceof Produto){
+                    Integer estoque = Integer.parseInt(tfEstoque.getText().trim());
+                    if(estoque >= 0){
+                        ((Produto) this.itemSelecionado).setEstoque(estoque);
+                        controleItem.merge(this.itemSelecionado);
                         JOptionPane.showMessageDialog(null, "Produto atualizado!");
                         dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "O estoque do produto deve ser maior que zero!");
+                    }                    
+                }else{
+                    if(!this.listaCombo.isEmpty()){
+                        ((Combo) this.itemSelecionado).setProdutos(listaCombo);
+                        controleItem.merge(this.itemSelecionado);
+                        JOptionPane.showMessageDialog(null, "Combo atualizado!");
+                        dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "A lista do combo não pode estar vazia!");
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Estoque deve ser maior que 0!");
                 }
-
-            } else {
-                JOptionPane.showMessageDialog(null, "O valor deve ser acima de 0!");
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor insira apenas numeros nos campos\nvalor e estoque");
@@ -245,26 +286,28 @@ public class CadastroProduto extends javax.swing.JDialog {
         ic.setVisible(true);
     }//GEN-LAST:event_mbItensComboActionPerformed
 
-    private void mComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBoxItemStateChanged
-        switch (mComboBox.getSelectedIndex()) {
+    private void mcProdutosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mcProdutosItemStateChanged
+        switch (mcProdutos.getSelectedIndex()) {
             case 1:
                 mbItensCombo.setEnabled(true);
                 tfEstoque.setEnabled(false);
+                tfEstoque.setVisible(false);
                 break;
             default:
                 mbItensCombo.setEnabled(false);
                 tfEstoque.setEnabled(true);
+                tfEstoque.setVisible(true);
                 break;
         }
-    }//GEN-LAST:event_mComboBoxItemStateChanged
+    }//GEN-LAST:event_mcProdutosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpPrincipal;
-    private com.hq.swingmaterialdesign.materialdesign.MComboBox mComboBox;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbItensCombo;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mcProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfDescricao;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfEstoque;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfValor;

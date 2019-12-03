@@ -19,7 +19,7 @@ import javax.persistence.Table;
 })
 public class Combo extends Item{        
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-            mappedBy = "combo")
+            orphanRemoval = true, mappedBy = "combo")
     private List<ComboProduto> produtos;
 
     public Combo() {

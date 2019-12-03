@@ -36,6 +36,8 @@ public class CadastrarUsuario extends javax.swing.JDialog {
             cbTipoUsuario.setSelectedIndex(1);
         }
         tfLogin.setText(u.getLogin());
+        tfLogin.setEditable(false);
+        tfLogin.setEnabled(false);
         tfNome.setText(u.getNome());
         tfSenha.setText(u.getSenha());
     }

@@ -1479,18 +1479,18 @@ public class Menu extends javax.swing.JFrame {
             //System.out.println(cod);
             if(cod != null){
                 try{
-                    Produto p = controleProduto.findByCodigo(cod);
+                    Item i = controleItem.findByCodigo(cod);
                     CadastroProduto cp = new CadastroProduto(this, true);
-                    cp.setSelecionado(p);
+                    cp.setSelecionado(i);
                     cp.setVisible(true);
                     this.listaItens = controleItem.findAll();
                     atualizarProdutos();
                 }catch(NoResultException ex){
-                    JOptionPane.showMessageDialog(null, "Produto não encontrado");
+                    JOptionPane.showMessageDialog(null, "Item não encontrado");
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione um produto na tabela!");
+            JOptionPane.showMessageDialog(null, "Selecione um item na tabela!");
         }
         
     }//GEN-LAST:event_mbEditarProdutoActionPerformed
@@ -1504,10 +1504,13 @@ public class Menu extends javax.swing.JFrame {
             //System.out.println(cod);
             if(cod != null){
                 try{
-                    Produto p = controleProduto.findByCodigo(cod);
-                    if(p.getEstoque() == 0){
-                        controleProduto.remove(p);
-                        JOptionPane.showMessageDialog(null, "Produto removido!");
+                    Item i = controleItem.findByCodigo(cod);
+                    if((i instanceof Produto && i.verificaEstoque(0)) || i instanceof Combo){
+                        controleItem.remove(i);
+                        if(i instanceof Produto)
+                            JOptionPane.showMessageDialog(null, "Produto removido!");
+                        else
+                            JOptionPane.showMessageDialog(null, "Combo removido!");
                         this.listaItens = controleItem.findAll();
                         atualizarProdutos();
                     }else{
