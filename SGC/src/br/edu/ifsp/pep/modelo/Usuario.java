@@ -19,8 +19,10 @@ import javax.persistence.UniqueConstraint;
         name = "uniqueLogin", columnNames = "login"
 ))
 @NamedQueries({
-    @NamedQuery(name = "Usuario.login", query = "SELECT u FROM Usuario u"
-            + " WHERE u.login = :login AND u.senha = :senha")
+    @NamedQuery(name = "Usuario.login", 
+            query = "SELECT u FROM Usuario u WHERE u.login = :login AND u.senha = :senha"),
+    @NamedQuery(name = "Usuario.findByCodigo",
+            query = "SELECT u FROM Usuario u WHERE u.codigo = :codigo")
 })
 public class Usuario implements Serializable{
     @Id

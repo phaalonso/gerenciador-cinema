@@ -1872,15 +1872,53 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbUsuariosKeyPressed
 
     private void mbCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
+        CadastrarUsuario cs = new CadastrarUsuario(this, true);
+        cs.setModal(true);
+        cs.setVisible(true);
+        this.listaUsuarios = controleUsuario.findAll();
+        atualizarTabelaUsuario();
     }//GEN-LAST:event_mbCadastrarUsuarioActionPerformed
 
     private void mbEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarUsuarioActionPerformed
-        // TODO add your handling code here:
+        int row = tbUsuario.getSelectedRow();
+        if(row > -1){
+            Integer cod = (Integer) tbUsuario.getValueAt(row, 0);
+            try{
+                Usuario us = controleUsuario.findByCodigo(cod);
+                CadastrarUsuario cdu = new CadastrarUsuario(this, true);
+                cdu.setModal(true);
+                cdu.setSelecionado(us);
+                cdu.setVisible(true);
+                this.listaUsuarios = controleUsuario.findAll();
+                atualizarTabelaUsuario();
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um usuário na tabela");
+        }
     }//GEN-LAST:event_mbEditarUsuarioActionPerformed
 
     private void mbRemoverUusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverUusuarioActionPerformed
-        // TODO add your handling code here:
+        int row = tbUsuario.getSelectedRow();
+        if(row > -1){
+            Integer cod = (Integer) tbUsuario.getValueAt(row, 0);
+            try{
+                Usuario us = controleUsuario.findByCodigo(cod);
+                if(us.equals(this.usuario)){
+                    JOptionPane.showMessageDialog(null, "Você não pode apagar a si mesmo!");
+                }else{
+                    controleUsuario.remove(us);
+                    JOptionPane.showMessageDialog(null, "Remoção completa");
+                }
+                this.listaUsuarios = controleUsuario.findAll();
+                atualizarTabelaUsuario();
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Usuario não encontrado");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um usuário na tabela");
+        }
     }//GEN-LAST:event_mbRemoverUusuarioActionPerformed
 
     private void mbPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarUsuarioActionPerformed

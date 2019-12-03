@@ -381,7 +381,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1036" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1038" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Component id="jpHome" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -395,7 +395,7 @@
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-                      <Component id="jpProdutos" alignment="0" pref="1036" max="32767" attributes="0"/>
+                      <Component id="jpProdutos" alignment="0" pref="1038" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -421,10 +421,10 @@
                       <Component id="jpVenda" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
-                      <Component id="jpSessoes" alignment="0" pref="1182" max="32767" attributes="0"/>
+                      <Component id="jpSessoes" alignment="0" pref="1183" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-                      <Component id="jpProdutos" alignment="0" pref="1182" max="32767" attributes="0"/>
+                      <Component id="jpProdutos" alignment="0" pref="1183" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">

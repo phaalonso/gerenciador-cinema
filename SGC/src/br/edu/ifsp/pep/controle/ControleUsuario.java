@@ -30,6 +30,12 @@ public class ControleUsuario extends ControleGenerico<Usuario>{
         return query.getSingleResult();
     }
     
-
+    public Usuario findByCodigo(Integer codigo) throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Usuario> query = em.createNamedQuery("Usuario.findByCodigo", Usuario.class)
+                .setParameter("codigo", codigo)
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getSingleResult();
+    }
 
 }
