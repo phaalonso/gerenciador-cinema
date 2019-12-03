@@ -1670,21 +1670,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfPesquisaFilmes1" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                      <Component id="tfPesquisaUsuario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                       <Component id="mbCadastrarUsuario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="mcPesquisarUsuario" min="-2" pref="97" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="mbPesquisarUsuario" min="-2" pref="88" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Component id="mbEditarUsuario" min="-2" pref="170" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="mbRemoverUusuario" min="-2" pref="170" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="mbPesquisarUsuario" min="-2" pref="88" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jScrollPane10" alignment="0" min="-2" pref="745" max="-2" attributes="0"/>
@@ -1698,8 +1694,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="mcPesquisarUsuario" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="tfPesquisaFilmes1" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="tfPesquisaUsuario" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="mbPesquisarUsuario" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
@@ -1812,19 +1807,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbRemoverUusuarioActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="com.hq.swingmaterialdesign.materialdesign.MComboBox" name="mcPesquisarUsuario">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="C&#xf3;digo"/>
-                        <StringItem index="1" value="T&#xed;tulo"/>
-                      </StringArray>
-                    </Property>
-                    <Property name="accent" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="89" green="88" red="49" type="rgb"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbPesquisarUsuario">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1841,12 +1823,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbPesquisarUsuarioActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfPesquisaFilmes1">
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfPesquisaUsuario">
                   <Properties>
                     <Property name="label" type="java.lang.String" value="Pesquisa"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPesquisaFilmes1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPesquisaUsuarioActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

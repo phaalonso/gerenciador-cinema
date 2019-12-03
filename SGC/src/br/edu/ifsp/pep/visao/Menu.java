@@ -90,6 +90,8 @@ public class Menu extends javax.swing.JFrame {
             mbEditarProduto.setEnabled(false);
             mbRemoverProduto.setVisible(false);
             mbRemoverProduto.setEnabled(false);
+            mbUsuarios.setEnabled(false);
+            mbUsuarios.setVisible(false);
         }
         
         this.atualizarCalendarioSessao();
@@ -217,9 +219,8 @@ public class Menu extends javax.swing.JFrame {
         mbCadastrarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbRemoverUusuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        mcPesquisarUsuario = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbPesquisarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        tfPesquisaFilmes1 = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        tfPesquisaUsuario = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1184,9 +1185,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        mcPesquisarUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Título" }));
-        mcPesquisarUsuario.setAccent(new java.awt.Color(73, 136, 137));
-
         mbPesquisarUsuario.setBackground(new java.awt.Color(73, 136, 137));
         mbPesquisarUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mbPesquisarUsuario.setText("Pesquisar");
@@ -1196,10 +1194,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        tfPesquisaFilmes1.setLabel("Pesquisa");
-        tfPesquisaFilmes1.addActionListener(new java.awt.event.ActionListener() {
+        tfPesquisaUsuario.setLabel("Pesquisa");
+        tfPesquisaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisaFilmes1ActionPerformed(evt);
+                tfPesquisaUsuarioActionPerformed(evt);
             }
         });
 
@@ -1211,18 +1209,15 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpUsuarioLayout.createSequentialGroup()
                         .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfPesquisaFilmes1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfPesquisaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mbCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpUsuarioLayout.createSequentialGroup()
-                                .addComponent(mcPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(mbPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpUsuarioLayout.createSequentialGroup()
                                 .addComponent(mbEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mbRemoverUusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(mbRemoverUusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mbPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -1231,8 +1226,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jpUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mcPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPesquisaFilmes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPesquisaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(122, 122, 122)
                 .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1248,17 +1242,17 @@ public class Menu extends javax.swing.JFrame {
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
+                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 948, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1300,7 +1294,7 @@ public class Menu extends javax.swing.JFrame {
             PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PMainLayout.createSequentialGroup()
                 .addGroup(PMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
                     .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1941,12 +1935,32 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverUusuarioActionPerformed
 
     private void mbPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarUsuarioActionPerformed
-        // TODO add your handling code here:
+        if(tfPesquisaUsuario.getText().trim().isEmpty()){
+            this.listaUsuarios = controleUsuario.findAll();
+            atualizarTabelaUsuario();
+        }else{
+            try{
+                Integer codigo = Integer.parseInt(tfPesquisaUsuario.getText().trim());
+                if(codigo > 0){
+                    try{
+                       Usuario user = controleUsuario.findByCodigo(codigo);
+                       this.listaUsuarios.clear();
+                       this.listaUsuarios.add(user);
+                       atualizarTabelaUsuario();                   
+                    }catch(NoResultException ex){
+                        JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
+                    }
+                }else            
+                    JOptionPane.showMessageDialog(null, "O código do usuário é maior que 0!");
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "A pesquisa de usuário é apenas por codigo!");
+            }
+        }
     }//GEN-LAST:event_mbPesquisarUsuarioActionPerformed
 
-    private void tfPesquisaFilmes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaFilmes1ActionPerformed
+    private void tfPesquisaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisaFilmes1ActionPerformed
+    }//GEN-LAST:event_tfPesquisaUsuarioActionPerformed
 
     private void mbArquivarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbArquivarSessaoActionPerformed
         int row = tbSessoes.getSelectedRow();
@@ -2139,7 +2153,6 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbUsuarios;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mcPesquisaFilmes;
-    private com.hq.swingmaterialdesign.materialdesign.MComboBox mcPesquisarUsuario;
     private javax.swing.JTable tbCalendarioSessao;
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbIngressosVenda;
@@ -2148,8 +2161,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable tbSessoes;
     private javax.swing.JTable tbUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
-    private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes1;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaUsuario;
     // End of variables declaration//GEN-END:variables
 }
