@@ -160,13 +160,13 @@ public class CadastrarUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_mbCadastrarMouseClicked
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        String nome = tfNome.getText();
-        String login = tfLogin.getText();
-        String senha = tfSenha.getText();
+        String nome = tfNome.getText().trim();
+        String login = tfLogin.getText().trim();
+        String senha = tfSenha.getText().trim();
 
-        if(!nome.isBlank()){
-            if(!login.isBlank()){
-                if(!senha.isBlank()){
+        if(!nome.isEmpty()){
+            if(!login.isEmpty()){
+                if(!senha.isEmpty()){
                     try{
                         if(this.selecionado == null){
                             Usuario us = new Usuario();

@@ -191,6 +191,7 @@ public class Menu extends javax.swing.JFrame {
         tfPesquisaSessoes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         mbMontarProgramacao = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbGereciarSalas = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbArquivarSessao = new com.hq.swingmaterialdesign.materialdesign.MButton();
         jpProdutos = new javax.swing.JPanel();
         mbCadastrarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -803,31 +804,42 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        mbArquivarSessao.setBackground(new java.awt.Color(73, 136, 137));
+        mbArquivarSessao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbArquivarSessao.setText("Arquivar sessão");
+        mbArquivarSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbArquivarSessaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpSessoesLayout = new javax.swing.GroupLayout(jpSessoes);
         jpSessoes.setLayout(jpSessoesLayout);
         jpSessoesLayout.setHorizontalGroup(
             jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSessoesLayout.createSequentialGroup()
-                .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jpSessoesLayout.createSequentialGroup()
-                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpSessoesLayout.createSequentialGroup()
-                                .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpSessoesLayout.createSequentialGroup()
-                                .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mbMontarProgramacao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mbArquivarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpSessoesLayout.createSequentialGroup()
+                            .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpSessoesLayout.createSequentialGroup()
+                                    .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jpSessoesLayout.createSequentialGroup()
+                                    .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(mbMontarProgramacao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jpSessoesLayout.setVerticalGroup(
@@ -839,7 +851,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(tfPesquisaSessoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(mbPesquisarSessoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbMontarProgramacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(122, 122, 122)
+                .addGap(87, 87, 87)
+                .addComponent(mbArquivarSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -847,7 +861,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(920, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jpProdutos.setBackground(java.awt.Color.white);
@@ -1880,6 +1894,28 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaFilmes1ActionPerformed
 
+    private void mbArquivarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbArquivarSessaoActionPerformed
+        int row = tbSessoes.getSelectedRow();
+        
+        if(row > -1){
+            try{
+                Integer cod = (Integer) tbSessoes.getValueAt(row, 0);
+                Sessao s = controleSessao.findByCodigo(cod);
+                if(s.isArquivada()){
+                    JOptionPane.showMessageDialog(null, "Essa sessão ja está arquivada!");
+                }else{
+                    s.setArquivada(true);
+                    controleSessao.merge(s);
+                    JOptionPane.showMessageDialog(null, "Sessão arquivada com sucesso");
+                    this.listaSessoes = controleSessao.findAll();
+                    atualizarSessoes();
+                }                
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Nenhuma sessão encontrada com esse código");
+            }            
+        }
+    }//GEN-LAST:event_mbArquivarSessaoActionPerformed
+
     private void validarRegrasNegocioTipoIngresso(){
         double preco = 20;
         boolean valido;
@@ -2008,6 +2044,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mCPesquisaSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarProdutoVenda;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbArquivarSessao;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarSessoes;
