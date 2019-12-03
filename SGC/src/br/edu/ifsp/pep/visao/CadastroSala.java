@@ -31,6 +31,7 @@ public class CadastroSala extends javax.swing.JDialog {
         this.selecionado = s;
         tfQuantidadeAssento.setText(String.valueOf(s.getQtdAssendo()));
         cbDisponivel.setSelected(s.isDisponivel());
+        mbCadastrar.setText("Salvar");
     }
 
     /**
@@ -46,8 +47,8 @@ public class CadastroSala extends javax.swing.JDialog {
         tfQuantidadeAssento = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         cbDisponivel = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        mbAdicionarIngressoVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbAdicionarIngressoVenda1 = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbCancelar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,45 +62,45 @@ public class CadastroSala extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel1.setText("Cadastro Sala");
 
-        mbAdicionarIngressoVenda.setBackground(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbAdicionarIngressoVenda.setText("Cadastrar");
-        mbAdicionarIngressoVenda.setEndColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setStartColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.addActionListener(new java.awt.event.ActionListener() {
+        mbCadastrar.setBackground(new java.awt.Color(73, 136, 137));
+        mbCadastrar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbCadastrar.setText("Cadastrar");
+        mbCadastrar.setEndColor(new java.awt.Color(73, 136, 137));
+        mbCadastrar.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbCadastrar.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbCadastrar.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbCadastrar.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbCadastrar.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbCadastrar.setStartColor(new java.awt.Color(73, 136, 137));
+        mbCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbAdicionarIngressoVendaActionPerformed(evt);
+                mbCadastrarActionPerformed(evt);
             }
         });
-        mbAdicionarIngressoVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbCadastrar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbAdicionarIngressoVendaKeyPressed(evt);
+                mbCadastrarKeyPressed(evt);
             }
         });
 
-        mbAdicionarIngressoVenda1.setBackground(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbAdicionarIngressoVenda1.setText("Cancelar");
-        mbAdicionarIngressoVenda1.setEndColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda1.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda1.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setStartColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.addActionListener(new java.awt.event.ActionListener() {
+        mbCancelar.setBackground(new java.awt.Color(73, 136, 137));
+        mbCancelar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbCancelar.setText("Cancelar");
+        mbCancelar.setEndColor(new java.awt.Color(73, 136, 137));
+        mbCancelar.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbCancelar.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbCancelar.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbCancelar.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbCancelar.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbCancelar.setStartColor(new java.awt.Color(73, 136, 137));
+        mbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbAdicionarIngressoVenda1ActionPerformed(evt);
+                mbCancelarActionPerformed(evt);
             }
         });
-        mbAdicionarIngressoVenda1.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbAdicionarIngressoVenda1KeyPressed(evt);
+                mbCancelarKeyPressed(evt);
             }
         });
 
@@ -116,9 +117,9 @@ public class CadastroSala extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(cbDisponivel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(mbAdicionarIngressoVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                        .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,8 +135,8 @@ public class CadastroSala extends javax.swing.JDialog {
                         .addComponent(cbDisponivel)))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mbAdicionarIngressoVenda1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(mbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(mbCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,7 +154,7 @@ public class CadastroSala extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mbAdicionarIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaActionPerformed
+    private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
         try{
             Integer quantidade = Integer.parseInt(tfQuantidadeAssento.getText().trim());
             boolean disponivel = cbDisponivel.isSelected();
@@ -163,6 +164,7 @@ public class CadastroSala extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Sala cadastrada");
                 dispose();
             }else{
+                sala.setCodigo(this.selecionado.getCodigo());
                 controleSala.merge(sala);
                 JOptionPane.showMessageDialog(null, "Sala modificada");
                 dispose();
@@ -170,19 +172,19 @@ public class CadastroSala extends javax.swing.JDialog {
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Insira apenas números na quantidade!");
         }
-    }//GEN-LAST:event_mbAdicionarIngressoVendaActionPerformed
+    }//GEN-LAST:event_mbCadastrarActionPerformed
 
-    private void mbAdicionarIngressoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaKeyPressed
+    private void mbCadastrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbCadastrarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarIngressoVendaKeyPressed
+    }//GEN-LAST:event_mbCadastrarKeyPressed
 
-    private void mbAdicionarIngressoVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVenda1ActionPerformed
+    private void mbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCancelarActionPerformed
         dispose();
-    }//GEN-LAST:event_mbAdicionarIngressoVenda1ActionPerformed
+    }//GEN-LAST:event_mbCancelarActionPerformed
 
-    private void mbAdicionarIngressoVenda1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVenda1KeyPressed
+    private void mbCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbCancelarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarIngressoVenda1KeyPressed
+    }//GEN-LAST:event_mbCancelarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -230,8 +232,8 @@ public class CadastroSala extends javax.swing.JDialog {
     private javax.swing.JCheckBox cbDisponivel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda1;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbCadastrar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbCancelar;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfQuantidadeAssento;
     // End of variables declaration//GEN-END:variables
 }

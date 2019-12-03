@@ -53,9 +53,9 @@
                           <Component id="cbDisponivel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="mbAdicionarIngressoVenda1" min="-2" pref="86" max="-2" attributes="0"/>
+                          <Component id="mbCancelar" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace pref="135" max="32767" attributes="0"/>
-                          <Component id="mbAdicionarIngressoVenda" min="-2" pref="82" max="-2" attributes="0"/>
+                          <Component id="mbCadastrar" min="-2" pref="82" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -77,8 +77,8 @@
                   </Group>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="mbAdicionarIngressoVenda1" pref="45" max="32767" attributes="0"/>
-                      <Component id="mbAdicionarIngressoVenda" max="32767" attributes="0"/>
+                      <Component id="mbCancelar" pref="45" max="32767" attributes="0"/>
+                      <Component id="mbCadastrar" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -106,7 +106,7 @@
             <Property name="text" type="java.lang.String" value="Cadastro Sala"/>
           </Properties>
         </Component>
-        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbAdicionarIngressoVenda">
+        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbCadastrar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="88" red="49" type="rgb"/>
@@ -140,11 +140,11 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbAdicionarIngressoVendaActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbAdicionarIngressoVendaKeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbCadastrarActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbCadastrarKeyPressed"/>
           </Events>
         </Component>
-        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbAdicionarIngressoVenda1">
+        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbCancelar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="88" red="49" type="rgb"/>
@@ -178,8 +178,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbAdicionarIngressoVenda1ActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbAdicionarIngressoVenda1KeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbCancelarActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbCancelarKeyPressed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -55,11 +55,11 @@ public class GerenciarSalas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbSala = new javax.swing.JTable();
         tfPesquisar = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        mbAdicionar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbRemover = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbEditar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbPesquisar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbConcluir = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbPesquisar = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbAdicionar = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbEditar = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbRemover = new com.hq.swingmaterialdesign.materialdesign.MButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -99,90 +99,6 @@ public class GerenciarSalas extends javax.swing.JDialog {
             }
         });
 
-        mbAdicionar.setBackground(new java.awt.Color(73, 136, 137));
-        mbAdicionar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbAdicionar.setText("Adicionar");
-        mbAdicionar.setEndColor(new java.awt.Color(73, 136, 137));
-        mbAdicionar.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbAdicionar.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbAdicionar.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbAdicionar.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbAdicionar.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbAdicionar.setStartColor(new java.awt.Color(73, 136, 137));
-        mbAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbAdicionarActionPerformed(evt);
-            }
-        });
-        mbAdicionar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbAdicionarKeyPressed(evt);
-            }
-        });
-
-        mbRemover.setBackground(new java.awt.Color(73, 136, 137));
-        mbRemover.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbRemover.setText("REMOVER");
-        mbRemover.setEndColor(new java.awt.Color(73, 136, 137));
-        mbRemover.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbRemover.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbRemover.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbRemover.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbRemover.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbRemover.setStartColor(new java.awt.Color(73, 136, 137));
-        mbRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbRemoverActionPerformed(evt);
-            }
-        });
-        mbRemover.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbRemoverKeyPressed(evt);
-            }
-        });
-
-        mbEditar.setBackground(new java.awt.Color(73, 136, 137));
-        mbEditar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbEditar.setText("Editar");
-        mbEditar.setEndColor(new java.awt.Color(73, 136, 137));
-        mbEditar.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbEditar.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbEditar.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbEditar.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbEditar.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbEditar.setStartColor(new java.awt.Color(73, 136, 137));
-        mbEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbEditarActionPerformed(evt);
-            }
-        });
-        mbEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbEditarKeyPressed(evt);
-            }
-        });
-
-        mbPesquisar.setBackground(new java.awt.Color(73, 136, 137));
-        mbPesquisar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbPesquisar.setText("Pesquisar");
-        mbPesquisar.setEndColor(new java.awt.Color(73, 136, 137));
-        mbPesquisar.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbPesquisar.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbPesquisar.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbPesquisar.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbPesquisar.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbPesquisar.setStartColor(new java.awt.Color(73, 136, 137));
-        mbPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbPesquisarActionPerformed(evt);
-            }
-        });
-        mbPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbPesquisarKeyPressed(evt);
-            }
-        });
-
         mbConcluir.setBackground(new java.awt.Color(73, 136, 137));
         mbConcluir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         mbConcluir.setText("Concluir");
@@ -204,6 +120,42 @@ public class GerenciarSalas extends javax.swing.JDialog {
             }
         });
 
+        mbPesquisar.setBackground(new java.awt.Color(73, 136, 137));
+        mbPesquisar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbPesquisar.setText("Pesquisar");
+        mbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbPesquisarActionPerformed(evt);
+            }
+        });
+
+        mbAdicionar.setBackground(new java.awt.Color(73, 136, 137));
+        mbAdicionar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbAdicionar.setText("Adicionar");
+        mbAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbAdicionarActionPerformed(evt);
+            }
+        });
+
+        mbEditar.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditar.setText("Editar");
+        mbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbEditarActionPerformed(evt);
+            }
+        });
+
+        mbRemover.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemover.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemover.setText("Remover");
+        mbRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,43 +163,37 @@ public class GerenciarSalas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mbRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -269,6 +215,31 @@ public class GerenciarSalas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisarActionPerformed
 
+    private void mbConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbConcluirActionPerformed
+        dispose();
+    }//GEN-LAST:event_mbConcluirActionPerformed
+
+    private void mbConcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbConcluirKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbConcluirKeyPressed
+
+    private void mbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarActionPerformed
+        if(tfPesquisar.getText().trim().isEmpty()){
+            this.listaSalas = controleSala.findAll();
+            atualizarSalas();
+        }else{
+            try{
+                Integer codigo = Integer.parseInt(tfPesquisar.getText().trim());
+                Sala s = controleSala.findByCodigo(codigo);
+                this.listaSalas.clear();
+                this.listaSalas.add(s);
+                atualizarSalas();
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Não foi possivel encontrar essa sala");
+            }
+        }
+    }//GEN-LAST:event_mbPesquisarActionPerformed
+
     private void mbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarActionPerformed
         CadastroSala cs = new CadastroSala(null, true);
         cs.setModal(true);
@@ -276,29 +247,6 @@ public class GerenciarSalas extends javax.swing.JDialog {
         this.listaSalas = controleSala.findAll();
         atualizarSalas();
     }//GEN-LAST:event_mbAdicionarActionPerformed
-
-    private void mbAdicionarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarKeyPressed
-
-    private void mbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverActionPerformed
-        int row = tbSala.getSelectedRow();
-        if(row > -1){
-            try{
-                Integer codigo = (Integer) tbSala.getValueAt(row, 0);
-                Sala s = controleSala.findByCodigo(codigo);
-                controleSala.remove(s);
-            }catch(RollbackException ex){
-                JOptionPane.showMessageDialog(null, "Não é possivel excluir essa sala");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma sala para remover");
-        }
-    }//GEN-LAST:event_mbRemoverActionPerformed
-
-    private void mbRemoverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbRemoverKeyPressed
 
     private void mbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarActionPerformed
         int row = tbSala.getSelectedRow();
@@ -320,25 +268,22 @@ public class GerenciarSalas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_mbEditarActionPerformed
 
-    private void mbEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbEditarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbEditarKeyPressed
-
-    private void mbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbPesquisarActionPerformed
-
-    private void mbPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbPesquisarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbPesquisarKeyPressed
-
-    private void mbConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbConcluirActionPerformed
-        dispose();
-    }//GEN-LAST:event_mbConcluirActionPerformed
-
-    private void mbConcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbConcluirKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbConcluirKeyPressed
+    private void mbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverActionPerformed
+        int row = tbSala.getSelectedRow();
+        if(row > -1){
+            try{
+                Integer codigo = (Integer) tbSala.getValueAt(row, 0);
+                Sala s = controleSala.findByCodigo(codigo);
+                controleSala.remove(s);
+                this.listaSalas = controleSala.findAll();
+                atualizarSalas();
+            }catch(RollbackException ex){
+                JOptionPane.showMessageDialog(null, "Não é possivel excluir essa sala");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma sala para remover");
+        }
+    }//GEN-LAST:event_mbRemoverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,11 +330,11 @@ public class GerenciarSalas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionar;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbAdicionar;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbEditar;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbPesquisar;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemover;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbEditar;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisar;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbRemover;
     private javax.swing.JTable tbSala;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
