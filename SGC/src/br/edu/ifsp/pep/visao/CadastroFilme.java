@@ -91,7 +91,7 @@ public class CadastroFilme extends javax.swing.JDialog {
 
         tfDuracao.setLabel("Duração");
 
-        tfDataEstreia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        tfDataEstreia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyy"))));
         tfDataEstreia.setLabel("Data estreia");
 
         tfDirecao.setLabel("Direção");
