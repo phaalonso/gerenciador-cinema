@@ -52,7 +52,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="mbPesquisar" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="mbConcluir1" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="mbModificarAssento" min="-2" pref="138" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="mbConcluir" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
@@ -74,10 +74,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="tfPesquisar" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="mbPesquisar" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="mbConcluir" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="mbConcluir1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="mbConcluir" alignment="1" max="32767" attributes="0"/>
+                          <Component id="mbModificarAssento" alignment="1" max="32767" attributes="0"/>
+                          <Component id="mbPesquisar" alignment="1" pref="41" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -107,7 +107,7 @@
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
                     <Column editable="false" title="Dispon&#xed;vel" type="java.lang.String"/>
-                    <Column editable="false" title="Assentos" type="java.lang.Integer"/>
+                    <Column editable="false" title="Quantidade de assentos" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -247,7 +247,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbRemoverActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbConcluir1">
+        <Component class="com.hq.swingmaterialdesign.materialdesign.MToggleButton" name="mbModificarAssento">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="88" red="49" type="rgb"/>
@@ -257,7 +257,7 @@
                 <EmptyBorder/>
               </Border>
             </Property>
-            <Property name="text" type="java.lang.String" value="Adicionar assento"/>
+            <Property name="text" type="java.lang.String" value="MODIFICAR ASSENTOS"/>
             <Property name="endColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="89" green="88" red="49" type="rgb"/>
             </Property>
@@ -281,8 +281,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbConcluir1ActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbConcluir1KeyPressed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbModificarAssentoActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mbModificarAssentoKeyPressed"/>
           </Events>
         </Component>
       </SubComponents>

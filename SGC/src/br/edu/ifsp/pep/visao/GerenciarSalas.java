@@ -7,6 +7,7 @@ package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleSala;
 import br.edu.ifsp.pep.modelo.Sala;
+import br.edu.ifsp.pep.visao.CadastrarAssento;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.util.List;
 import javax.persistence.NoResultException;
@@ -35,6 +36,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
     }
 
     private void atualizarSalas(){
+        this.listaSalas = this.controleSala.findAll();
         DefaultTableModel modelo = (DefaultTableModel) tbSala.getModel();
         modelo.setNumRows(0);
         for(Sala s: this.listaSalas){
@@ -60,7 +62,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
         mbAdicionar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbRemover = new com.hq.swingmaterialdesign.materialdesign.MButton();
-        mbConcluir1 = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbModificarAssento = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,7 +73,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Disponível", "Assentos"
+                "Código", "Disponível", "Quantidade de assentos"
             }
         ) {
             Class[] types = new Class [] {
@@ -157,24 +159,24 @@ public class GerenciarSalas extends javax.swing.JDialog {
             }
         });
 
-        mbConcluir1.setBackground(new java.awt.Color(73, 136, 137));
-        mbConcluir1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbConcluir1.setText("Adicionar assento");
-        mbConcluir1.setEndColor(new java.awt.Color(73, 136, 137));
-        mbConcluir1.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbConcluir1.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbConcluir1.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbConcluir1.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbConcluir1.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbConcluir1.setStartColor(new java.awt.Color(73, 136, 137));
-        mbConcluir1.addActionListener(new java.awt.event.ActionListener() {
+        mbModificarAssento.setBackground(new java.awt.Color(73, 136, 137));
+        mbModificarAssento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbModificarAssento.setText("MODIFICAR ASSENTOS");
+        mbModificarAssento.setEndColor(new java.awt.Color(73, 136, 137));
+        mbModificarAssento.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbModificarAssento.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbModificarAssento.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbModificarAssento.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbModificarAssento.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbModificarAssento.setStartColor(new java.awt.Color(73, 136, 137));
+        mbModificarAssento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbConcluir1ActionPerformed(evt);
+                mbModificarAssentoActionPerformed(evt);
             }
         });
-        mbConcluir1.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbModificarAssento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbConcluir1KeyPressed(evt);
+                mbModificarAssentoKeyPressed(evt);
             }
         });
 
@@ -191,7 +193,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mbConcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mbModificarAssento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -208,10 +210,10 @@ public class GerenciarSalas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mbConcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(mbConcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mbModificarAssento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mbPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,63 +313,75 @@ public class GerenciarSalas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_mbRemoverActionPerformed
 
-    private void mbConcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbConcluir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mbConcluir1ActionPerformed
+    private void mbModificarAssentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbModificarAssentoActionPerformed
+        int row = tbSala.getSelectedRow();
+        if(row > -1){
+            Integer codigo = (Integer) tbSala.getValueAt(row, 0);
+            Sala sala = controleSala.findByCodigo(codigo);
+            CadastrarAssento cadastrarAssento = new CadastrarAssento(null, true, sala);
+            cadastrarAssento.setModal(true);
+            cadastrarAssento.setVisible(true);
+            controleSala.merge(sala);
+            this.listaSalas = controleSala.findAll();
+            atualizarSalas();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma sala para modificar os assentos");
+        }
+    }//GEN-LAST:event_mbModificarAssentoActionPerformed
 
-    private void mbConcluir1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbConcluir1KeyPressed
+    private void mbModificarAssentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbModificarAssentoKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbConcluir1KeyPressed
+    }//GEN-LAST:event_mbModificarAssentoKeyPressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                GerenciarSalas dialog = new GerenciarSalas(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                GerenciarSalas dialog = new GerenciarSalas(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbAdicionar;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir1;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbModificarAssento;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemover;
     private javax.swing.JTable tbSala;

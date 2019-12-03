@@ -37,14 +37,4 @@ public class ControleFilme extends ControleGenerico<Filme>{
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);
         return query.getResultList();
     }
-    
-    public Filme findEqualsTitulo(String titulo) throws NoResultException{
-        EntityManager em = getEntityManager();
-        TypedQuery<Filme> query = em.createNamedQuery("Filme.findEqualsTitulo", Filme.class)
-                .setParameter("titulo", titulo)
-                .setHint(QueryHints.REFRESH, HintValues.TRUE);
-        return query.getSingleResult();
-    }
-
-
 }

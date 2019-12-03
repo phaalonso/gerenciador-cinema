@@ -3,6 +3,7 @@ package br.edu.ifsp.pep.modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,15 +33,15 @@ public class Sala implements Serializable{
     @Column(name = "qtd_assento", nullable = false)
     private Integer qtdAssendo;
         
-    @OneToMany(mappedBy = "sala", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "sala", fetch = FetchType.EAGER)
     private List<Assento> assentos;
 
     public Sala() {
     }
 
-    public Sala(boolean disponivel, Integer qtdAssendo) {
+    public Sala(boolean disponivel) {
         this.disponivel = disponivel;
-        this.qtdAssendo = qtdAssendo;
+        this.qtdAssendo = 0;
         this.assentos = new ArrayList<>();
     }
 
