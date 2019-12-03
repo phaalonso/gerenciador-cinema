@@ -1974,6 +1974,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbGeneroActionPerformed
 
     private void validarRegrasNegocioTipoIngresso(){
+        String resultado;
         double preco = 20;
         boolean valido;
         TipoIngresso tipo;
@@ -1985,16 +1986,19 @@ public class Menu extends javax.swing.JFrame {
             valido = false;
             while(!valido){
                 try{
-                    preco = Float.parseFloat(JOptionPane.showInputDialog("Insira o valor"));
-                    if(preco > 0)
-                        valido = true;
-                    else
-                        JOptionPane.showMessageDialog(null, "Valor invalido");
+                    resultado = JOptionPane.showInputDialog("Insira o valor");
+                    if(resultado != null){
+                        preco = Double.parseDouble(resultado);
+                        if(preco > 0)
+                            valido = true;
+                        else
+                            JOptionPane.showMessageDialog(null, "Valor invalido");
+                        controleTipoIngresso.persist(new TipoIngresso("Inteira", preco));
+                    }
                 }catch(NumberFormatException nfex){
                     JOptionPane.showMessageDialog(null, "Erro no valor");
                 }
             }
-            controleTipoIngresso.persist(new TipoIngresso("Inteira", preco));
         }
         try{
             controleTipoIngresso.findByNome("Meia");

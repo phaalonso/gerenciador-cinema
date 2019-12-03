@@ -67,7 +67,7 @@ public class CadastroFilme extends javax.swing.JDialog {
 
         tfTitulo.setLabel("Título");
 
-        tfIdadeMinima.setLabel("IdadeMinima");
+        tfIdadeMinima.setLabel("Idade Minima");
 
         mbSair.setBackground(new java.awt.Color(73, 136, 137));
         mbSair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

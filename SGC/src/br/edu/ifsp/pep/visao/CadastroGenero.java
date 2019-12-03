@@ -110,16 +110,16 @@ public class CadastroGenero extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(mbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addComponent(mbCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,21 +150,21 @@ public class CadastroGenero extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
-        try{
-            String descricao = tfDescricao.getText().trim();
-            Genero g = new Genero(descricao);
+        String descricao = tfDescricao.getText().trim();
+        if(!descricao.isEmpty()){
+        Genero g = new Genero(descricao);
             if(this.selecionado == null){
                 controleGenero.persist(g);
-                JOptionPane.showMessageDialog(null, "Genero cadastrado");
+                JOptionPane.showMessageDialog(null, "Gênero cadastrado");
                 dispose();
             }else{
                 g.setCodigo(this.selecionado.getCodigo());
                 controleGenero.merge(g);
-                JOptionPane.showMessageDialog(null, "Genero modificado");
+                JOptionPane.showMessageDialog(null, "Gênero modificado");
                 dispose();
             }
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Insira apenas números na quantidade!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Preencha o campo!");
         }
     }//GEN-LAST:event_mbCadastrarActionPerformed
 

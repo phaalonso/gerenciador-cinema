@@ -68,6 +68,8 @@ public class ControleGenerico<T> {
     public List<T> findAll() {
         EntityManager em = getEntityManager();
         
+        // Limpar buffer
+        this.emf.getCache().evictAll();
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(classe));
         

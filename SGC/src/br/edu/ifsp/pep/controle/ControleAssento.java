@@ -15,9 +15,4 @@ public class ControleAssento extends ControleGenerico<Assento>{
     public ControleAssento() {
         super(Assento.class);
     }
-
-    
-    
-
-
 }

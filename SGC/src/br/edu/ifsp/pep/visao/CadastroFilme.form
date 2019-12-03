@@ -118,7 +118,7 @@
         </Component>
         <Component class="com.hq.swingmaterialdesign.materialdesign.MTextField" name="tfIdadeMinima">
           <Properties>
-            <Property name="label" type="java.lang.String" value="IdadeMinima"/>
+            <Property name="label" type="java.lang.String" value="Idade Minima"/>
           </Properties>
         </Component>
         <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbSair">

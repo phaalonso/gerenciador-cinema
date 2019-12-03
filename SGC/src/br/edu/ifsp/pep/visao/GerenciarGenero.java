@@ -242,9 +242,9 @@ public class GerenciarGenero extends javax.swing.JDialog {
     }//GEN-LAST:event_mbPesquisarActionPerformed
 
     private void mbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarActionPerformed
-        CadastroSala cs = new CadastroSala(null, true);
-        cs.setModal(true);
-        cs.setVisible(true);
+        CadastroGenero cg = new CadastroGenero(null, true);
+        cg.setModal(true);
+        cg.setVisible(true);
         this.listaGenero = controleGenero.findAll();
         atualizarGenero();
     }//GEN-LAST:event_mbAdicionarActionPerformed
@@ -252,20 +252,16 @@ public class GerenciarGenero extends javax.swing.JDialog {
     private void mbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarActionPerformed
         int row = tbGeneros.getSelectedRow();
         if(row > -1){
-            try{
-                Integer cod = (Integer) tbGeneros.getValueAt(row, 0);
-                Genero g = controleGenero.findByCodigo(cod);
-                CadastroGenero cs = new CadastroGenero(null, true);
-                cs.setModal(true);
-                cs.setSelecionado(g);
-                cs.setVisible(true);
-                this.listaGenero = controleGenero.findAll();
-                atualizarGenero();
-            }catch(NoResultException ex){
-                JOptionPane.showMessageDialog(null, "Nenhuma sala encontrada com esse código");
-            }
+            Integer cod = (Integer) tbGeneros.getValueAt(row, 0);
+            Genero g = controleGenero.findByCodigo(cod);
+            CadastroGenero cs = new CadastroGenero(null, true);
+            cs.setModal(true);
+            cs.setSelecionado(g);
+            cs.setVisible(true);
+            this.listaGenero = controleGenero.findAll();
+            atualizarGenero();
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma sala abaixo para editar!");
+            JOptionPane.showMessageDialog(null, "Selecione um gênero abaixo para editar!");
         }
     }//GEN-LAST:event_mbEditarActionPerformed
 
@@ -279,7 +275,8 @@ public class GerenciarGenero extends javax.swing.JDialog {
                 this.listaGenero = controleGenero.findAll();
                 atualizarGenero();
             }catch(RollbackException ex){
-                JOptionPane.showMessageDialog(null, "Não é possivel excluir essa sala");
+                JOptionPane.showMessageDialog(null, "Não é possivel excluir esse gênero\n"
+                        + "O gênero pode estar associado à um filme");
             }
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala para remover");

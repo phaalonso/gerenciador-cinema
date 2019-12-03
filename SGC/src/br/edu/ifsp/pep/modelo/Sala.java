@@ -33,7 +33,8 @@ public class Sala implements Serializable{
     @Column(name = "qtd_assento", nullable = false)
     private Integer qtdAssendo;
         
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "sala", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true,
+            mappedBy = "sala", fetch = FetchType.EAGER)
     private List<Assento> assentos;
 
     public Sala() {

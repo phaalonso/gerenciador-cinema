@@ -5,6 +5,7 @@
  */
 package br.edu.ifsp.pep.visao;
 
+import br.edu.ifsp.pep.controle.ControleItem;
 import br.edu.ifsp.pep.controle.ControleProduto;
 import br.edu.ifsp.pep.modelo.Combo;
 import br.edu.ifsp.pep.modelo.ComboProduto;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class CadastroProduto extends javax.swing.JDialog {
 
-    private ControleProduto controleProduto;
+    private ControleItem controleItem;
     private Item selecionado;
     private List<ComboProduto> listaCombo;
 
@@ -30,7 +31,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         initComponents();
         
         this.listaCombo = new ArrayList<>();
-        this.controleProduto = new ControleProduto();
+        this.controleItem = new ControleItem();
     }
 
     /**
@@ -48,7 +49,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbCadastrar = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfValor = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        mComboBox1 = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mComboBox = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbItensCombo = new com.hq.swingmaterialdesign.materialdesign.MButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -93,11 +94,11 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         tfValor.setLabel("Valor");
 
-        mComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Produto", "Combo" }));
-        mComboBox1.setAccent(new java.awt.Color(73, 136, 137));
-        mComboBox1.addItemListener(new java.awt.event.ItemListener() {
+        mComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Produto", "Combo" }));
+        mComboBox.setAccent(new java.awt.Color(73, 136, 137));
+        mComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                mComboBox1ItemStateChanged(evt);
+                mComboBoxItemStateChanged(evt);
             }
         });
 
@@ -129,7 +130,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                         .addGap(198, 198, 198)
                         .addComponent(mbItensCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
-                        .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPrincipalLayout.createSequentialGroup()
@@ -147,7 +148,7 @@ public class CadastroProduto extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,13 +173,13 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.selecionado = i;
         this.tfDescricao.setText(i.getDescricao());
         this.tfValor.setText(String.valueOf(i.getPreco()));
-        mComboBox1.setEditable(false);
+        mComboBox.setEditable(false);
         if (i instanceof Produto) {
             this.tfEstoque.setText((String.valueOf(((Produto) i).getEstoque())));
-            mComboBox1.setSelectedIndex(0);
+            mComboBox.setSelectedIndex(0);
         } else {
             this.listaCombo = ((Combo) i).getProdutos();
-            mComboBox1.setSelectedIndex(1);
+            mComboBox.setSelectedIndex(1);
         }
     }
 
@@ -210,14 +211,14 @@ public class CadastroProduto extends javax.swing.JDialog {
 
                     if (this.selecionado == null) {
                         try {
-                            controleProduto.persist(p);
+                            controleItem.persist(p);
                             JOptionPane.showMessageDialog(null, "Produto cadastrado!");
                             dispose();
                         } catch (EntityExistsException ex) {
                             JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar!");
                         }
                     } else {
-                        controleProduto.merge(p);
+                        controleItem.merge(p);
                         JOptionPane.showMessageDialog(null, "Produto atualizado!");
                         dispose();
                     }
@@ -244,21 +245,23 @@ public class CadastroProduto extends javax.swing.JDialog {
         ic.setVisible(true);
     }//GEN-LAST:event_mbItensComboActionPerformed
 
-    private void mComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBox1ItemStateChanged
-        switch (mComboBox1.getSelectedIndex()) {
+    private void mComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mComboBoxItemStateChanged
+        switch (mComboBox.getSelectedIndex()) {
             case 1:
                 mbItensCombo.setEnabled(true);
+                tfEstoque.setEnabled(false);
                 break;
             default:
                 mbItensCombo.setEnabled(false);
+                tfEstoque.setEnabled(true);
                 break;
         }
-    }//GEN-LAST:event_mComboBox1ItemStateChanged
+    }//GEN-LAST:event_mComboBoxItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jpPrincipal;
-    private com.hq.swingmaterialdesign.materialdesign.MComboBox mComboBox1;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mComboBox;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrar;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbItensCombo;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbSair;

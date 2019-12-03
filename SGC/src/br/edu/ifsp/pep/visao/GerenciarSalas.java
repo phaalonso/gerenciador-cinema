@@ -7,8 +7,6 @@ package br.edu.ifsp.pep.visao;
 
 import br.edu.ifsp.pep.controle.ControleSala;
 import br.edu.ifsp.pep.modelo.Sala;
-import br.edu.ifsp.pep.visao.CadastrarAssento;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
@@ -32,11 +30,10 @@ public class GerenciarSalas extends javax.swing.JDialog {
         initComponents();
         this.controleSala = new ControleSala();
         this.listaSalas = this.controleSala.findAll();
-        atualizarSalas();
+        this.atualizarSalas();
     }
 
     private void atualizarSalas(){
-        this.listaSalas = this.controleSala.findAll();
         DefaultTableModel modelo = (DefaultTableModel) tbSala.getModel();
         modelo.setNumRows(0);
         for(Sala s: this.listaSalas){
@@ -253,7 +250,7 @@ public class GerenciarSalas extends javax.swing.JDialog {
 
     private void mbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarActionPerformed
         if(tfPesquisar.getText().trim().isEmpty()){
-            this.listaSalas = controleSala.findAll();
+            this.listaSalas = this.controleSala.findAll();
             atualizarSalas();
         }else{
             try{
@@ -272,8 +269,8 @@ public class GerenciarSalas extends javax.swing.JDialog {
         CadastroSala cs = new CadastroSala(null, true);
         cs.setModal(true);
         cs.setVisible(true);
-        this.listaSalas = controleSala.findAll();
-        atualizarSalas();
+        this.listaSalas = this.controleSala.findAll();
+        this.atualizarSalas();
     }//GEN-LAST:event_mbAdicionarActionPerformed
 
     private void mbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarActionPerformed
@@ -287,13 +284,14 @@ public class GerenciarSalas extends javax.swing.JDialog {
                 cs.setSelecionado(s);
                 cs.setVisible(true);
                 this.listaSalas = controleSala.findAll();
-                atualizarSalas();
             }catch(NoResultException ex){
                 JOptionPane.showMessageDialog(null, "Nenhuma sala encontrada com esse código");
             }
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala abaixo para editar!");
         }
+        this.listaSalas = this.controleSala.findAll();
+        this.atualizarSalas();
     }//GEN-LAST:event_mbEditarActionPerformed
 
     private void mbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverActionPerformed
@@ -304,13 +302,14 @@ public class GerenciarSalas extends javax.swing.JDialog {
                 Sala s = controleSala.findByCodigo(codigo);
                 controleSala.remove(s);
                 this.listaSalas = controleSala.findAll();
-                atualizarSalas();
             }catch(RollbackException ex){
                 JOptionPane.showMessageDialog(null, "Não é possivel excluir essa sala");
             }
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala para remover");
         }
+        this.listaSalas = this.controleSala.findAll();
+        this.atualizarSalas();
     }//GEN-LAST:event_mbRemoverActionPerformed
 
     private void mbModificarAssentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbModificarAssentoActionPerformed
@@ -321,59 +320,18 @@ public class GerenciarSalas extends javax.swing.JDialog {
             CadastrarAssento cadastrarAssento = new CadastrarAssento(null, true, sala);
             cadastrarAssento.setModal(true);
             cadastrarAssento.setVisible(true);
+            System.out.println(sala.getAssentos());
             controleSala.merge(sala);
-            this.listaSalas = controleSala.findAll();
-            atualizarSalas();
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala para modificar os assentos");
         }
+        this.listaSalas = this.controleSala.findAll();
+        this.atualizarSalas();
     }//GEN-LAST:event_mbModificarAssentoActionPerformed
 
     private void mbModificarAssentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbModificarAssentoKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_mbModificarAssentoKeyPressed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GerenciarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                GerenciarSalas dialog = new GerenciarSalas(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

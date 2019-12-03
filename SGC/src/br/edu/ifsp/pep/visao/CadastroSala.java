@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class CadastroSala extends javax.swing.JDialog {
 
     private ControleSala controleSala;
-    private Sala selecionado;
+    private Sala sala;
     
     /**
      * Creates new form CadastroSala
@@ -28,7 +28,7 @@ public class CadastroSala extends javax.swing.JDialog {
     }
     
     public void setSelecionado(Sala s){
-        this.selecionado = s;
+        this.sala = s;
         cbDisponivel.setSelected(s.isDisponivel());
         mbCadastrar.setText("Salvar");
     }
@@ -149,14 +149,14 @@ public class CadastroSala extends javax.swing.JDialog {
     private void mbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarActionPerformed
         try{
             boolean disponivel = cbDisponivel.isSelected();
-            Sala sala = new Sala(disponivel);
-            if(this.selecionado == null){
+            if(this.sala == null){
+                Sala sala = new Sala(disponivel);
                 controleSala.persist(sala);
                 JOptionPane.showMessageDialog(null, "Sala cadastrada");
                 dispose();
             }else{
-                sala.setCodigo(this.selecionado.getCodigo());
-                controleSala.merge(sala);
+                this.sala.setDisponivel(disponivel);
+                controleSala.merge(this.sala);
                 JOptionPane.showMessageDialog(null, "Sala modificada");
                 dispose();
             }

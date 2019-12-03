@@ -16,8 +16,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "assento")
 @NamedQueries({
-    @NamedQuery(name = "Assento.findByCodigo",
-            query = "SELECT a FROM Assento a WHERE a.codigo = :codigo")
+    @NamedQuery(name = "Assento.findByCodigoAndSala",
+            query = "SELECT a FROM Assento a WHERE a.codigo = :codigo "
+                    + "AND a.sala = :sala")
 })
 public class Assento implements Serializable{
     @Id

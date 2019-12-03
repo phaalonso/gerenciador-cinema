@@ -9,7 +9,7 @@ import br.edu.ifsp.pep.controle.ControleAssento;
 import br.edu.ifsp.pep.modelo.Assento;
 import br.edu.ifsp.pep.modelo.Sala;
 import java.util.List;
-import javax.persistence.EntityExistsException;
+import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,12 +21,14 @@ public class CadastrarAssento extends javax.swing.JDialog {
 
     private Sala sala;
     private List<Assento> listaAssento;
+    private ControleAssento controleAssento;
     
     public CadastrarAssento(java.awt.Frame parent, boolean modal, Sala s) {
         super(parent, modal);
         initComponents();
         this.sala = s;
         listaAssento = s.getAssentos();
+        controleAssento = new ControleAssento();
         atualizaTabelaAssento();
     }
 
@@ -48,6 +50,7 @@ public class CadastrarAssento extends javax.swing.JDialog {
         jScrollPane10 = new javax.swing.JScrollPane();
         tbAssento = new javax.swing.JTable();
         mbHabilitar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbRemover = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,6 +152,27 @@ public class CadastrarAssento extends javax.swing.JDialog {
             }
         });
 
+        mbRemover.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemover.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemover.setText("REMOVER");
+        mbRemover.setEndColor(new java.awt.Color(73, 136, 137));
+        mbRemover.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbRemover.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbRemover.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setStartColor(new java.awt.Color(73, 136, 137));
+        mbRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRemoverActionPerformed(evt);
+            }
+        });
+        mbRemover.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbRemoverKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,9 +181,10 @@ public class CadastrarAssento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
                         .addComponent(mbHabilitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -183,9 +208,11 @@ public class CadastrarAssento extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbDisponivel)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(mbHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,6 +232,7 @@ public class CadastrarAssento extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void atualizaTabelaAssento(){
         String disponivel;
@@ -229,7 +257,11 @@ public class CadastrarAssento extends javax.swing.JDialog {
             else{
                 char letra = tfLetra.getText().trim().toUpperCase().charAt(0);
                 if((int) letra >= 65 && (int) letra <= 90){
-                    String codigo = letra + Integer.toString(codigoNumerico);
+                    String codigo;
+                    if(codigoNumerico < 10)
+                        codigo = letra + "0" + Integer.toString(codigoNumerico);
+                    else
+                        codigo = letra + Integer.toString(codigoNumerico);
                     boolean marcado = cbDisponivel.isSelected();
                     Assento assento = new Assento(codigo, sala, marcado);
                     if(!listaAssento.contains(assento))
@@ -242,9 +274,8 @@ public class CadastrarAssento extends javax.swing.JDialog {
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Insira apenas números no codigo do assento");
-        }finally{
-            atualizaTabelaAssento();
         }
+        atualizaTabelaAssento();
     }//GEN-LAST:event_mbAdicionarActionPerformed
 
     private void mbAdicionarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarKeyPressed
@@ -260,12 +291,52 @@ public class CadastrarAssento extends javax.swing.JDialog {
     }//GEN-LAST:event_mbSairKeyPressed
 
     private void mbHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbHabilitarActionPerformed
-        // TODO add your handling code here:
+        int row = tbAssento.getSelectedRow();
+        if(row > -1){
+            String codigo = (String) tbAssento.getValueAt(row, 0);
+            Assento assento = new Assento();
+            assento.setCodigo(codigo);
+            assento.setSala(sala);
+            try{
+                int index = this.listaAssento.indexOf(assento);
+                Assento encontrado = this.listaAssento.get(index);
+                encontrado.setDisponivel(
+                        !encontrado.isDisponivel());
+                atualizaTabelaAssento();
+            }catch(RollbackException ex){
+                JOptionPane.showMessageDialog(null, "Não foi possível atualizar");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um assento!");
+        }
     }//GEN-LAST:event_mbHabilitarActionPerformed
 
     private void mbHabilitarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbHabilitarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_mbHabilitarKeyPressed
+
+    private void mbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverActionPerformed
+        int row = tbAssento.getSelectedRow();
+        if(row > -1){
+            String codigo = (String) tbAssento.getValueAt(row, 0);
+            Assento assento = new Assento();
+            assento.setCodigo(codigo);
+            assento.setSala(sala);
+            try{
+                this.listaAssento.remove(assento);
+                atualizaTabelaAssento();
+            }catch(RollbackException ex){
+                JOptionPane.showMessageDialog(null, "Não foi possível remover\n"
+                        + "O assento pode estar associado à uma sala ou ingresso");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um assento!");
+        }
+    }//GEN-LAST:event_mbRemoverActionPerformed
+
+    private void mbRemoverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbRemoverKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbDisponivel;
@@ -273,6 +344,7 @@ public class CadastrarAssento extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane10;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionar;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbHabilitar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemover;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
     private javax.swing.JTable tbAssento;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfCodigo;
