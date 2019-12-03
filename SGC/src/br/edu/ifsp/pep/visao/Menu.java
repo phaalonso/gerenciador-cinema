@@ -11,6 +11,7 @@ import br.edu.ifsp.pep.controle.ControleProduto;
 import br.edu.ifsp.pep.controle.ControleSala;
 import br.edu.ifsp.pep.controle.ControleSessao;
 import br.edu.ifsp.pep.controle.ControleTipoIngresso;
+import br.edu.ifsp.pep.controle.ControleUsuario;
 import br.edu.ifsp.pep.controle.ControleVenda;
 import br.edu.ifsp.pep.modelo.Combo;
 import br.edu.ifsp.pep.modelo.Filme;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.NoResultException;
+import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,6 +45,7 @@ public class Menu extends javax.swing.JFrame {
     private List<Sessao> listaSessoes;
     private List<Ingresso> listaIngresso;
     private List<ItemVenda> listaItemVenda;
+    private List<Usuario> listaUsuarios;
     
     private Usuario usuario;
     private ControleItem controleItem;
@@ -52,6 +55,7 @@ public class Menu extends javax.swing.JFrame {
     private ControleSala controleSala;
     private ControleVenda controleVenda;
     private ControleTipoIngresso controleTipoIngresso;
+    private ControleUsuario controleUsuario;
     
     private Venda venda;
     
@@ -67,9 +71,13 @@ public class Menu extends javax.swing.JFrame {
         this.controleSala = new ControleSala();
         this.controleVenda = new ControleVenda();
         this.controleTipoIngresso = new ControleTipoIngresso();
+        this.controleUsuario = new ControleUsuario();
         
+        this.listaFilmes = new ArrayList<>();
+        this.listaItens = new ArrayList<>();
         this.listaItemVenda = new ArrayList<>();
         this.listaIngresso = new ArrayList<>();
+        this.listaUsuarios = new ArrayList<>();
         
         if(usuario.getTipo() == TipoUsuario.COMUM){
             mbSessoes.setVisible(false);
@@ -118,6 +126,20 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
+    private void atualizarTabelaUsuario(){
+        DefaultTableModel modelo = (DefaultTableModel) tbUsuario.getModel();
+        modelo.setNumRows(0);
+        for(Usuario u : this.listaUsuarios){
+            modelo.addRow(new Object[] {
+                u.getCodigo(), 
+                u.getNome(), 
+                u.getLogin(), 
+                u.getTipo()
+            });
+        }
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,6 +158,7 @@ public class Menu extends javax.swing.JFrame {
         mbFilmes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbSessoes = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         mbSair = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbUsuarios = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
         jpPrincipal = new javax.swing.JPanel();
         jpVenda = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -186,8 +209,18 @@ public class Menu extends javax.swing.JFrame {
         mcPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
         mbPesquisarFilmes = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfPesquisaFilmes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
+        jpUsuario = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tbUsuario = new javax.swing.JTable();
+        mbCadastrarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbEditarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbRemoverUusuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mcPesquisarUsuario = new com.hq.swingmaterialdesign.materialdesign.MComboBox();
+        mbPesquisarUsuario = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        tfPesquisaFilmes1 = new com.hq.swingmaterialdesign.materialdesign.MTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(960, 720));
 
         PMain.setBackground(java.awt.Color.white);
         PMain.setPreferredSize(new java.awt.Dimension(960, 720));
@@ -291,23 +324,45 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        mbUsuarios.setBackground(new java.awt.Color(73, 136, 137));
+        mbUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbUsuarios.setText("Usuários");
+        mbUsuarios.setEndColor(new java.awt.Color(73, 136, 137));
+        mbUsuarios.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbUsuarios.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbUsuarios.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbUsuarios.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbUsuarios.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbUsuarios.setStartColor(new java.awt.Color(73, 136, 137));
+        mbUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbUsuariosActionPerformed(evt);
+            }
+        });
+        mbUsuarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbUsuariosKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mBHome, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(mbVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(mbProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(mbFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(mbSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(lbMenu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(mbSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(mbSair, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mbUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mBHome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbVendas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbProdutos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbFilmes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(mbSessoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,8 +380,10 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mbUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mbSair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(541, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpPrincipal.setBackground(java.awt.Color.white);
@@ -514,27 +571,29 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(lbSessaoVenda)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpVendaLayout.createSequentialGroup()
-                .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mbEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbSessaoVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(181, 181, 181))
+            .addGroup(jpVendaLayout.createSequentialGroup()
+                .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jpVendaLayout.createSequentialGroup()
-                            .addComponent(lbBoasVindas1)
-                            .addGap(335, 335, 335)
-                            .addComponent(mbRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(mbAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jpVendaLayout.createSequentialGroup()
-                            .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cbSessaoVenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpVendaLayout.createSequentialGroup()
-                                    .addComponent(lbBoasVindas2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mbEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpVendaLayout.createSequentialGroup()
+                                .addComponent(lbBoasVindas1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mbRemoverProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbAdicionarProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpVendaLayout.createSequentialGroup()
+                            .addComponent(lbBoasVindas2)
+                            .addGap(317, 317, 317)
+                            .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addGap(91, 91, 91))
         );
         jpVendaLayout.setVerticalGroup(
             jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,11 +601,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(lbSessaoVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbSessaoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jpVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbBoasVindas2))
+                    .addComponent(lbBoasVindas2)
+                    .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
@@ -556,9 +615,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(lbBoasVindas1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(mbEfetuarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(665, 665, 665))
+                .addGap(659, 659, 659))
         );
 
         jpHome.setBackground(java.awt.Color.white);
@@ -635,7 +694,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(mbGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addContainerGap(584, Short.MAX_VALUE))
         );
 
         jpSessoes.setBackground(java.awt.Color.white);
@@ -720,6 +779,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         tfPesquisaSessoes.setLabel("Pesquisa");
+        tfPesquisaSessoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPesquisaSessoesActionPerformed(evt);
+            }
+        });
 
         mbMontarProgramacao.setBackground(new java.awt.Color(73, 136, 137));
         mbMontarProgramacao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -764,7 +828,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(mbMontarProgramacao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jpSessoesLayout.setVerticalGroup(
             jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -783,7 +847,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addContainerGap(920, Short.MAX_VALUE))
         );
 
         jpProdutos.setBackground(java.awt.Color.white);
@@ -906,7 +970,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(mbRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(521, Short.MAX_VALUE))
         );
 
         jpFilmes.setBackground(java.awt.Color.white);
@@ -938,12 +1002,14 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane6.setViewportView(tbFilmes);
         if (tbFilmes.getColumnModel().getColumnCount() > 0) {
             tbFilmes.getColumnModel().getColumn(0).setResizable(false);
-            tbFilmes.getColumnModel().getColumn(0).setHeaderValue("Código");
-            tbFilmes.getColumnModel().getColumn(1).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(1).setHeaderValue("Titulo");
             tbFilmes.getColumnModel().getColumn(2).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(2).setHeaderValue("Idade minima");
             tbFilmes.getColumnModel().getColumn(3).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(3).setHeaderValue("Data estreia");
             tbFilmes.getColumnModel().getColumn(4).setResizable(false);
-            tbFilmes.getColumnModel().getColumn(5).setResizable(false);
+            tbFilmes.getColumnModel().getColumn(4).setHeaderValue("Duração");
+            tbFilmes.getColumnModel().getColumn(5).setHeaderValue("Direção");
         }
 
         mbCadastrarFilmes.setBackground(new java.awt.Color(73, 136, 137));
@@ -1028,41 +1094,172 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpUsuario.setBackground(java.awt.Color.white);
+
+        tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Login", "Tipo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbUsuario.getTableHeader().setReorderingAllowed(false);
+        jScrollPane10.setViewportView(tbUsuario);
+        if (tbUsuario.getColumnModel().getColumnCount() > 0) {
+            tbUsuario.getColumnModel().getColumn(0).setResizable(false);
+            tbUsuario.getColumnModel().getColumn(1).setResizable(false);
+            tbUsuario.getColumnModel().getColumn(2).setResizable(false);
+            tbUsuario.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        mbCadastrarUsuario.setBackground(new java.awt.Color(73, 136, 137));
+        mbCadastrarUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbCadastrarUsuario.setText("Cadastrar filme");
+        mbCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbCadastrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        mbEditarUsuario.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditarUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditarUsuario.setText("Editar filme");
+        mbEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbEditarUsuarioActionPerformed(evt);
+            }
+        });
+
+        mbRemoverUusuario.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemoverUusuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemoverUusuario.setText("Remover filme");
+        mbRemoverUusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbRemoverUusuarioActionPerformed(evt);
+            }
+        });
+
+        mcPesquisarUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Título" }));
+        mcPesquisarUsuario.setAccent(new java.awt.Color(73, 136, 137));
+
+        mbPesquisarUsuario.setBackground(new java.awt.Color(73, 136, 137));
+        mbPesquisarUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbPesquisarUsuario.setText("Pesquisar");
+        mbPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbPesquisarUsuarioActionPerformed(evt);
+            }
+        });
+
+        tfPesquisaFilmes1.setLabel("Pesquisa");
+        tfPesquisaFilmes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPesquisaFilmes1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpUsuarioLayout = new javax.swing.GroupLayout(jpUsuario);
+        jpUsuario.setLayout(jpUsuarioLayout);
+        jpUsuarioLayout.setHorizontalGroup(
+            jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpUsuarioLayout.createSequentialGroup()
+                .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpUsuarioLayout.createSequentialGroup()
+                        .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfPesquisaFilmes1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpUsuarioLayout.createSequentialGroup()
+                                .addComponent(mcPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpUsuarioLayout.createSequentialGroup()
+                                .addComponent(mbEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mbRemoverUusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpUsuarioLayout.setVerticalGroup(
+            jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mcPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPesquisaFilmes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(122, 122, 122)
+                .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mbCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbRemoverUusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 834, Short.MAX_VALUE)
+            .addGap(0, 1036, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
-                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+                    .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 21, Short.MAX_VALUE)))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(267, Short.MAX_VALUE)))
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1128, Short.MAX_VALUE)
+            .addGap(0, 1180, Short.MAX_VALUE)
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE))
+                .addComponent(jpSessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE))
+                .addComponent(jpProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
             .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrincipalLayout.createSequentialGroup()
                     .addComponent(jpFilmes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPrincipalLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(12, 12, 12)))
         );
 
         javax.swing.GroupLayout PMainLayout = new javax.swing.GroupLayout(PMain);
@@ -1087,9 +1284,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(PMain, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1123,6 +1318,9 @@ public class Menu extends javax.swing.JFrame {
         
         mbVendas.setSelected(false);
         jpVenda.setVisible(false);
+        
+        mbUsuarios.setSelected(false);
+        jpUsuario.setVisible(false);
         
         mBHome.setSelected(true);
         jpHome.setVisible(true);
@@ -1182,6 +1380,9 @@ public class Menu extends javax.swing.JFrame {
         mbVendas.setSelected(false);
         jpVenda.setVisible(false);
         
+        mbUsuarios.setSelected(false);
+        jpUsuario.setVisible(false);
+        
         mBHome.setSelected(false);
         jpHome.setVisible(false);     
                         
@@ -1203,6 +1404,9 @@ public class Menu extends javax.swing.JFrame {
         mBHome.setSelected(false);
         jpHome.setVisible(false);
 
+        mbUsuarios.setSelected(false);
+        jpUsuario.setVisible(false);
+        
         mbFilmes.setSelected(true);
         jpFilmes.setVisible(true);
         
@@ -1222,6 +1426,9 @@ public class Menu extends javax.swing.JFrame {
         
         mbVendas.setSelected(false);
         jpVenda.setVisible(false);
+        
+        mbUsuarios.setSelected(false);
+        jpUsuario.setVisible(false);
         
         mBHome.setSelected(false);
         jpHome.setVisible(false); 
@@ -1369,10 +1576,14 @@ public class Menu extends javax.swing.JFrame {
             try{
                 Sessao s = controleSessao.findByCodigo(cod);
                 if(!s.isArquivada()){
-                    controleSessao.remove(s);
-                    JOptionPane.showMessageDialog(null, "Sessão removida!");
-                    this.listaSessoes = controleSessao.findAll();
-                    atualizarSessoes();
+                    try{
+                        controleSessao.remove(s);
+                        JOptionPane.showMessageDialog(null, "Sessão removida!");
+                        this.listaSessoes = controleSessao.findAll();
+                        atualizarSessoes();
+                    }catch(RollbackException ex){
+                        JOptionPane.showMessageDialog(null, "Não é possivel remover ume sessão que possui ingressos!");
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Não é possivel remover uma sesão arquivada");
                 }
@@ -1385,7 +1596,33 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mbRemoverSessoesActionPerformed
 
     private void mbPesquisarSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarSessoesActionPerformed
-        // TODO add your handling code here:
+        if(tfPesquisaSessoes.getText().isEmpty()){
+            this.listaSessoes = controleSessao.findAll();
+            atualizarSessoes();
+        }else{
+            int select = mCPesquisaSessoes.getSelectedIndex();
+            if(select > -1){
+                if(select == 0){
+                    try{
+                        Integer codigo = Integer.parseInt(tfPesquisaSessoes.getText().trim());
+                        Sessao s = controleSessao.findByCodigo(codigo);
+                        this.listaSessoes.clear();
+                        this.listaSessoes.add(s);
+                        atualizarSessoes();
+                    }catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Utilize apenas números na busca por código");
+                    }catch(NoResultException ex){
+                        JOptionPane.showMessageDialog(null, "Código não encontrado");
+                    }
+                }else if(select == 1){
+                    String filme = tfPesquisaSessoes.getText().trim();
+                    this.listaSessoes = controleSessao.findByTitulo(filme);
+                    atualizarSessoes();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Selecione um filtro pra pesquisa");
+            }
+        }
     }//GEN-LAST:event_mbPesquisarSessoesActionPerformed
 
     private void mbCadastrarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarFilmesActionPerformed
@@ -1592,6 +1829,57 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mbEfetuarVendaKeyPressed
 
+    private void tfPesquisaSessoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaSessoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPesquisaSessoesActionPerformed
+
+    private void mbUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbUsuariosActionPerformed
+        mbFilmes.setSelected(false);
+        jpFilmes.setVisible(false);
+        
+        mbProdutos.setSelected(false);
+        jpProdutos.setVisible(false);
+        
+        mbSessoes.setSelected(false);
+        jpSessoes.setVisible(false);
+        
+        mbVendas.setSelected(false);
+        jpVenda.setVisible(false);
+        
+        mBHome.setSelected(false);
+        jpHome.setVisible(false); 
+        
+        mbUsuarios.setSelected(true);
+        jpUsuario.setVisible(true);
+        
+        this.listaUsuarios = controleUsuario.findAll();
+        atualizarTabelaUsuario();
+    }//GEN-LAST:event_mbUsuariosActionPerformed
+
+    private void mbUsuariosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbUsuariosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbUsuariosKeyPressed
+
+    private void mbCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbCadastrarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbCadastrarUsuarioActionPerformed
+
+    private void mbEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbEditarUsuarioActionPerformed
+
+    private void mbRemoverUusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverUusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbRemoverUusuarioActionPerformed
+
+    private void mbPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbPesquisarUsuarioActionPerformed
+
+    private void tfPesquisaFilmes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaFilmes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPesquisaFilmes1ActionPerformed
+
     private void validarRegrasNegocioTipoIngresso(){
         double preco = 20;
         boolean valido;
@@ -1695,6 +1983,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel PMain;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox cbSessaoVenda;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -1706,6 +1995,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jpPrincipal;
     private javax.swing.JPanel jpProdutos;
     private javax.swing.JPanel jpSessoes;
+    private javax.swing.JPanel jpUsuario;
     private javax.swing.JPanel jpVenda;
     private javax.swing.JLabel lbBoasVindas;
     private javax.swing.JLabel lbBoasVindas1;
@@ -1721,9 +2011,11 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbCadastrarUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarProduto;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbEfetuarVenda;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbGerarRelatorio;
@@ -1732,23 +2024,29 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbProdutos;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemoverIngressoVenda;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverProduto;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemoverProdutoVenda;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbRemoverUusuario;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSair;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbSessoes;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbUsuarios;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbVendas;
     private com.hq.swingmaterialdesign.materialdesign.MComboBox mcPesquisaFilmes;
+    private com.hq.swingmaterialdesign.materialdesign.MComboBox mcPesquisarUsuario;
     private javax.swing.JTable tbCalendarioSessao;
     private javax.swing.JTable tbFilmes;
     private javax.swing.JTable tbIngressosVenda;
     private javax.swing.JTable tbItems;
     private javax.swing.JTable tbItensVenda;
     private javax.swing.JTable tbSessoes;
+    private javax.swing.JTable tbUsuario;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes;
+    private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaFilmes1;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaProduto;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisaSessoes;
     // End of variables declaration//GEN-END:variables

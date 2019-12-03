@@ -26,6 +26,14 @@ public class ControleSessao extends ControleGenerico<Sessao>{
         super(Sessao.class);
     }
     
+    public List<Sessao> findByTitulo(String titulo) throws NoResultException{
+        EntityManager em = getEntityManager();
+        TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findByFilmeTitulo", Sessao.class)
+                .setParameter("titulo", "%" + titulo + "%")
+                .setHint(QueryHints.REFRESH, HintValues.TRUE);
+        return query.getResultList();
+    }
+    
     public Sessao findByCodigo(Integer codigo) throws NoResultException{
         EntityManager em = getEntityManager();
         TypedQuery<Sessao> query = em.createNamedQuery("Sessao.findByCodigo", Sessao.class)

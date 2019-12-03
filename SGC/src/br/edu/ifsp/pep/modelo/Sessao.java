@@ -27,6 +27,8 @@ import javax.persistence.TemporalType;
             query = "SELECT s FROM Sessao s WHERE s.codigo = :codigo"),
     @NamedQuery(name = "Sessao.findNotArquivada",
             query = "SELECT s FROM Sessao s WHERE s.arquivada = false"),
+    @NamedQuery(name = "Sessao.findByFilmeTitulo",
+        query = "SELECT s FROM Sessao s WHERE s.filme.titulo LIKE :titulo"),
     @NamedQuery(name = "Sessao.findConflito",
             query = "SELECT s FROM Sessao s " 
                 + "WHERE (s.arquivada = false) AND (s.sala = :sala)"

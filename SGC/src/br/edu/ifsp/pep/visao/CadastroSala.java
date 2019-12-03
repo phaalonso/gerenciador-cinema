@@ -158,10 +158,14 @@ public class CadastroSala extends javax.swing.JDialog {
             Integer quantidade = Integer.parseInt(tfQuantidadeAssento.getText().trim());
             boolean disponivel = cbDisponivel.isSelected();
             Sala sala = new Sala(disponivel, quantidade);
-            if(this.selecionado != null){
+            if(this.selecionado == null){
                 controleSala.persist(sala);
+                JOptionPane.showMessageDialog(null, "Sala cadastrada");
+                dispose();
             }else{
                 controleSala.merge(sala);
+                JOptionPane.showMessageDialog(null, "Sala modificada");
+                dispose();
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Insira apenas números na quantidade!");

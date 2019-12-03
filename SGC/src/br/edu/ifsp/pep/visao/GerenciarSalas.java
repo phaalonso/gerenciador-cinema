@@ -10,6 +10,7 @@ import br.edu.ifsp.pep.modelo.Sala;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import java.util.List;
 import javax.persistence.NoResultException;
+import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,10 +55,11 @@ public class GerenciarSalas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbSala = new javax.swing.JTable();
         tfPesquisar = new com.hq.swingmaterialdesign.materialdesign.MTextField();
-        mbAdicionarIngressoVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbRemoverIngressoVenda = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbRemoverIngressoVenda1 = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
-        mbAdicionarIngressoVenda1 = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbAdicionar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbRemover = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbEditar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbPesquisar = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
+        mbConcluir = new com.hq.swingmaterialdesign.materialdesign.MToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,87 +99,108 @@ public class GerenciarSalas extends javax.swing.JDialog {
             }
         });
 
-        mbAdicionarIngressoVenda.setBackground(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbAdicionarIngressoVenda.setText("Adicionar");
-        mbAdicionarIngressoVenda.setEndColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda.setStartColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda.addActionListener(new java.awt.event.ActionListener() {
+        mbAdicionar.setBackground(new java.awt.Color(73, 136, 137));
+        mbAdicionar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbAdicionar.setText("Adicionar");
+        mbAdicionar.setEndColor(new java.awt.Color(73, 136, 137));
+        mbAdicionar.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbAdicionar.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbAdicionar.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbAdicionar.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbAdicionar.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbAdicionar.setStartColor(new java.awt.Color(73, 136, 137));
+        mbAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbAdicionarIngressoVendaActionPerformed(evt);
+                mbAdicionarActionPerformed(evt);
             }
         });
-        mbAdicionarIngressoVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbAdicionar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbAdicionarIngressoVendaKeyPressed(evt);
+                mbAdicionarKeyPressed(evt);
             }
         });
 
-        mbRemoverIngressoVenda.setBackground(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbRemoverIngressoVenda.setText("REMOVER");
-        mbRemoverIngressoVenda.setEndColor(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbRemoverIngressoVenda.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbRemoverIngressoVenda.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda.setStartColor(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda.addActionListener(new java.awt.event.ActionListener() {
+        mbRemover.setBackground(new java.awt.Color(73, 136, 137));
+        mbRemover.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbRemover.setText("REMOVER");
+        mbRemover.setEndColor(new java.awt.Color(73, 136, 137));
+        mbRemover.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbRemover.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbRemover.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbRemover.setStartColor(new java.awt.Color(73, 136, 137));
+        mbRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbRemoverIngressoVendaActionPerformed(evt);
+                mbRemoverActionPerformed(evt);
             }
         });
-        mbRemoverIngressoVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbRemover.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbRemoverIngressoVendaKeyPressed(evt);
+                mbRemoverKeyPressed(evt);
             }
         });
 
-        mbRemoverIngressoVenda1.setBackground(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbRemoverIngressoVenda1.setText("Editar");
-        mbRemoverIngressoVenda1.setEndColor(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda1.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda1.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda1.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbRemoverIngressoVenda1.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbRemoverIngressoVenda1.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbRemoverIngressoVenda1.setStartColor(new java.awt.Color(73, 136, 137));
-        mbRemoverIngressoVenda1.addActionListener(new java.awt.event.ActionListener() {
+        mbEditar.setBackground(new java.awt.Color(73, 136, 137));
+        mbEditar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbEditar.setText("Editar");
+        mbEditar.setEndColor(new java.awt.Color(73, 136, 137));
+        mbEditar.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbEditar.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbEditar.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbEditar.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbEditar.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbEditar.setStartColor(new java.awt.Color(73, 136, 137));
+        mbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbRemoverIngressoVenda1ActionPerformed(evt);
+                mbEditarActionPerformed(evt);
             }
         });
-        mbRemoverIngressoVenda1.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbEditar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbRemoverIngressoVenda1KeyPressed(evt);
+                mbEditarKeyPressed(evt);
             }
         });
 
-        mbAdicionarIngressoVenda1.setBackground(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        mbAdicionarIngressoVenda1.setText("Pesquisar");
-        mbAdicionarIngressoVenda1.setEndColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.setHoverEndColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setHoverStartColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setMaximumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda1.setMinimumSize(new java.awt.Dimension(64, 19));
-        mbAdicionarIngressoVenda1.setSelectedColor(new java.awt.Color(37, 157, 218));
-        mbAdicionarIngressoVenda1.setStartColor(new java.awt.Color(73, 136, 137));
-        mbAdicionarIngressoVenda1.addActionListener(new java.awt.event.ActionListener() {
+        mbPesquisar.setBackground(new java.awt.Color(73, 136, 137));
+        mbPesquisar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbPesquisar.setText("Pesquisar");
+        mbPesquisar.setEndColor(new java.awt.Color(73, 136, 137));
+        mbPesquisar.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbPesquisar.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbPesquisar.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbPesquisar.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbPesquisar.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbPesquisar.setStartColor(new java.awt.Color(73, 136, 137));
+        mbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mbAdicionarIngressoVenda1ActionPerformed(evt);
+                mbPesquisarActionPerformed(evt);
             }
         });
-        mbAdicionarIngressoVenda1.addKeyListener(new java.awt.event.KeyAdapter() {
+        mbPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                mbAdicionarIngressoVenda1KeyPressed(evt);
+                mbPesquisarKeyPressed(evt);
+            }
+        });
+
+        mbConcluir.setBackground(new java.awt.Color(73, 136, 137));
+        mbConcluir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbConcluir.setText("Concluir");
+        mbConcluir.setEndColor(new java.awt.Color(73, 136, 137));
+        mbConcluir.setHoverEndColor(new java.awt.Color(37, 157, 218));
+        mbConcluir.setHoverStartColor(new java.awt.Color(37, 157, 218));
+        mbConcluir.setMaximumSize(new java.awt.Dimension(64, 19));
+        mbConcluir.setMinimumSize(new java.awt.Dimension(64, 19));
+        mbConcluir.setSelectedColor(new java.awt.Color(37, 157, 218));
+        mbConcluir.setStartColor(new java.awt.Color(73, 136, 137));
+        mbConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbConcluirActionPerformed(evt);
+            }
+        });
+        mbConcluir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mbConcluirKeyPressed(evt);
             }
         });
 
@@ -189,33 +212,39 @@ public class GerenciarSalas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(mbAdicionarIngressoVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mbRemoverIngressoVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbAdicionarIngressoVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(mbConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mbAdicionarIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbRemoverIngressoVenda1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbRemoverIngressoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mbAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -240,34 +269,38 @@ public class GerenciarSalas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisarActionPerformed
 
-    private void mbAdicionarIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaActionPerformed
+    private void mbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarActionPerformed
         CadastroSala cs = new CadastroSala(null, true);
         cs.setModal(true);
         cs.setVisible(true);
         this.listaSalas = controleSala.findAll();
         atualizarSalas();
-    }//GEN-LAST:event_mbAdicionarIngressoVendaActionPerformed
+    }//GEN-LAST:event_mbAdicionarActionPerformed
 
-    private void mbAdicionarIngressoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVendaKeyPressed
+    private void mbAdicionarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarIngressoVendaKeyPressed
+    }//GEN-LAST:event_mbAdicionarKeyPressed
 
-    private void mbRemoverIngressoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVendaActionPerformed
+    private void mbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverActionPerformed
         int row = tbSala.getSelectedRow();
         if(row > -1){
-            Integer codigo = (Integer) tbSala.getValueAt(row, 0);
-            Sala s = controleSala.findByCodigo(codigo);
-            controleSala.remove(s);
+            try{
+                Integer codigo = (Integer) tbSala.getValueAt(row, 0);
+                Sala s = controleSala.findByCodigo(codigo);
+                controleSala.remove(s);
+            }catch(RollbackException ex){
+                JOptionPane.showMessageDialog(null, "Não é possivel excluir essa sala");
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala para remover");
         }
-    }//GEN-LAST:event_mbRemoverIngressoVendaActionPerformed
+    }//GEN-LAST:event_mbRemoverActionPerformed
 
-    private void mbRemoverIngressoVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVendaKeyPressed
+    private void mbRemoverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbRemoverIngressoVendaKeyPressed
+    }//GEN-LAST:event_mbRemoverKeyPressed
 
-    private void mbRemoverIngressoVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVenda1ActionPerformed
+    private void mbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbEditarActionPerformed
         int row = tbSala.getSelectedRow();
         if(row > -1){
             try{
@@ -285,19 +318,27 @@ public class GerenciarSalas extends javax.swing.JDialog {
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma sala abaixo para editar!");
         }
-    }//GEN-LAST:event_mbRemoverIngressoVenda1ActionPerformed
+    }//GEN-LAST:event_mbEditarActionPerformed
 
-    private void mbRemoverIngressoVenda1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbRemoverIngressoVenda1KeyPressed
+    private void mbEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbEditarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbRemoverIngressoVenda1KeyPressed
+    }//GEN-LAST:event_mbEditarKeyPressed
 
-    private void mbAdicionarIngressoVenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVenda1ActionPerformed
+    private void mbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbPesquisarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarIngressoVenda1ActionPerformed
+    }//GEN-LAST:event_mbPesquisarActionPerformed
 
-    private void mbAdicionarIngressoVenda1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbAdicionarIngressoVenda1KeyPressed
+    private void mbPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbPesquisarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mbAdicionarIngressoVenda1KeyPressed
+    }//GEN-LAST:event_mbPesquisarKeyPressed
+
+    private void mbConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbConcluirActionPerformed
+        dispose();
+    }//GEN-LAST:event_mbConcluirActionPerformed
+
+    private void mbConcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mbConcluirKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mbConcluirKeyPressed
 
     /**
      * @param args the command line arguments
@@ -344,10 +385,11 @@ public class GerenciarSalas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionarIngressoVenda1;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemoverIngressoVenda;
-    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemoverIngressoVenda1;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbAdicionar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbConcluir;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbEditar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbPesquisar;
+    private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbRemover;
     private javax.swing.JTable tbSala;
     private com.hq.swingmaterialdesign.materialdesign.MTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
