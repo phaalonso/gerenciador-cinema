@@ -234,19 +234,34 @@ public class CadastrarSessao extends javax.swing.JDialog {
                     long milesegundos = f.getDuracao() * 60 * 1000;
                     List<Sessao> conflito = controleSessao.localizarConflito(s, data, new Date(data.getTime() + milesegundos));
                     
-                    if(conflito.isEmpty()){
-                        Sessao sessao = new Sessao();
-                        sessao.setDataInicio(data);
-                        sessao.setDescricao(descricao);
-                        sessao.setFilme(f);
-                        sessao.setSala(s);
-                        sessao.setArquivada(false);
-                        
-                        controleSessao.persist(sessao);
-                        JOptionPane.showMessageDialog(null, "Sessao cadastrada");
-                        dispose();
-                    }else{                        
-                        JOptionPane.showMessageDialog(null, "A sala esta ocupada nesse horário!");
+                    if(this.selecionado == null){
+                        if(conflito.isEmpty()){
+                            Sessao sessao = new Sessao();
+                            sessao.setDataInicio(data);
+                            sessao.setDescricao(descricao);
+                            sessao.setFilme(f);
+                            sessao.setSala(s);
+                            sessao.setArquivada(false);
+                            controleSessao.persist(sessao);
+                            JOptionPane.showMessageDialog(null, "Sessão cadastrada");
+                            dispose(); 
+                        }else{                        
+                            JOptionPane.showMessageDialog(null, "A sala esta ocupada nesse horário!");
+                        }
+                    }else{
+                        conflito.remove(this.selecionado);
+                        if(conflito.isEmpty()){
+                            this.selecionado.setDataInicio(data);
+                            this.selecionado.setDescricao(descricao);
+                            this.selecionado.setFilme(f);
+                            this.selecionado.setSala(s);
+                            this.selecionado.setArquivada(false);
+                            controleSessao.merge(this.selecionado);
+                            JOptionPane.showMessageDialog(null, "Sessão editada");
+                            dispose();
+                        }else{                        
+                            JOptionPane.showMessageDialog(null, "A sala esta ocupada nesse horário!");
+                        }
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Por favor selecione um filme");
