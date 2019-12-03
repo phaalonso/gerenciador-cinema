@@ -32,7 +32,7 @@ public class ControleFilme extends ControleGenerico<Filme>{
     
     public List<Filme> findByTitulo(String titulo){
         EntityManager em = getEntityManager();
-        TypedQuery<Filme> query = em.createNamedQuery("Filme.findByTituloP", Filme.class)
+        TypedQuery<Filme> query = em.createNamedQuery("Filme.findByTitulo", Filme.class)
                 .setParameter("titulo", "%" + titulo + "%")
                 .setHint(QueryHints.REFRESH, HintValues.TRUE);
         return query.getResultList();
