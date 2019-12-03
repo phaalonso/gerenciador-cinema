@@ -1672,13 +1672,15 @@ public class Menu extends javax.swing.JFrame {
         if(row > -1){
             try{
                 Integer codigo = (Integer) tbFilmes.getValueAt(row, 0);
-                Filme f = controleFilme.findByCodigo(codigo);
-                System.out.println(JOptionPane.showConfirmDialog(null, "Deseja remover esse filme?"));
-                
+                Filme f = controleFilme.findByCodigo(codigo);                
                 controleFilme.remove(f);
-                
-            }catch(HeadlessException | NoResultException ex){
-                System.out.println(ex);
+                this.listaFilmes = controleFilme.findAll();
+                atualizarFilmes();
+                JOptionPane.showMessageDialog(null, "Filme removido");
+            }catch(NoResultException ex){
+                JOptionPane.showMessageDialog(null, "Filme não encontrado!");
+            }catch(RollbackException ex){
+                JOptionPane.showMessageDialog(null, "Não é possivel remover esse filme");
             }
         }else{
             JOptionPane.showMessageDialog(null, "Selelcione um filme para remover");
