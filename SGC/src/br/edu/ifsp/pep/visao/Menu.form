@@ -879,6 +879,8 @@
                                           <Component id="mbEditarSessoes" min="-2" pref="170" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="mbRemoverSessoes" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="mbGereciarSalas" min="-2" pref="170" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="mCPesquisaSessoes" min="-2" pref="97" max="-2" attributes="0"/>
@@ -910,6 +912,7 @@
                               <Component id="mbCadastrarSessoes" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="mbEditarSessoes" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="mbRemoverSessoes" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="mbGereciarSalas" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
@@ -1075,6 +1078,22 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbMontarProgramacaoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="com.hq.swingmaterialdesign.materialdesign.MButton" name="mbGereciarSalas">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="89" green="88" red="49" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="SALAS"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mbGereciarSalasActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

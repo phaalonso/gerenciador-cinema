@@ -143,6 +143,7 @@ public class Menu extends javax.swing.JFrame {
         mbPesquisarSessoes = new com.hq.swingmaterialdesign.materialdesign.MButton();
         tfPesquisaSessoes = new com.hq.swingmaterialdesign.materialdesign.MTextField();
         mbMontarProgramacao = new com.hq.swingmaterialdesign.materialdesign.MButton();
+        mbGereciarSalas = new com.hq.swingmaterialdesign.materialdesign.MButton();
         jpProdutos = new javax.swing.JPanel();
         mbCadastrarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
         mbEditarProduto = new com.hq.swingmaterialdesign.materialdesign.MButton();
@@ -676,6 +677,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        mbGereciarSalas.setBackground(new java.awt.Color(73, 136, 137));
+        mbGereciarSalas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        mbGereciarSalas.setText("SALAS");
+        mbGereciarSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mbGereciarSalasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpSessoesLayout = new javax.swing.GroupLayout(jpSessoes);
         jpSessoes.setLayout(jpSessoesLayout);
         jpSessoesLayout.setHorizontalGroup(
@@ -691,7 +701,9 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(jpSessoesLayout.createSequentialGroup()
                                 .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpSessoesLayout.createSequentialGroup()
                                 .addComponent(mCPesquisaSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -714,10 +726,11 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jpSessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mbCadastrarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mbEditarSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mbRemoverSessoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mbGereciarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addContainerGap(476, Short.MAX_VALUE))
         );
 
         jpProdutos.setBackground(java.awt.Color.white);
@@ -1418,6 +1431,12 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mbRemoverProdutoVendaKeyPressed
 
+    private void mbGereciarSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mbGereciarSalasActionPerformed
+        GerenciarSalas gs = new GerenciarSalas(this, true);
+        gs.setModal(true);
+        gs.setVisible(true);
+    }//GEN-LAST:event_mbGereciarSalasActionPerformed
+
     public void atualizarProdutos(){        
         DefaultTableModel modelo = (DefaultTableModel) tbItems.getModel();
         modelo.setNumRows(0);
@@ -1492,6 +1511,7 @@ public class Menu extends javax.swing.JFrame {
     private com.hq.swingmaterialdesign.materialdesign.MButton mbEditarSessoes;
     private com.hq.swingmaterialdesign.materialdesign.MToggleButton mbFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbGerarRelatorio;
+    private com.hq.swingmaterialdesign.materialdesign.MButton mbGereciarSalas;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbMontarProgramacao;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarFilmes;
     private com.hq.swingmaterialdesign.materialdesign.MButton mbPesquisarProdutos;
